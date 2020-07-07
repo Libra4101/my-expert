@@ -36,3 +36,5 @@
 .rvmrc
 # git
 .gitmessage
+# rubocop
+.rubocop.yml

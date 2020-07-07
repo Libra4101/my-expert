@@ -49,6 +49,10 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'bullet'
+  gem 'hirb'
+  gem 'hirb-unicode'
+  gem 'rubocop', require: false
 end
 
 group :test do
@@ -63,4 +67,16 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # add original
+gem 'slim-rails'
+gem 'html2slim'
+gem 'devise'
+gem 'devise-i18n'
+gem 'devise-i18n-views'
 gem 'rails-i18n', '~> 5.1'
+gem 'jquery-rails'
+gem 'bootstrap-honoka-rails' , '~>4.3.1'
+gem 'refile', require: 'refile/rails', github: 'manfe/refile'
+gem 'refile-mini_magick'
+gem 'kaminari'
+gem 'enum_help'
+gem 'dotenv-rails'
