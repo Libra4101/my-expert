@@ -1,0 +1,15 @@
+doctype html
+html
+  head
+    title
+      | MyExpert
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag    'client', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'client', 'data-turbolinks-track': 'reload'
+  body
+    - content_for :content do
+      = render "layouts/client/header"
+      = yield
+      = render "layouts/client/footer"
+    = render template: "layouts/application"
