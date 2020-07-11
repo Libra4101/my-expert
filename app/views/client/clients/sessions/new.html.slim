@@ -1,0 +1,29 @@
+.container
+  .center-box
+    h2.cl-login_title ログイン
+    .row
+      .cl-login_left.col-md-5
+        h4.cl-login_sub_title SNSアカウントでログイン
+        .cl-login_sosyal
+          a.twitter href="#" Twitter
+          = link_to  "Google+", client_google_oauth2_omniauth_authorize_path, class: "google"
+        = link_to "新規登録の方はコチラから", new_client_confirmation_path(resource_name)
+
+      .cl-login_center.col-md-1
+        .vl-label
+          span.vl-label-text or
+
+      .cl-login_right.col-md-5
+        h4.cl-login_sub_title メールアドレスでログイン
+        = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+          .form-group
+            = f.label :email
+            br
+            = f.email_field :email, autocomplete: "email", class: "form-control"
+          .form-group
+            = f.label :password
+            br
+            = f.password_field :password, autocomplete: "current-password", class: "form-control"
+          = link_to "パスワードを忘れた場合", new_password_path(resource_name)
+          .cl-login_actions
+            = f.submit "ログイン", class: "btn btn-info"

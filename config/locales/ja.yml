@@ -1,0 +1,7 @@
+ja:
+  enums:
+    client:
+      gender:
+        sex_not_known: その他
+        male: 男性
+        female: 女性
