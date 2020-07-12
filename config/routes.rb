@@ -32,5 +32,11 @@ Rails.application.routes.draw do
   scope module: :client do
     # ルート
     root to: 'static_pages#top'
+    # 会員情報
+    resource :clients, only: [:edit, :update, :show] do
+      collection do
+        patch 'withdraw', to: 'clients#withdraw'
+      end
+    end
   end
 end

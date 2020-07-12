@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_07_083728) do
+ActiveRecord::Schema.define(version: 2020_07_11_080323) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,15 @@ ActiveRecord::Schema.define(version: 2020_07_07_083728) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+  end
+
+  create_table "careers", force: :cascade do |t|
+    t.bigint "expert_id", null: false
+    t.date "occurrence_date", null: false
+    t.text "content", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["expert_id"], name: "index_careers_on_expert_id"
   end
 
   create_table "clients", force: :cascade do |t|
@@ -55,6 +64,38 @@ ActiveRecord::Schema.define(version: 2020_07_07_083728) do
     t.index ["reset_password_token"], name: "index_clients_on_reset_password_token", unique: true
   end
 
+  create_table "consultations", force: :cascade do |t|
+    t.bigint "client_id", null: false
+    t.bigint "expert_id", null: false
+    t.bigint "trouble_tag_id"
+    t.bigint "event_id"
+    t.text "content"
+    t.integer "reservation_status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["client_id"], name: "index_consultations_on_client_id"
+    t.index ["event_id"], name: "index_consultations_on_event_id"
+    t.index ["expert_id"], name: "index_consultations_on_expert_id"
+    t.index ["trouble_tag_id"], name: "index_consultations_on_trouble_tag_id"
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.string "title", null: false
+    t.datetime "start_event_time", null: false
+    t.datetime "end_event_time", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "expertise_tags", force: :cascade do |t|
+    t.bigint "epert_id", null: false
+    t.bigint "trouble_tag_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["epert_id"], name: "index_expertise_tags_on_epert_id"
+    t.index ["trouble_tag_id"], name: "index_expertise_tags_on_trouble_tag_id"
+  end
+
   create_table "experts", force: :cascade do |t|
     t.string "name", null: false
     t.string "name_kana", null: false
@@ -78,6 +119,53 @@ ActiveRecord::Schema.define(version: 2020_07_07_083728) do
     t.index ["job_id"], name: "index_experts_on_job_id"
     t.index ["office_id"], name: "index_experts_on_office_id"
     t.index ["reset_password_token"], name: "index_experts_on_reset_password_token", unique: true
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.bigint "client_id", null: false
+    t.bigint "expert_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["client_id"], name: "index_favorites_on_client_id"
+    t.index ["expert_id"], name: "index_favorites_on_expert_id"
+  end
+
+  create_table "jobs", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "offices", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "tel"
+    t.string "postcode"
+    t.string "address"
+    t.float "latitude"
+    t.float "longitude"
+    t.datetime "reception_start_time"
+    t.datetime "reception_end_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "problems", force: :cascade do |t|
+    t.bigint "client_id", null: false
+    t.bigint "trouble_tag_id"
+    t.text "content"
+    t.integer "priority_status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["client_id"], name: "index_problems_on_client_id"
+    t.index ["trouble_tag_id"], name: "index_problems_on_trouble_tag_id"
+  end
+
+  create_table "trouble_tags", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

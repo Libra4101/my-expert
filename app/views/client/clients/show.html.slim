@@ -1,0 +1,15 @@
+.container
+  .row
+    .col-md-4.cl-show_side
+      .card.h-100
+        = image_tag 'top_search_expert.jpg', class: 'card-img-top'
+        .card-body
+          h4.card-title 専門家をお探しですか？
+          p.card-text
+            | お悩みに沿った専門家を検索することが可能です。
+            br
+            | 専門分野や過去の依頼実績などで専門家をお探しいただけます。
+        .card-footer
+          = link_to root_path, class: 'btn btn-success col-md-6 offset-md-3' do
+            span 専門家を探す
+            = icon 'fas', 'search'

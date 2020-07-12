@@ -1,12 +1,18 @@
 class Client < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  # devise setting
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable, :omniauthable,
          omniauth_providers: %i[facebook google_oauth2]
 
   # image
   attachment :avater_image
+
+  # association
+  has_many :favorites, dependent: :destroy
+  has_many :favorite_experts, through: :favorites
+  has_many :problems
+  has_many :consultations
+  has_many :consultations_event, through: :consultations
 
   # validate
   validates :name,          presence: true, length: { maximum: 60 }
