@@ -1,0 +1,13 @@
+.container
+  .center-box
+    h2.cl-login_title パスワード再設定
+    .row
+      = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+        = render "client/clients/shared/error_messages", resource: resource
+        .form-group
+          = f.label :email
+          br
+          = f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control col-10 col-md-4"
+        p ※ ご指定のメールアドレス宛にパスワード変更ページのURLが記載されたメールを送信致します。
+        .cl-login_actions
+          = f.submit "送信", class: "btn cl-btn_primary"

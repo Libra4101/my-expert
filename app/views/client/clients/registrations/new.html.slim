@@ -1,0 +1,40 @@
+.container
+  .center-box
+    h2.cl-login_title 会員情報入力
+    .mx-auto
+      = form_for resource, as: resource_name, url: client_registration_path(resource_name), builder: CustomFormBuilder do |f|
+        .form-group.col-10.col-md-6.offset-md-3
+          = f.label :avater_image
+          = f.attachment_field :avater_image, autocomplete: "avater_image"
+        .form-group.col-10.col-md-6.offset-md-3
+          = f.label :name
+          = f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control"
+        .form-group.col-10.col-md-6.offset-md-3
+          = f.label :name_kana
+          = f.text_field :name_kana, autocomplete: "name_kana", class: "form-control"
+        .form-group.col-10.col-md-6.offset-md-3
+          = f.label :gender
+          = f.select :gender, Client.genders_i18n.invert, {prompt: "選択してください"}, class: "form-control"
+        .form-group.col-10.col-md-6.offset-md-3
+          = f.label :age
+          = f.number_field :age, autocomplete: "age", class: "form-control"
+        .form-group.col-10.col-md-6.offset-md-3
+          = f.label :postcode
+          = f.text_field :postcode, autocomplete: "postcode", class: "form-control"
+        .form-group.col-10.col-md-6.offset-md-3
+          = f.label :address
+          = f.text_field :address, autocomplete: "address", class: "form-control"
+        .form-group.col-10.col-md-6.offset-md-3
+          = f.label :phone_number
+          = f.text_field :phone_number, autocomplete: "phone_number", class: "form-control"
+        .form-group.col-10.col-md-6.offset-md-3
+          = f.label :email
+          = f.email_field :email, autocomplete: "email", class: "form-control"
+        .form-group.col-10.col-md-6.offset-md-3
+          = f.label :password
+          = f.password_field :password, autocomplete: "new-password", class: "form-control"
+        .form-group.col-10.col-md-6.offset-md-3
+          = f.label :password_confirmation
+          = f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control"
+        .cl-login_actions
+          = f.submit "登録する", class: "btn btn-info col-3"
