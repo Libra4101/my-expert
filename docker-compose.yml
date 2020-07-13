@@ -9,7 +9,7 @@ services:
     build:
       context: .
       dockerfile: ./Docker/app/Dockerfile
-    command: bundle exec puma -C config/puma.rb
+    command: bundle exec rails s
     volumes:
       - .:/myapp
       - public_data:/myapp/public

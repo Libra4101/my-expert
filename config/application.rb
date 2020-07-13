@@ -27,5 +27,7 @@ module Myapp
         helper_specs: false,      # helper specは作らない
         routing_specs: false      # routing specは作らない
     end
+    # エラーメッセージフィールド自動設定OFF
+    config.action_view.field_error_proc = Proc.new { |html_tag, instance| html_tag }
   end
 end
