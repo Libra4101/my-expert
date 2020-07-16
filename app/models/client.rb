@@ -9,7 +9,7 @@ class Client < ApplicationRecord
 
   # association
   has_many :favorites, dependent: :destroy
-  has_many :experts, through: :favorites
+  has_many :favorite_experts, through: :favorites, source: 'expert'
   has_many :problems
   has_many :consultations
   has_many :events, through: :consultations
@@ -53,6 +53,7 @@ class Client < ApplicationRecord
 
   private
 
+  # ダミーメールアドレス
   def self.dummy_email(auth)
     "#{auth.uid}-#{auth.provider}@example.com"
   end

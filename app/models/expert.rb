@@ -20,4 +20,9 @@ class Expert < ApplicationRecord
 
   # enum
   enum gender: { sex_not_known: 0, male: 1, female: 2 }
+
+  # お気に入り確認
+  def favorited_by?(client)
+    self.favorites.where(client_id: client.id).exists?
+  end
 end
