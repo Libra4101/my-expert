@@ -5,7 +5,7 @@ module DeviseHandlers
   class Client::ParameterSanitizer < Devise::ParameterSanitizer
     def initialize(*)
       super
-      permit(:sign_up, keys: [
+      params = [
         :name,
         :name_kana,
         :email,
@@ -14,8 +14,10 @@ module DeviseHandlers
         :address,
         :postcode,
         :phone_number,
-        :avater_image_id
-      ])
+        :avater_image
+      ]
+      permit(:sign_up, params)
+      permit(:account_update, params)
     end
   end
 

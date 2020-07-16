@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_11_080323) do
+ActiveRecord::Schema.define(version: 2020_07_14_232332) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,6 +64,18 @@ ActiveRecord::Schema.define(version: 2020_07_11_080323) do
     t.index ["reset_password_token"], name: "index_clients_on_reset_password_token", unique: true
   end
 
+  create_table "comments", force: :cascade do |t|
+    t.bigint "problem_id"
+    t.bigint "expert_id"
+    t.bigint "client_id"
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["client_id"], name: "index_comments_on_client_id"
+    t.index ["expert_id"], name: "index_comments_on_expert_id"
+    t.index ["problem_id"], name: "index_comments_on_problem_id"
+  end
+
   create_table "consultations", force: :cascade do |t|
     t.bigint "client_id", null: false
     t.bigint "expert_id", null: false
@@ -107,7 +119,7 @@ ActiveRecord::Schema.define(version: 2020_07_11_080323) do
     t.boolean "public_status", null: false
     t.boolean "withdraw_status", default: true, null: false
     t.bigint "office_id"
-    t.bigint "job_id", null: false
+    t.bigint "job_id"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"

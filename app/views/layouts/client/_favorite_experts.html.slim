@@ -1,0 +1,38 @@
+  - if experts.present?
+    - experts.each_slice(2) do |expert_left, expert_right|
+      .row
+        .col-md-6
+          - if expert_left
+            .card.my-3
+              .row.no-gutters
+                .col-md-3
+                  = attachment_image_tag expert_left, :avater_image, fallback: 'no_image_profile.jpg', class: 'card-img-top'
+                .col-md-9
+                  .card-body
+                    .row
+                      h6.card-title
+                        = "#{expert_left.job.title}  #{expert_left.name}"
+                      = link_to root_path, class: 'favorite-button btn btn-light' do
+                        = icon 'fas', 'heart'
+                        span お気に入り
+                    p.card-text.text-truncate
+                      = expert_left.introduction
+        .col-md-6
+          - if expert_right
+            .card.my-3
+              .row.no-gutters
+                .col-md-3
+                  = attachment_image_tag expert_right, :avater_image, fallback: 'no_image_profile.jpg', class: 'card-img-top'
+                .col-md-9
+                  .card-body
+                    .row
+                      h6.card-title
+                        = "#{expert_right.job.title}  #{expert_right.name}"
+                      = link_to root_path, class: 'favorite-button btn btn-light' do
+                        = icon 'fas', 'heart'
+                        span お気に入り
+                    p.card-text.text-truncate
+                      = expert_right.introduction
+    .row
+      .pagenation.mx-auto
+        = paginate experts, param_name: 'experts_page', params: { nav_type: 'expert'}

@@ -1,0 +1,35 @@
+/ 投稿検索条件
+.row.cl-show_problem_head
+  = form_with url: clients_path, method: :get, class: 'form-inline', local: true do |f|
+    = hidden_field_tag :nav_type, 'problems'
+    .cl-show_problem_search_area.mx-3
+      .input-group
+          = f.text_field :search_problem_keyword, class: 'form-control', value: @search_params[:keyword_problem], placeholder: 'キーワードを入力'
+          span.input-group-btn
+            = f.submit '検索', class: 'btn btn-primary', name: nil
+    .cl-show_problem_search_count_area.mx-3
+      = "全 #{problems.length}件"
+    .cl-show_problem_sort_area.mx-3
+      span 並び替え
+      = f.select(:search_problem_sort, select_sort_problem_list, {selected: @search_params[:sort_problem]}, {class: 'sort_list', id: 'sort_list', onchange: 'submit(this.form)' })
+
+/ 投稿内容一覧表示
+.row.cl-show_problem_body
+  .cl-show_problem_table_area.table-responsive
+    table.table.text-nowrap.table-bordered 
+      thead.thead-light
+        tr
+          th.col-8 投稿内容
+          th.col-4 コメント数
+      tbody
+        - if problems.present?
+          - problems.each do |problem|
+            tr
+              td.cl-show_problem_td_left
+                = problem.content
+              td.cl-show_problem_td_right
+                = icon 'fas', 'comment'
+                = problem.expert_comments.count
+.row
+  .pagenation.mx-auto
+    = paginate problems, param_name: 'problems_page', params: { nav_type: 'problems'}
