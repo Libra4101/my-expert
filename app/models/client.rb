@@ -1,7 +1,7 @@
 class Client < ApplicationRecord
   # devise setting
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :confirmable, :omniauthable,
+         :recoverable, :rememberable, :validatable, :omniauthable,
          omniauth_providers: %i[facebook google_oauth2]
 
   # image
@@ -9,10 +9,11 @@ class Client < ApplicationRecord
 
   # association
   has_many :favorites, dependent: :destroy
-  has_many :favorite_experts, through: :favorites
+  has_many :experts, through: :favorites
   has_many :problems
   has_many :consultations
-  has_many :consultations_event, through: :consultations
+  has_many :events, through: :consultations
+  has_many :comments, class_name: 'comment', foreign_key: 'client_id'
 
   # validate
   validates :name,          presence: true, length: { maximum: 60 }
@@ -31,10 +32,10 @@ class Client < ApplicationRecord
         name:     auth.info.name,
         uid:      auth.uid,
         provider: auth.provider,
-        email:    Client.dummy_email(auth),
+        email:    (auth.info.email || Client.dummy_email(auth)),
         password: Devise.friendly_token[0, 20]
       )
-      client.skip_confirmation!
+      # client.skip_confirmation!
       client.save!
     end
     return client

@@ -1,2 +1,32 @@
-h1 Client::Clients#edit
-p Find me in app/views/client/clients/edit.html.slim
+.container
+  .center-box
+    h2.cl-edit_title 会員情報編集
+    .mx-auto
+      = form_with model: @client, url: clients_path, builder: CustomFormBuilder, local: true do |f|
+        .form-group.col-10.col-md-6.offset-md-3
+          = f.label :avater_image
+          = f.attachment_field :avater_image, autocomplete: "avater_image"
+        .form-group.col-10.col-md-6.offset-md-3
+          = f.label :name
+          = f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control"
+        .form-group.col-10.col-md-6.offset-md-3
+          = f.label :name_kana
+          = f.text_field :name_kana, autocomplete: "name_kana", class: "form-control"
+        .form-group.col-10.col-md-6.offset-md-3
+          = f.label :gender
+          = f.select :gender, Client.genders_i18n.invert, {prompt: "選択してください"}, class: "form-control"
+        .form-group.col-10.col-md-6.offset-md-3
+          = f.label :age
+          = f.number_field :age, autocomplete: "age", class: "form-control"
+        .form-group.col-10.col-md-6.offset-md-3
+          = f.label :postcode
+          = f.text_field :postcode, autocomplete: "postcode", class: "form-control"
+        .form-group.col-10.col-md-6.offset-md-3
+          = f.label :address
+          = f.text_field :address, autocomplete: "address", class: "form-control"
+        .form-group.col-10.col-md-6.offset-md-3
+          = f.label :phone_number
+          = f.text_field :phone_number, autocomplete: "phone_number", class: "form-control"
+        .cl-edit_actions
+          = f.submit "更新する", class: "btn btn-success col-2 mx-2"
+          = link_to "戻る", clients_path ,class: "btn btn-info col-2 mx-2"

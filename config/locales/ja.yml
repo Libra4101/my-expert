@@ -1,7 +1,34 @@
 ja:
+  activerecord:
+    models:
+      client: 会員
+    attributes:
+      client:
+        email: Email
+        password: パスワード
+        name: 名前
+        name_kana: フリガナ
+        gender: 性別
+        age: 年齢
+        address: 住所
+        postcode: 郵便番号
+        phone_number: 電話番号
+        avater_image_id: プロフィール画像
+        withdraw_status: 退会ステータス
+
   enums:
     client:
       gender:
         sex_not_known: その他
         male: 男性
         female: 女性
+    expert:
+      gender:
+        sex_not_known: その他
+        male: 男性
+        female: 女性
+    consultation:
+      reservation_status:
+        applying: 予約申請中
+        reservations: 予約確定
+        completed: 相談済み

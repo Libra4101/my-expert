@@ -14,7 +14,7 @@ class DeviseCreateExperts < ActiveRecord::Migration[5.2]
       t.boolean :public_status, null: false
       t.boolean :withdraw_status, null: false, default: true
       t.references :office
-      t.references :job, null: false
+      t.references :job
 
 
       ## Database authenticatable

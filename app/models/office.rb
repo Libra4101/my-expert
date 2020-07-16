@@ -1,4 +1,4 @@
 class Office < ApplicationRecord
   # association
-  belongs_to :expert
+  has_one :expert
 end

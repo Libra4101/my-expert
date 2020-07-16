@@ -7,14 +7,17 @@
     color: white;
   }
 }
-.card {
-  max-width: 25rem;
-  
-  .card-img-top {
-    height: 12rem;
-  }
 
-  i {
-    padding: 0 0.5rem;
+.cl-top_body {
+  .card {
+    max-width: 25rem;
+    
+    .card-img-top {
+      height: 12rem;
+    }
+  
+    i {
+      padding: 0 0.5rem;
+    }
   }
 }

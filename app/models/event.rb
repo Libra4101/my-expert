@@ -1,4 +1,4 @@
 class Event < ApplicationRecord
   # association
-  belongs_to :consultation
+  has_one :consultation
 end
