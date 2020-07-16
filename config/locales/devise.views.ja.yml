@@ -65,3 +65,6 @@ ja:
     unlocks:
       new:
         resend_unlock_instructions: "アカウントの凍結解除方法を再送する"
+    failure:
+      client:
+        deleted_account: こちらのアカウントは退会済みです。新規にアカウントを登録されるか、管理者へお問合せください

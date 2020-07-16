@@ -15,7 +15,6 @@ ja:
         phone_number: 電話番号
         avater_image_id: プロフィール画像
         withdraw_status: 退会ステータス
-
   enums:
     client:
       gender:
@@ -32,3 +31,9 @@ ja:
         applying: 予約申請中
         reservations: 予約確定
         completed: 相談済み
+  success:
+    update_profile: プロフィールの更新に成功しました
+    withdraw: 退会手続きが完了いたしました。MyExpertをご利用いただき、ありがとうございました。
+  error:
+    withdraw: 退会処理に失敗しました。しばらく時間を空けてから、再度お試しください
+    update_profile: 正しく入力されていない項目があります。メッセージをご確認の上、もう一度ご入力ください

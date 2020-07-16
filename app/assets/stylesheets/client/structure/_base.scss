@@ -35,3 +35,11 @@ body {
     color: red;
   }
 }
+
+.button-wrapper {
+  display: inline-block;
+
+  .btn:disabled {
+    pointer-events: none;
+  }
+}

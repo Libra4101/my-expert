@@ -14,10 +14,11 @@ module DeviseHandlers
         :address,
         :postcode,
         :phone_number,
-        :avater_image
+        :avater_image,
+        :withdraw_status
       ]
-      permit(:sign_up, params)
-      permit(:account_update, params)
+      permit(:sign_up)
+      permit(:account_update)
     end
   end
 

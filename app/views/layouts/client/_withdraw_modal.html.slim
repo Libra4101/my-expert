@@ -1,0 +1,15 @@
+#withdrawModal.modal.fade tabindex='-1' role='dialog' aria-labelledby='withdrawModalLabel'
+  .modal-dialog
+    .modal-content
+      .modal-header
+        h5 id='withdrawModalLabel' class='modal-title' 退会確認
+        button type='button' class='close' data-dismiss='modal' aria-label='閉じる'
+          span aria-hidden='true' &times;
+      .modal-body
+        p
+          | 退会手続きをされますと、会員サービスがご利用できなくなります。
+          | 再度ご利用いただくには、新たにアカウント登録が必要となります。
+          | 本当に退会してもよろしいですか？
+      .modal-footer
+        button type='button' class='btn btn-secondar' data-dismiss='modal' キャンセル
+        = button_to '退会する', withdraw_clients_path, method: :patch, class: 'btn btn-info'

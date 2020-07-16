@@ -40,6 +40,17 @@ class Client < ApplicationRecord
     end
     return client
   end
+
+  # 退会確認
+  def active_for_authentication?
+    super && self.withdraw_status
+  end
+
+  # 退会済みエラーメッセージを表示
+  def inactive_message
+    self.withdraw_status ? super : :deleted_account
+  end
+
   private
 
   def self.dummy_email(auth)

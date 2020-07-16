@@ -12,7 +12,7 @@ class Client::Clients::OmniauthCallbacksController < Devise::OmniauthCallbacksCo
 
     @client = Client.find_for_oauth(request.env['omniauth.auth'])
 
-    if @client.persisted?
+    if @client.persisted? && @client.withdraw_status
       flash[:notice] = I18n.t('devise.omniauth_callbacks.success', kind: provider.capitalize)
       sign_in_and_redirect @client, event: :authentication
     else
