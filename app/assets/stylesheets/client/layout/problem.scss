@@ -1,0 +1,41 @@
+//--- 投稿内容登録画面 ---//
+.cl-problem_title {
+  margin-top: 0;
+  margin-bottom: 1em;
+  border-left: solid 0.5rem #707070;
+  border-bottom: solid 2px #707070;
+  padding-left: 0.5rem;
+}
+
+.cl-problem_actions {
+  text-align: center;
+}
+
+//--- 投稿内容詳細画面 ---//
+.cl-problem_show_body{
+
+  .cl-problem_show_client_category {
+    margin: 0 1rem 0 2rem;
+    border-bottom: solid 1px #707070;
+  }
+  .cl-problem_show_status {
+    margin-right: 1rem;
+    border-bottom: solid 1px #707070;
+  }
+  .cl-problem_show_date {
+    border-bottom: solid 1px #707070;
+  }
+  .cl-problem_show_area {
+    display: block;
+  }
+  .cl-problem_show_actions {
+    text-align: right;
+  }
+  .cl-problem_edit_area {
+    margin: 2rem 0 1rem 0;
+    display: none;
+  }
+  .cl-problem_edit_actions {
+    text-align: right;
+  }
+}

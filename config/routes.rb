@@ -40,5 +40,7 @@ Rails.application.routes.draw do
     end
     # お気に入り機能
     resources :favorites, only: %i[create destroy], param: :expert_id
+    # お悩み投稿機能
+    resources :problems, only: %i[new create show update destroy]
   end
 end

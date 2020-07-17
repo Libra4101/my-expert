@@ -15,14 +15,12 @@
 
       .cl-login_right.col-md-5
         h4.cl-login_sub_title メールアドレスでログイン
-        = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+        = form_for resource, as: resource_name, url: client_session_path, builder: CustomFormBuilder do |f|
           .form-group
             = f.label :email
-            br
             = f.email_field :email, autocomplete: "email", class: "form-control"
           .form-group
             = f.label :password
-            br
             = f.password_field :password, autocomplete: "current-password", class: "form-control"
           = link_to "パスワードを忘れた場合", new_password_path(resource_name)
           .cl-login_actions

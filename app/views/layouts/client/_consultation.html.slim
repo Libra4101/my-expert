@@ -15,25 +15,25 @@
 
 / 相談内容一覧表示
 .row.cl-show_consultation_body
-  .cl-show_consultation_table_area.table-responsive
-    table.table.text-nowrap.table-bordered 
+  .cl-show_consultation_table_area
+    table.table.table-bordered 
       thead.thead-light
         tr
-          th.col-2 相談状況
-          th.col-2 相談予約日時
-          th.col-2 専門家
-          th.col-6 相談内容
+          th style="width: 20%" 予約日時
+          th style="width: 15%" 相談状況
+          th style="width: 15%" 専門家
+          th.w-auto 相談内容
       tbody
         - if consultations.present?
           - consultations.each do |consultation|
             tr
               td
-                = consultation.reservation_status_i18n
-              td
                 = l consultation.created_at, format: :long
               td
-                = consultation.expert.name
+                = consultation.reservation_status_i18n
               td
+                = consultation.expert.name
+              td.text-truncate
                 = consultation.content
 .row
   .pagenation.mx-auto

@@ -13,7 +13,7 @@ class Client::ClientsController < Client::Base
       flash[:success] = t('success.update_profile')
       redirect_to clients_url
     else
-      flash.now[:error] = t('error.update_profile')
+      flash.now[:error] = t('error.validate_error')
       render :edit
     end
   end
@@ -73,9 +73,9 @@ class Client::ClientsController < Client::Base
       when 'update_sort'
         problems.order('updated_at DESC')
       when 'many_coment_sort'
-        problems.left_joins(:comments).group(:id).order('count(comments.id) DESC')
+        problems.joins(:comments).group(:id).order('count(comments.id) DESC')
       when 'new_coment_sort' 
-        problems.left_joins(:comments).group(:id).order('max(comments.created_at) DESC')
+        problems.joins(:comments).group(:id).order('max(comments.created_at) DESC')
       else
         problems
     end

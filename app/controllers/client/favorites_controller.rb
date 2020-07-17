@@ -13,7 +13,7 @@ class Client::FavoritesController < Client::Base
 
   private
 
-  # 専門家情報を設定
+  # 専門家を設定
   def set_expert
     @expert = Expert.find(params[:expert_id])
   end
