@@ -13,7 +13,7 @@ class Client < ApplicationRecord
   has_many :problems
   has_many :consultations
   has_many :events, through: :consultations
-  has_many :comments, class_name: 'comment', foreign_key: 'client_id'
+  has_many :comments, class_name: 'Comment', foreign_key: 'client_id'
 
   # validate
   validates :name,          presence: true, length: { maximum: 60 }

@@ -3,6 +3,7 @@ ja:
     models:
       client: 会員
       problem: 投稿内容
+      comment: コメント
     attributes:
       client:
         email: Email
@@ -20,6 +21,8 @@ ja:
         trouble_tag_id: お悩みカテゴリ
         content: お悩み内容
         priority_status: 優先度
+      comment:
+        content: コメント内容
   enums:
     client:
       gender:

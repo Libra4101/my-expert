@@ -3,6 +3,7 @@ class Problem < ApplicationRecord
   belongs_to :client
   belongs_to :trouble_tag
   has_many :comments
+  has_many :commented_experts, through: :comments, source: 'comment'
 
   # enum
   enum priority_status: { low: 0, middle: 1, high: 2, emergency: 3 }

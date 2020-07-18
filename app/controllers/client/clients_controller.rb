@@ -75,7 +75,7 @@ class Client::ClientsController < Client::Base
       when 'many_coment_sort'
         problems.joins(:comments).group(:id).order('count(comments.id) DESC')
       when 'new_coment_sort' 
-        problems.joins(:comments).group(:id).order('max(comments.created_at) DESC')
+        problems.joins(:comments).group(:id).order('max(comments.updated_at) DESC')
       else
         problems
     end

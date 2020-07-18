@@ -1,5 +1,6 @@
 class Client::ProblemsController < Client::Base
   before_action :set_problem, only: %i[show update destroy]
+  before_action :set_comment, only: %i[show update destroy]
 
   def new
     @problem = Problem.new
@@ -7,9 +8,6 @@ class Client::ProblemsController < Client::Base
 
   def create
     @problem = current_client.problems.build(problem_params)
-    trouble_category = get_trouble_category
-    @problem.trouble_tag_id = trouble_category.id if trouble_category
-
     if @problem.save
       flash[:success] = t('success.create_problem')
       redirect_to problem_url(@problem)
@@ -24,9 +22,6 @@ class Client::ProblemsController < Client::Base
   end
 
   def update
-    trouble_category = get_trouble_category
-    @problem.trouble_tag_id = trouble_category.id if trouble_category
-
     if @problem.update(problem_params)
       flash[:success] = t('success.update_problem')
       redirect_to problem_url(@problem)
@@ -49,10 +44,9 @@ class Client::ProblemsController < Client::Base
   private
   # ストロングパラメータ
   def problem_params
-    params.require(:problem).permit(
-      :priority_status,
-      :content
-    )
+    params.require(:problem)
+      .permit(:priority_status,:content)
+      .merge(trouble_tag_id: get_trouble_tag_id)
   end
 
   # 投稿内容を設定
@@ -60,9 +54,15 @@ class Client::ProblemsController < Client::Base
     @problem = current_client.problems.find_by_id(params[:id])
   end
 
-  # お悩みカテゴリを取得
-  def get_trouble_category
-    TroubleTag.find_by_id(params[:problem][:trouble_tag_id].to_i)
+  # 投稿コメントを設定
+  def set_comment
+    @comment = current_client.comments.new
+  end
+  
+  # お悩みカテゴリIDを取得
+  def get_trouble_tag_id
+    trouble_category = TroubleTag.find_by_id(params[:problem][:trouble_tag_id].to_i)
+    trouble_category.id if trouble_category
   end
 
   # 投稿内容の閲覧制限

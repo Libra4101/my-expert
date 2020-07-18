@@ -27,7 +27,7 @@
           - problems.each do |problem|
             tr
               td
-                = l problem.created_at, format: :long
+                = l problem.updated_at, format: :long
               td.text-truncate
                 = link_to problem_path(problem) do
                   = problem.content
