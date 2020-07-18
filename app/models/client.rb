@@ -9,11 +9,11 @@ class Client < ApplicationRecord
 
   # association
   has_many :favorites, dependent: :destroy
-  has_many :experts, through: :favorites
+  has_many :favorite_experts, through: :favorites, source: 'expert'
   has_many :problems
   has_many :consultations
   has_many :events, through: :consultations
-  has_many :comments, class_name: 'comment', foreign_key: 'client_id'
+  has_many :comments, class_name: 'Comment', foreign_key: 'client_id'
 
   # validate
   validates :name,          presence: true, length: { maximum: 60 }
@@ -40,8 +40,20 @@ class Client < ApplicationRecord
     end
     return client
   end
+
+  # 退会確認
+  def active_for_authentication?
+    super && self.withdraw_status
+  end
+
+  # 退会済みエラーメッセージを表示
+  def inactive_message
+    self.withdraw_status ? super : :deleted_account
+  end
+
   private
 
+  # ダミーメールアドレス
   def self.dummy_email(auth)
     "#{auth.uid}-#{auth.provider}@example.com"
   end

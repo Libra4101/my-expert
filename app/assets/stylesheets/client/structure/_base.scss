@@ -23,7 +23,7 @@ body {
 
 .favorite-button {
   position: absolute;
-  top: 0.1rem;
+  top: 0;
   right: 0.1rem;
   font-size: 12px;
   padding: 0.2rem;
@@ -31,7 +31,19 @@ body {
   background: #fff;
   border: 1px solid rgba(112, 112, 112, 0.49);
 
-  .fa-heart {
+  .favorite_heart {
     color: red;
+  }
+}
+
+.markup_balloon {
+  color: orange;
+}
+
+.button-wrapper {
+  display: inline-block;
+
+  .btn:disabled {
+    pointer-events: none;
   }
 }

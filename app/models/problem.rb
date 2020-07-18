@@ -3,9 +3,15 @@ class Problem < ApplicationRecord
   belongs_to :client
   belongs_to :trouble_tag
   has_many :comments
+  has_many :commented_experts, through: :comments, source: 'comment'
 
   # enum
-  enum priority_status: { Low: 0, middle: 1, high: 2, emergency: 3 }
+  enum priority_status: { low: 0, middle: 1, high: 2, emergency: 3 }
+
+  # validate
+  validates :trouble_tag_id, presence: true
+  validates :priority_status, presence: true
+  validates :content, presence: true
 
   # 投稿者別コメント
   def expert_comments(expert_id: nil)

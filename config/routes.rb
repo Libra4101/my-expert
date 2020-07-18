@@ -33,10 +33,18 @@ Rails.application.routes.draw do
     # ルート
     root to: 'static_pages#top'
     # 会員情報
-    resource :clients, only: [:edit, :update, :show] do
+    resource :clients, only: %i[edit update show] do
       collection do
         patch 'withdraw', to: 'clients#withdraw'
       end
     end
+    # お気に入り機能
+    resources :favorites, only: %i[create destroy], param: :expert_id
+    # お悩み投稿機能
+    resources :problems, only: %i[new create show update destroy] do
+      # 投稿内容のコメント機能
+      resources :comments, only: %i[create update destroy]
+    end
+
   end
 end

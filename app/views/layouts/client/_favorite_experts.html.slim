@@ -12,9 +12,8 @@
                     .row
                       h6.card-title
                         = "#{expert_left.job.title}  #{expert_left.name}"
-                      = link_to root_path, class: 'favorite-button btn btn-light' do
-                        = icon 'fas', 'heart'
-                        span お気に入り
+                      div id="favorite_buttons_#{expert_left.id}"
+                        = render 'client/favorites/favorite', expert: expert_left
                     p.card-text.text-truncate
                       = expert_left.introduction
         .col-md-6
@@ -28,9 +27,8 @@
                     .row
                       h6.card-title
                         = "#{expert_right.job.title}  #{expert_right.name}"
-                      = link_to root_path, class: 'favorite-button btn btn-light' do
-                        = icon 'fas', 'heart'
-                        span お気に入り
+                      div id="favorite_buttons_#{expert_right.id}"
+                        = render 'client/favorites/favorite', expert: expert_right
                     p.card-text.text-truncate
                       = expert_right.introduction
     .row

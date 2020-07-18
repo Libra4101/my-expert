@@ -1,0 +1,8 @@
+- if expert.favorited_by?(current_client)
+  = link_to favorite_path(expert_id: expert.id), method: :delete, remote: true, class: 'favorite-button btn btn-light' do
+    = icon 'fas', 'heart', class: 'favorite_heart'
+    span お気に入り
+- else
+  = link_to favorites_path(expert_id: expert.id), method: :post, remote: true, class: 'favorite-button btn btn-light' do
+    = icon 'fa', 'heart', class: 'favorite_not_heart'
+    span お気に入り

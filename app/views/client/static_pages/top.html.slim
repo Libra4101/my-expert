@@ -32,7 +32,7 @@
             br
             | 投稿後に各分野の専門家からメッセージをいただけます。
         .card-footer
-          = link_to root_path, class: 'btn btn-warning col-md-6 offset-md-3' do
+          = link_to new_problem_path, class: 'btn btn-warning col-md-6 offset-md-3' do
             span お悩みを投稿
             = icon 'fas', 'paper-plane'
     .col-md-4.col-10.my-3
@@ -46,17 +46,3 @@
           = link_to root_path, class: 'btn btn-danger col-md-6 offset-md-3' do
             span 相談予約
             = icon 'fas', 'clipboard-check'
-  .row
-    .col-md-4.col-10.my-3
-      .card.h-100
-        = image_tag 'top_favorite.jpg', class: 'card-img-top'
-        .card-body
-          h4.card-title 相談された専門家を登録！
-          p.card-text
-            | 過去にご相談された専門家の方をお気に入り登録していただくことで
-            br
-            | あなた自身のお抱え専門家としてご相談していただけます。
-        .card-footer
-          = link_to root_path, class: 'btn btn-primary col-md-6 offset-md-3' do
-            span 相談実績一覧
-            = icon 'fas', 'folder'

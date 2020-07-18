@@ -1,31 +1,31 @@
 .card.h-100
-   .card-header
-     h4 プロフィール
-   = attachment_image_tag @client, :avater_image, fallback: 'no_image_profile.jpg', class: 'card-img-top'
-   .card-body.table-responsive
-     table.table
-       tr
-         th scope="row"
-           = Client.human_attribute_name(:name)
-         td.text-truncate
-           = @client.name
-       tr
-         th scope="row"
-           = Client.human_attribute_name(:email)
-         td.text-truncate
-           = @client.email
-       tr
-         th scope="row" フォロー
-         td.text-truncate
-           = "#{@client.experts.count} 人"
-       tr
-         th scope="row" 投稿件数
-         td.text-truncate
-           = "#{@client.problems.count} 件"
-       tr
-         th scope="row" 相談件数
-         td.text-truncate
-           = "#{@client.consultations.count} 件"
-   .card-footer.text-center
-     = link_to '編集', edit_clients_path, class: 'btn btn-success col-md-4 m-2'
-     = link_to '退会', root_path, class: 'btn btn-danger col-md-4 m-2'
+  .card-header
+    h4 プロフィール
+  = attachment_image_tag @client, :avater_image, fallback: 'no_image_profile.jpg', class: 'card-img-top'
+  .card-body
+    table.table
+      tr
+        th scope="row"
+          = Client.human_attribute_name(:name)
+        td.text-truncate
+          = @client.name
+      tr
+        th scope="row"
+          = Client.human_attribute_name(:email)
+        td.text-truncate
+          = @client.email
+      tr
+        th scope="row" フォロー
+        td.text-truncate
+          = "#{@client.favorite_experts.count} 人"
+      tr
+        th scope="row" 投稿件数
+        td.text-truncate
+          = "#{@client.problems.count} 件"
+      tr
+        th scope="row" 相談件数
+        td.text-truncate
+          = "#{@client.consultations.count} 件"
+  .card-footer.text-center
+    = link_to '編集', edit_clients_path, class: 'btn btn-success col-md-4 m-2'
+    button id='btn-modal' type='button' class='btn btn-danger col-md-4 m-2'　data-toggle='modal' data-target='#withdrawModal' 退会

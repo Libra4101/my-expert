@@ -1,29 +1,40 @@
 class Client::ClientsController < Client::Base
-  before_action :set_client, only: [:edit, :show]
+  before_action :set_client
   before_action :set_search_params, only: :show
 
   def show
-    @experts = current_client.experts.page(params[:experts_page]).per(8)
+    @experts = current_client.favorite_experts.page(params[:experts_page]).per(8)
     @problems = problem_list.page(params[:problems_page]).per(10)
     @consultations = consultations_list.page(params[:consultations_page]).per(10)
   end
   
   def update
-    @client = Client.find(current_client.id)
-      if @client.update(client_params)
-        flash[:success] = "client was successfully updated"
-        redirect_to clients_url
-      else
-        flash[:error] = "Something went wrong"
-        render 'edit'
-      end
+    if @client.update(client_params)
+      flash[:success] = t('success.update_profile')
+      redirect_to clients_url
+    else
+      flash.now[:error] = t('error.validate_error')
+      render :edit
+    end
   end
+
+  def withdraw
+    if @client.update(withdraw_status: false)
+      reset_session
+      flash[:success] = t('success.withdraw')
+      redirect_to root_url
+    else
+      flash[:error] = t('error.withdraw')
+      redirect_to clients_url
+    end
+  end
+  
 
   private
 
   # 会員情報を設定
   def set_client
-    @client = current_client
+    @client = Client.find(current_client.id)
   end
 
   # ストロングパラメータ
@@ -31,7 +42,6 @@ class Client::ClientsController < Client::Base
     params.require(:client).permit(
       :name,
       :name_kana,
-      :email,
       :gender,
       :age,
       :address,
@@ -63,9 +73,9 @@ class Client::ClientsController < Client::Base
       when 'update_sort'
         problems.order('updated_at DESC')
       when 'many_coment_sort'
-        problems.left_joins(:comments).group(:id).order('count(comments.id) DESC')
+        problems.joins(:comments).group(:id).order('count(comments.id) DESC')
       when 'new_coment_sort' 
-        problems.left_joins(:comments).group(:id).order('max(comments.created_at) DESC')
+        problems.joins(:comments).group(:id).order('max(comments.updated_at) DESC')
       else
         problems
     end
