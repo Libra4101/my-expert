@@ -51,31 +51,21 @@
     h3.cl-problem_comment_sub_title
       = "コメント一覧　全 #{@problem.expert_comments.count}件"
     - if @problem.comments.present?
-      - @problem.comments.order(:id).each do |comment|
-        - if comment.posted_expert?
-          .row
-            .cl-problem_balloon_expert.text-center
-              .cl-problem_expert_image_area
-                = attachment_image_tag comment.expert , :avater_image, fallback: 'no_image_profile.jpg', class: 'cl-problem_expert_image'
-                div #{comment.expert.job.title}  #{comment.expert.name}
-              .cl-problem_expert_comment
-                p = comment.content
-          .row.border-bottom
-            .col-12
-              p.text-right 投稿日時： #{l(comment.created_at, format: :long)}
-        - if comment.posted_client?
-          .row
-            .cl-problem_balloon_client
-              .cl-problem_client_image_area.text-center
-                = attachment_image_tag comment.client , :avater_image, fallback: 'no_image_profile.jpg', class: 'cl-problem_client_image'
-                div #{current_client.name}
-              .cl-problem_client_comment
-                p = comment.content
-          .row.border-bottom.my-3
-            .col-6
-              p.text-left 投稿日時： #{l(comment.created_at, format: :long)}
-            .col-6.text-right
-              = link_to 'コメント削除', problem_comment_path(@problem, comment), method: :delete
+      .cl-problem_comment_list
+        - @problem.comments.order(:id).each do |comment|
+          - if comment.posted_expert?
+            .row
+              .cl-problem_balloon_expert.text-center
+                .cl-problem_expert_image_area
+                  = attachment_image_tag comment.expert , :avater_image, fallback: 'no_image_profile.jpg', class: 'cl-problem_expert_image'
+                  div #{comment.expert.job.title}  #{comment.expert.name}
+                .cl-problem_expert_comment
+                  p = comment.content
+            .row.border-bottom
+              .col-12
+                p.text-right 投稿日時： #{l(comment.created_at, format: :long)}
+          - if comment.posted_client?
+            = render 'client/comments/comment', { problem: @problem, comment: comment }
 
       / コメント返信エリア
       .cl-problem_btn_comment_post_field.text-right.my-3
@@ -83,7 +73,7 @@
           = icon 'fas', 'reply', class: 'mr-2'
           span コメント返信
       .cl-problem_comment_post_field.my-3
-        = form_with model: [@problem, @comment], builder: CustomFormBuilder, local: true do |f|
+        = form_with model: [@problem, @comment], builder: CustomFormBuilder do |f|
           .form-group
             = f.label :content, "コメント内容"
             = f.text_area :content, class: "form-control", size: "30x5"

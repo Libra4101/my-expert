@@ -1,0 +1,13 @@
+- if @comment.errors.any?
+  | $('.invalid-feedback').remove();
+  | $('#comment_content').removeClass('is-invalid');
+  | $('#comment_content').addClass('is-invalid');
+  - @comment.errors.full_messages_for(:content).each do |message|
+    | $('#comment_content').after('<div class="invalid-feedback">#{message}</div>');
+- else
+  | $('#comment_content').removeClass('is-invalid');
+  | $('.invalid-feedback').remove();
+  | $('#comment_content').val('');
+  | $('.cl-problem_comment_post_field').hide();
+  | $('.cl-problem_btn_comment_post_field').show();
+  | $('.cl-problem_comment_list').append("#{j(render partial: 'client/comments/comment', locals: {problem: @comment.problem, comment: @comment})}");

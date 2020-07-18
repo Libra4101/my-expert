@@ -5,7 +5,7 @@ class Comment < ApplicationRecord
   belongs_to :expert, optional: true
 
   # validate
-  validates :content, presence: true, length: { in: 1..3000 }
+  validates :content, presence: true
 
   # コメント投稿者判定
   def posted_expert?

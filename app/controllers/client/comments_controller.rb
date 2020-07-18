@@ -3,24 +3,12 @@ class Client::CommentsController < Client::Base
 
   def create
     @comment = Comment.new(comment_params)
-    if @comment.save
-      flash[:success] = "コメント投稿が完了しました！"
-      redirect_to problem_url(@problem)
-    else
-      flash.now[:error] = t('error.validate_error')
-      render template: 'client/problems/show'
-    end
+    @comment.save
   end
 
   def destroy
     @comment = @problem.comments.find_by_id(params[:id])
-    if @comment.destroy
-      flash[:success] = "コメント削除しました"
-      redirect_to problem_url(@problem)
-    else
-      flash.now[:error] = t('error.validate_error')
-      render template: 'client/problems/show'
-    end
+    @comment.destroy
   end
   
   private
