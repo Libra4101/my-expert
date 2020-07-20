@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  post '/rate' => 'rater#create', :as => 'rate'
   #-- 会員認証 --#
   devise_for :clients,
     path: '',
@@ -45,6 +46,7 @@ Rails.application.routes.draw do
       # 投稿内容のコメント機能
       resources :comments, only: %i[create update destroy]
     end
-
+    # 専門家検索機能
+    resources :experts, only: %i[index show]
   end
 end

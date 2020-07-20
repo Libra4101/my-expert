@@ -7,6 +7,9 @@ class Client < ApplicationRecord
   # image
   attachment :avater_image
 
+  # raty
+  ratyrate_rater
+
   # association
   has_many :favorites, dependent: :destroy
   has_many :favorite_experts, through: :favorites, source: 'expert'

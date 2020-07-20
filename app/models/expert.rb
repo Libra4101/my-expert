@@ -10,7 +10,7 @@ class Expert < ApplicationRecord
   belongs_to :job
   belongs_to :office
   has_many :careers, dependent: :destroy
-  has_many :expertise_tags
+  has_many :expertise_tags, dependent: :destroy
   has_many :trouble_tags, through: :expertise_tags
   has_many :favorites
   has_many :clients, through: :favorites

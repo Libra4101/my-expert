@@ -3,34 +3,36 @@
       .row
         .col-md-6
           - if expert_left
-            .card.my-3
-              .row.no-gutters
-                .col-md-3
-                  = attachment_image_tag expert_left, :avater_image, fallback: 'no_image_profile.jpg', class: 'card-img-top'
-                .col-md-9
-                  .card-body
-                    .row
-                      h6.card-title
-                        = "#{expert_left.job.title}  #{expert_left.name}"
-                      div id="favorite_buttons_#{expert_left.id}"
-                        = render 'client/favorites/favorite', expert: expert_left
-                    p.card-text.text-truncate
-                      = expert_left.introduction
+            div id="cl-favorite_expert_card_#{expert_left.id}"
+              .card.my-3
+                .row.no-gutters
+                  .col-md-3
+                    = attachment_image_tag expert_left, :avater_image, fallback: 'no_image_profile.jpg', class: 'card-img-top'
+                  .col-md-9
+                    .card-body
+                      .row
+                        h6.card-title
+                          = "#{expert_left.job.title}  #{expert_left.name}"
+                        div id="favorite_buttons_#{expert_left.id}"
+                          = render 'client/favorites/favorite', expert: expert_left
+                      p.card-text.text-truncate
+                        = expert_left.introduction
         .col-md-6
           - if expert_right
-            .card.my-3
-              .row.no-gutters
-                .col-md-3
-                  = attachment_image_tag expert_right, :avater_image, fallback: 'no_image_profile.jpg', class: 'card-img-top'
-                .col-md-9
-                  .card-body
-                    .row
-                      h6.card-title
-                        = "#{expert_right.job.title}  #{expert_right.name}"
-                      div id="favorite_buttons_#{expert_right.id}"
-                        = render 'client/favorites/favorite', expert: expert_right
-                    p.card-text.text-truncate
-                      = expert_right.introduction
+            div id="cl-favorite_expert_card_#{expert_left.id}"
+              .card.my-3
+                .row.no-gutters
+                  .col-md-3
+                    = attachment_image_tag expert_right, :avater_image, fallback: 'no_image_profile.jpg', class: 'card-img-top'
+                  .col-md-9
+                    .card-body
+                      .row
+                        h6.card-title
+                          = "#{expert_right.job.title}  #{expert_right.name}"
+                        div id="favorite_buttons_#{expert_right.id}"
+                          = render 'client/favorites/favorite', expert: expert_right
+                      p.card-text.text-truncate
+                        = expert_right.introduction
     .row
       .pagenation.mx-auto
         = paginate experts, param_name: 'experts_page', params: { nav_type: 'expert'}

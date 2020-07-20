@@ -44,7 +44,9 @@ if Rails.env.development?
     email: 'test@example.com',
     tel: '999-999-9999',
     postcode: '999-9999',
-    address: '大阪府泉大津市池浦',
+    address: '大阪府泉大津市池浦町',
+    latitude: 34.498046,
+    longitude: 135.413332,
     reception_start_time: DateTime.now,
     reception_end_time: DateTime.now + 2
   )
@@ -56,7 +58,7 @@ if Rails.env.development?
     name_kana: 'ヤマダタロウ',
     gender: 1,
     age: '35',
-    address: '大阪府泉大津市池浦',
+    address: '大阪府泉大津市池浦町',
     postcode: '595-0022',
     phone_number: '999-999-9999'
   )

@@ -1,0 +1,17 @@
+= form_with model: searchForm, url: experts_path, method: :get, local: true do |f|
+  .card.h-100
+    .card-header
+      h4 検索欄
+    .card-body
+      = f.text_field :keyword, class: 'form-control mb-3', placeholder: '名前・事務所名など'
+      .form-group
+        = f.collection_select :job, Job.all, :id, :title, {include_blank: "-- 職業 --"}, class: "form-control"
+      .form-group
+        = f.collection_select :category, TroubleTag.all, :id, :name, {include_blank: "-- お悩みカテゴリ --"}, class: "form-control"
+      .form-group
+        = f.collection_select :prefectures, JpPrefecture::Prefecture.all, :name, :name, {include_blank: "-- 都道府県 --"}, class: "form-control"
+      .form-check
+        = f.check_box :favorite, {class: 'form-check-input'}, true, false
+        = f.label :favorite, "お気に入りの専門家"
+    .card-footer.text-center
+      = f.submit "検索", class: "btn btn-success col-6"
