@@ -1,7 +1,9 @@
 = form_with model: searchForm, url: experts_path, method: :get, local: true do |f|
   .card.h-100
     .card-header
-      h4 検索欄
+      h4
+        = icon 'fas', 'user-graduate'
+        span.mx-2 検索条件
     .card-body
       = f.text_field :keyword, class: 'form-control mb-3', placeholder: '名前・事務所名など'
       .form-group
