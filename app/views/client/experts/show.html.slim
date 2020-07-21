@@ -1,0 +1,92 @@
+/ Google Map Setting
+- google_api = "https://maps.googleapis.com/maps/api/js?key=#{ ENV['GOOGLE_API_KEY'] }&callback=initMap".html_safe
+script{ async src=google_api }
+
+javascript:
+  let map;
+
+  function initMap() {
+    geocoder = new google.maps.Geocoder()
+
+    map = new google.maps.Map(document.getElementById('map'), {
+      center: {
+        lat: gon.expert_office.latitude,
+        lng: gon.expert_office.longitude
+      },
+      zoom: 12,
+    });
+
+    marker = new google.maps.Marker({
+      position: {
+        lat: gon.expert_office.latitude,
+        lng: gon.expert_office.longitude
+      },
+      map: map
+    });
+  }
+
+.container
+  .center-box
+    .cl-expert_show_intro
+      h2.cl-expert_title プロフィール
+      .row
+        .col-md-5
+          = attachment_image_tag @expert, :avater_image, :fill, 40, 40, fallback: 'no_image_profile.jpg', class: 'card-img-top', alt: 'プロフィール画像'
+        .col-md-7
+          table.table
+            tr
+               th scope="row" 名前
+               td = @expert.name
+            tr
+               th scope="row" 職業
+               td = @expert.job.title
+            tr
+              th scope="row" 年齢
+              td = @expert.age
+            tr
+              th scope="row" 取扱分野
+              td = @expert.trouble_tags.map(&:name).join(',')
+            tr
+              th scope="row" 相談実績
+              td = "#{@expert.consultations.count} 件"
+      .row.my-3
+        .col-10.offset-1
+          h5.my-3 経歴
+          table.table-bordered
+            thead
+              th 年月
+              th 内容
+          - @expert.careers.each do |career|
+            tr
+              th scope="row" = l career.occurrence_date
+              td = career.content
+          h5.my-3 自己紹介
+          = @expert.introduction
+    .cl-expert_show_office.my-3
+      h2.cl-expert_title 事務所情報
+      .row
+        h4.mx-auto.mb-3 = @expert.office.name
+      .row
+        .col-md-6
+          #map
+        .col-md-6
+          table.table
+            tr
+               th scope="row" Email
+               td = @expert.office.email
+            tr
+               th scope="row" 住所
+               td = @expert.office.address
+            tr
+               th scope="row" 郵便番号
+               td = @expert.office.postcode
+            tr
+              th scope="row" 電話番号
+              td = @expert.office.tel
+            tr
+              th scope="row" 受付時間
+              td = "#{l(@expert.office.reception_start_time, format: :reception_time)} ~ #{l(@expert.office.reception_end_time, format: :reception_time)}"
+      .row
+        .col-10.offset-1.my-3.text-center
+          = link_to "この人に相談する", root_path, class: "btn btn-danger mx-2" 
+          = link_to "一覧へ戻る", experts_path, class: "btn btn-info mx-2"

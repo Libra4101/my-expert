@@ -1,9 +1,13 @@
 ja:
+  time:
+    formats:
+      reception_time: '%H:%M'
   activerecord:
     models:
       client: 会員
       problem: 投稿内容
       comment: コメント
+      job: 職業
     attributes:
       client:
         email: Email
@@ -23,6 +27,9 @@ ja:
         priority_status: 優先度
       comment:
         content: コメント内容
+      job:
+        title: 職業名
+        content: 職業説明
   enums:
     client:
       gender:

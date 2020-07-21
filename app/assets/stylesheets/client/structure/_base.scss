@@ -47,3 +47,12 @@ body {
     pointer-events: none;
   }
 }
+
+.card {
+  table {
+    th,td {
+      border-top: initial;
+      border-bottom: 1px solid #dee2e6;
+    }
+  }
+}

@@ -1,5 +1,5 @@
 class ExpertiseTag < ApplicationRecord
   # association
   belongs_to :expert
-  belongs_to :trouble_tags
+  belongs_to :trouble_tag
 end
