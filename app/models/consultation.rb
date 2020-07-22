@@ -11,6 +11,11 @@ class Consultation < ApplicationRecord
   # enum
   enum reservation_status: { applying: 0, reservations: 1, completed: 2 }
 
+  # validate
+  validates :trouble_tag_id, presence: true
+  validates :event, presence: true
+  validates :content, presence: true
+
   # 相談内容検索
   def self.search(keyword)
     return Consultation.all unless keyword

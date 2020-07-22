@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  post '/rate' => 'rater#create', :as => 'rate'
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
   #-- 会員認証 --#
   devise_for :clients,
     path: '',
@@ -35,6 +35,9 @@ Rails.application.routes.draw do
     root to: 'static_pages#top'
     # 会員情報
     resource :clients, only: %i[edit update show] do
+      # 相談予約機能
+      resources :consultations, only: %i[new create show], shallow: true
+      get 'new.json'   => 'consultations#new', defaults: { format: :json }
       collection do
         patch 'withdraw', to: 'clients#withdraw'
       end

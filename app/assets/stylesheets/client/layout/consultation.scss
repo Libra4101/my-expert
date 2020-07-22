@@ -1,0 +1,44 @@
+//--- 相談登録画面 ---//
+
+.cl-consul_title {
+  margin-top: 0;
+  margin-bottom: 1em;
+  border-left: solid 0.5rem #707070;
+  border-bottom: solid 2px #707070;
+  padding-left: 0.5rem;
+}
+
+//--- 投稿内容詳細画面 ---//
+.cl-consul_show_body{
+
+  .cl-consul_show_client_category {
+    margin: 0 1rem 0 2rem;
+    border-bottom: solid 1px #707070;
+  }
+  .cl-consul_show_status {
+    margin-right: 1rem;
+    border-bottom: solid 1px #707070;
+  }
+  .cl-consul_show_date {
+    border-bottom: solid 1px #707070;
+  }
+  .cl-consul_show_area {
+    display: block;
+  }
+  .cl-consul_show_actions {
+    text-align: right;
+  }
+  .cl-consul_edit_area {
+    margin: 2rem 0 1rem 0;
+    display: none;
+  }
+  .cl-consul_edit_actions {
+    text-align: right;
+  }
+}
+
+.cl-consul_show_btn {
+  position: absolute;
+  bottom: 1rem;
+  right: 3rem;
+}

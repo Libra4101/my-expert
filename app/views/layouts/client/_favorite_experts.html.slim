@@ -1,38 +1,26 @@
   - if experts.present?
-    - experts.each_slice(2) do |expert_left, expert_right|
-      .row
-        .col-md-6
-          - if expert_left
-            div id="cl-favorite_expert_card_#{expert_left.id}"
-              .card.my-3
-                .row.no-gutters
-                  .col-md-3
-                    = attachment_image_tag expert_left, :avater_image, fallback: 'no_image_profile.jpg', class: 'card-img-top'
-                  .col-md-9
-                    .card-body
-                      .row
-                        h6.card-title
-                          = "#{expert_left.job.title}  #{expert_left.name}"
-                        div id="favorite_buttons_#{expert_left.id}"
-                          = render 'client/favorites/favorite', expert: expert_left
-                      p.card-text.text-truncate
-                        = expert_left.introduction
-        .col-md-6
-          - if expert_right
-            div id="cl-favorite_expert_card_#{expert_left.id}"
-              .card.my-3
-                .row.no-gutters
-                  .col-md-3
-                    = attachment_image_tag expert_right, :avater_image, fallback: 'no_image_profile.jpg', class: 'card-img-top'
-                  .col-md-9
-                    .card-body
-                      .row
-                        h6.card-title
-                          = "#{expert_right.job.title}  #{expert_right.name}"
-                        div id="favorite_buttons_#{expert_right.id}"
-                          = render 'client/favorites/favorite', expert: expert_right
-                      p.card-text.text-truncate
-                        = expert_right.introduction
-    .row
-      .pagenation.mx-auto
-        = paginate experts, param_name: 'experts_page', params: { nav_type: 'expert'}
+    - experts.each do |expert|
+      .card.border-success.my-3.shadow.mx-auto
+        .row.no-gutters
+          .col-md-4.d-flex.align-items-center.border-right
+            = attachment_image_tag expert, :avater_image, :fill, 40, 40, fallback: 'no_image_profile.jpg', class: 'card-img-top', alt: 'プロフィール画像'
+          .col-md-8
+            .card-body
+              table.table
+                tr
+                  th scope="row" 名前
+                  td = "#{expert.job.title}  #{expert.name}"
+                tr
+                  th scope="row" 取扱分野
+                  td = expert.trouble_tags.map(&:name).join(',')
+                tr
+                  th scope="row" 所在地
+                  td = expert.office.address
+                tr
+                  th scope="row" 相談実績
+                  td = "#{expert.consultations.count} 件"
+            .card-footer.text-center
+              = link_to '詳細', expert_path(expert), class: 'btn btn-info mx-2'
+              = link_to '相談予約', new_clients_consultation_path(expert_id: expert.id), class: 'btn btn-danger mx-2'
+              div id="favorite_buttons_#{expert.id}" class="favorite_button"
+                = render 'client/favorites/favorite', expert: expert

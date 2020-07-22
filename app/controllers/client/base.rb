@@ -7,7 +7,7 @@ class Client::Base < ApplicationController
   # 他会員の閲覧制限
   def correct_client?(client_id)
     if current_client.id != client_id
-      redirect_to request.referrer || root_path
+      redirect_back(fallback_location: root_path)
     end
   end
 end

@@ -88,5 +88,5 @@ javascript:
               td = "#{l(@expert.office.reception_start_time, format: :reception_time)} ~ #{l(@expert.office.reception_end_time, format: :reception_time)}"
       .row
         .col-10.offset-1.my-3.text-center
-          = link_to "この人に相談する", root_path, class: "btn btn-danger mx-2" 
-          = link_to "一覧へ戻る", experts_path, class: "btn btn-info mx-2"
+          = link_to "この人に相談する", new_clients_consultation_path(expert_id: @expert.id), class: "btn btn-danger mx-2" 
+          = link_to "一覧へ戻る", :back, class: "btn btn-info mx-2"
