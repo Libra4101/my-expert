@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <body>
+    <p>
+      このたびは、MyExpertにて相談予約いただき誠にありがとうございます。<br>
+      ご予約いただいた内容をお知らせします。
+    </p>
+    <p>予約受付日時：<%= l @consultation.created_at, format: :long %></p>
+
+    <p>
+      --- 専門家情報 ---<br>
+      名前：<%= @consultation.expert.name %><br>
+      Email：<%= @consultation.expert.office.email %><br>
+      電話番号：<%= @consultation.expert.office.tel %><br>
+      住所：<%= @consultation.expert.office.address %><br>
+    </p>
+    
+    <p>
+      --- ご予約情報 ---<br>
+      予約日時：<%= l @consultation.event.start_event_time, format: :long %><br>
+      ご相談内容：<%= @consultation.content %><br>
+    </p>
+
+    <p>
+      -----------------------------------------------------------------------<br>
+        本メールは、自動的に配信しています。<br>
+        こちらのメールは送信専用のため、直接ご返信いただいてもお問い合わせには<br>
+        お答えできませんので、あらかじめご了承ください。<br>
+      -----------------------------------------------------------------------<br>
+    </p>
+  </body>
+</html>

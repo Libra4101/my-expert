@@ -34,7 +34,8 @@
               td
                 = consultation.expert.name
               td.text-truncate
-                = consultation.content
+                = link_to consultation_path(consultation) do
+                  = consultation.content
 .row
   .pagenation.mx-auto
     = paginate consultations, param_name: 'consultations_page', params: { nav_type: 'consultations'}

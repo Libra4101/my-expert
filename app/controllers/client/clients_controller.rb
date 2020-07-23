@@ -3,9 +3,9 @@ class Client::ClientsController < Client::Base
   before_action :set_search_params, only: :show
 
   def show
-    @experts = current_client.favorite_experts.includes(:job).page(params[:experts_page]).per(8)
+    @experts = current_client.favorite_experts.includes(:job).includes(:office).includes(:expertise_tags).includes(:trouble_tags)
     @problems = problem_list.page(params[:problems_page]).per(10)
-    @consultations = consultations_list.page(params[:consultations_page]).per(10)
+    @consultations = consultations_list.includes(:expert).page(params[:consultations_page]).per(10)
   end
   
   def update
