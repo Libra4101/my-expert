@@ -52,4 +52,17 @@ Rails.application.routes.draw do
     # 専門家検索機能
     resources :experts, only: %i[index show]
   end
+
+  #-- 専門家 --#
+  namespace :expert do
+    # ルート
+    root to: 'static_pages#top'
+    # 専門家情報
+    resource :experts, only: %i[show edit update], shallow: true do
+      resource :bookmarks, only: %i[create destroy]
+      resource :careers, only: %i[create destroy], param: :career_id
+      resource :expertise_tags, only: %i[create destroy], param: :tag_id
+      resource :offices, only: %i[create update], param: :office_id
+    end
+  end
 end

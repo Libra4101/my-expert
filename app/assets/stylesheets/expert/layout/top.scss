@@ -1,0 +1,23 @@
+.jumbotron {
+  background-image: image-url('top_mv.jpg');
+  background-size: cover;
+  background-position: center 60%;
+
+  .ex-top_title_contents {
+    color: white;
+  }
+}
+
+.ex-top_body {
+  .card {
+    max-width: 25rem;
+    
+    .card-img-top {
+      height: 12rem;
+    }
+  
+    i {
+      padding: 0 0.5rem;
+    }
+  }
+}

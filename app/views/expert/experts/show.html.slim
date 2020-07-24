@@ -1,0 +1,26 @@
+.container
+  .row
+    / プロフィール領域
+    .col-md-3.ex-show_side.h-100
+      = render 'layouts/expert/profile'
+    / ユーザー情報欄
+    .col-md-9.ex-show_content
+      / タブナビ
+      nav.ex-show_nav_bar
+        #nav-tab.nav.nav-tabs role="tablist"
+          a#nav-expert-tab class="nav-item nav-link active" data-toggle="tab" href="#nav-expert" role="tab" aria-controls="nav-expert" aria-selected="true"
+            span ブックマーク投稿
+          a#nav-consultations-tab class="nav-item nav-link" data-toggle="tab" href="#nav-consultations" role="tab" aria-controls="nav-consultations" aria-selected="false"
+            span 相談予約一覧
+      / ナビ内容
+      #nav-tabContent.tab-content.mt-3
+        #nav-expert class="tab-pane active" role="tabpanel" aria-labelledby="nav-expert-tab"
+          .ex-show_sub_title
+            h4 ブックマーク投稿
+          .container.ex-show_content_body
+            = render 'layouts/expert/bookmark_problem', problems: @problems
+        #nav-consultations class="tab-pane" role="tabpanel" aria-labelledby="nav-consultations-tab"
+          .ex-show_sub_title
+            h4 相談内容一覧
+          .container.ex-show_content_body
+            / = render 'layouts/client/consultation', consultations: @consultations

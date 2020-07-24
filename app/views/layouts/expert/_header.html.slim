@@ -1,2 +1,30 @@
-header
-  p expert page
+header.sticky-top
+  nav.navbar.navbar-expand-lg.navbar-dark.bg-primary
+    .container
+      a.navbar-brand href='#'
+        h3
+          = link_to "My Expert", root_path
+      #navbar.collapse.navbar-collapse
+        ul.navbar-nav.ml-auto
+          - if expert_signed_in?
+            li.nav-item
+              = link_to expert_experts_path, class: "nav-link" do
+                = icon 'fas', 'user'
+                span マイページ
+            li.nav-item
+              = link_to experts_path, class: "nav-link" do
+                = icon 'fas', 'edit'
+                span 相談予約状況
+            li.nav-item
+              = link_to new_problem_path, class: "nav-link" do
+                = icon 'fas', 'search'
+                span 投稿内容を探す
+            li.nav-item
+              = link_to destroy_client_session_path, method: :delete, class: "nav-link" do
+                = icon 'fas', 'sign-out-alt'
+                span ログアウト
+          - else
+            li.nav-item
+              = link_to new_client_session_path, class: "nav-link" do
+                = icon 'fas', 'sign-in-alt'
+                span ログイン

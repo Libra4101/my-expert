@@ -1,0 +1,78 @@
+//--- 会員詳細画面 ---//
+
+// プロフィールエリア
+.ex-show_side {
+  margin: 2rem 0;
+
+  .card-img-top {
+    height: 12rem;
+    padding: 1rem;
+  }
+}
+
+// 専門家一覧
+.ex-show_content {
+  padding: 0.5rem;
+  margin: 2em auto 2em;
+  border-radius: 15px;
+  background-color: #fff;
+
+  .ex-show_sub_title {
+    border-left: solid 0.5rem #707070;
+    border-bottom: solid 2px #707070;
+    padding-left: 0.5rem;
+  }
+
+  .ex-show_content_body {
+
+    .card {
+      position: relative;
+      .card-img-top {
+        height: 100%;
+        padding: 0.5rem 0.2rem;
+      }
+    }
+  }
+}
+
+// 投稿内容一覧
+.ex-show_problem_head {
+  margin: 1rem 0;
+
+  .ex-show_problem_search_count_area {
+    padding: 0.5rem;
+    font-size: 1.2rem;
+  }
+  .ex-show_problem_sort_area {
+    padding: 0.3rem;
+    font-size: 1.2rem;
+  }
+}
+
+// 相談内容一覧
+.ex-show_consultation_head {
+  margin: 1rem 0;
+
+  .ex-show_consultation_search_count_area {
+    padding: 0.5rem;
+    font-size: 1.2rem;
+  }
+  .ex-show_consultation_sort_area {
+    padding: 0.3rem;
+    font-size: 1.2rem;
+  }
+}
+
+//--- 会員編集画面 ---//
+
+.ex-edit_title {
+  margin-top: 0;
+  margin-bottom: 1em;
+  border-left: solid 0.5rem #707070;
+  border-bottom: solid 2px #707070;
+  padding-left: 0.5rem;
+}
+
+.ex-edit_actions {
+  text-align: right;
+}

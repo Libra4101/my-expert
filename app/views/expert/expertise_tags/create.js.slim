@@ -1,0 +1,5 @@
+- if @expertise_tag.errors.any?
+  | $('#expertise_tag_form').html("#{j(render partial: 'layouts/expert/expertise_tag_form', locals: {expertise_tag: @expertise_tag})}");
+- else
+  | $('#expertise_tag_form').html("#{j(render partial: 'layouts/expert/expertise_tag_form', locals: {expertise_tag: @expertise_tag})}");
+  | $('#ex-expert_trouble_tab_area').html("#{j(render partial: 'layouts/expert/expertise_tag_list', locals: {expertise_tags: @expertise_tags})}");

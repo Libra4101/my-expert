@@ -4,6 +4,7 @@ class Problem < ApplicationRecord
   belongs_to :trouble_tag
   has_many :comments
   has_many :commented_experts, through: :comments, source: 'comment'
+  has_many :bookmarks, dependent: :destroy
 
   # enum
   enum priority_status: { low: 0, middle: 1, high: 2, emergency: 3 }
@@ -29,5 +30,10 @@ class Problem < ApplicationRecord
   def self.search(keyword)
     return Problem.all unless keyword
     Problem.where('problems.content LIKE ?', "%#{sanitize_sql_like(keyword)}%")
+  end
+
+  # ブックマークチェック
+  def bookmark_by?(expert)
+    bookmarks.where(expert_id: expert.id).exists?
   end
 end

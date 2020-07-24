@@ -10,6 +10,8 @@ html
   body
     - content_for :content do
       = render "layouts/expert/header"
-      = yield
+      = render  "layouts/flash" 
+      main.ex-app-container
+        = yield
       = render "layouts/expert/footer"
     = render template: "layouts/application"

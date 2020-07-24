@@ -1,0 +1,80 @@
+.container
+  .center-box
+    / プロフィールエリア
+    h2.ex-edit_title 基本情報
+    .ex-expert_base_info_area
+      = form_with model: @expert, url: expert_experts_path, builder: CustomFormBuilder, local: true do |f|
+        .form-group.col-10.col-md-6.offset-md-3
+          / = attachment_image_tag @expert, :avater_image, fallback: 'no_image_profile.jpg', class: 'card-img-top'
+          = f.label :avater_image
+          = f.attachment_field :avater_image, autocomplete: "avater_image"
+        .form-group.col-10.col-md-6.offset-md-3
+          = f.label :email
+          = f.email_field :email, autocomplete: "email", class: "form-control"
+        .form-group.col-10.col-md-6.offset-md-3
+          = f.label :name
+          = f.text_field :name, autocomplete: "name", class: "form-control"
+        .form-group.col-10.col-md-6.offset-md-3
+          = f.label :name_kana
+          = f.text_field :name_kana, autocomplete: "name_kana", class: "form-control"
+        .form-group.col-10.col-md-6.offset-md-3
+          = f.label :gender
+          = f.select :gender, Expert.genders_i18n.invert, {prompt: "選択してください"}, class: "form-control"
+        .form-group.col-10.col-md-6.offset-md-3
+          = f.label :age
+          = f.number_field :age, autocomplete: "age", class: "form-control"
+        .form-group.col-10.col-md-6.offset-md-3
+          = f.label :phone_number
+          = f.telephone_field :phone_number, autocomplete: "phone_number", class: "form-control"
+        .form-group.col-10.col-md-10.offset-md-3
+          .form-check-inline 
+            = f.radio_button :public_status, true, class: "form-check-input"
+            = f.label :public_status_true, "評価を公開", class: "form-check-label"
+          .form-check-inline.ml-3
+            = f.radio_button :public_status, false, class: "form-check-input"
+            = f.label :public_status_false, "評価を非公開", class: "form-check-label"
+        .form-group.col-10.col-md-6.offset-md-3
+          = f.label :introduction
+          = f.text_area :introduction, class: "form-control", size: "40x5"
+        .ex-edit_actions
+          = f.submit "更新する", class: "btn btn-success col-2 mx-2"
+    / 経歴エリア
+    h2.ex-edit_title 経歴
+    .ex-expert_career_area
+      #ex-expert_career_list_area
+        = render "layouts/expert/career_list", careers: @expert.careers
+      = render "layouts/expert/career_form", career: @career
+
+    / 取り扱い分野
+    h2.ex-edit_title 取扱分野
+    .ex-expert_trouble_area
+      #ex-expert_trouble_tab_area.text-center
+        = render "layouts/expert/expertise_tag_list", expertise_tags: @expert.expertise_tags.includes(:trouble_tag)
+      = render "layouts/expert/expertise_tag_form", expertise_tag: @expertise_tag
+
+    / 事務所
+    h2.ex-edit_title 所在地・事務所
+    .ex-expert_office_area
+      = form_with model: [@expert, @office], url: expert_experts_offices_path(office_id: @office.id), builder: CustomFormBuilder, local: true do |f|
+        .form-group.col-10.col-md-6.offset-md-3
+          = f.label :email
+          = f.email_field :email, autocomplete: "email", class: "form-control"
+        .form-group.col-10.col-md-6.offset-md-3
+          = f.label :name
+          = f.text_field :name, autocomplete: "name", class: "form-control"
+        .form-group.col-10.col-md-6.offset-md-3
+          = f.label :tel
+          = f.telephone_field :tel, autocomplete: "tel", class: "form-control"
+        .form-group.col-10.col-md-6.offset-md-3
+          = f.label :postcode
+          = f.text_field :postcode, autocomplete: "postcode", class: "form-control"
+        .form-group.col-10.col-md-6.offset-md-3
+          = f.label :address
+          = f.text_field :address, autocomplete: "address", class: "form-control"
+        .form-inline.col-10.col-md-6.offset-md-3
+          = f.label :reception_start_time, "受付時間", class: "mr-2"
+          = f.time_select :reception_start_time, {prompt:true, ignore_data:true}, class: "form-control"
+          span ~
+          = f.time_select :reception_end_time, {prompt:true, ignore_data:true}, class: "form-control"
+        .ex-edit_actions
+          = f.submit "更新する", class: "btn btn-success col-2 mx-2"
