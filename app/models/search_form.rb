@@ -10,7 +10,7 @@ class SearchForm
               .left_joins(:office)
               .left_joins(:job)
               .left_joins(:careers)
-              .left_joins(:expertise_tags)
+              .includes(:expertise_tags)
               .includes(:trouble_tags)
               .left_joins(:favorites)
               .select("experts.*, jobs.title as job_name, offices.address as address")

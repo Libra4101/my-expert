@@ -64,5 +64,11 @@ Rails.application.routes.draw do
       resource :expertise_tags, only: %i[create destroy], param: :tag_id
       resource :offices, only: %i[create update], param: :office_id
     end
+
+    # 投稿内容
+    resources :problems, only: %i[index show] do
+      # 投稿内容のコメント機能
+      resources :comments, only: %i[create update destroy]
+    end
   end
 end

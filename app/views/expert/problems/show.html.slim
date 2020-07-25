@@ -1,0 +1,33 @@
+.container
+  .center-box
+    h2.ex-problem_title 投稿内容詳細
+    .ex-problem_show_body
+      .row
+        .ex-problem_show_client_category.col-10.col-md-4.d-flex
+          h5 お悩みカテゴリ
+          span.mx-3 = @problem.trouble_tag.name
+        .ex-problem_show_status.col-10.col-md-3.d-flex
+          h5 優先度
+          span.mx-3 = @problem.priority_status_i18n
+        .ex-problem_show_date.col-10.col-md-4.d-flex
+          h5 投稿日時
+          span.mx-3 = l @problem.created_at, format: :long
+      / 詳細
+      .ex-problem_show_area.w-100
+        .row.mt-4
+          .col-10.col-md-10.mx-3
+            .ex-problem_show_text_area
+              h5 投稿内容
+              p = @problem.content
+
+/-- 投稿コメント一覧 --/
+.container
+  .ex-problem_comment_area
+    h3.ex-problem_comment_sub_title
+      = "コメント一覧　全 #{@problem.expert_comments.count}件"
+    #ex-problem_comment_area_list
+      = render "layouts/expert/problem_comment", comments: @comments
+
+    / コメント返信エリア
+    #ex-problem_comment_post_field.my-3
+      = render "layouts/expert/problem_comment_form", {problem: @problem, comment: @comment}

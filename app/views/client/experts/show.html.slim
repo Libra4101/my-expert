@@ -51,15 +51,16 @@ javascript:
               td = "#{@expert.consultations.count} 件"
       .row.my-3
         .col-10.offset-1
-          h5.my-3 経歴
-          table.table-bordered
-            thead
-              th 年月
-              th 内容
-          - @expert.careers.each do |career|
-            tr
-              th scope="row" = l career.occurrence_date
-              td = career.content
+          - if @expert.careers
+            h5.my-3 経歴
+            table.table-bordered
+              thead.thead-lignt
+                th 年月
+                th 内容
+              - @expert.careers.each do |career|
+                tr
+                  td = l career.occurrence_date
+                  td = career.content
           h5.my-3 自己紹介
           = @expert.introduction
     .cl-expert_show_office.my-3
