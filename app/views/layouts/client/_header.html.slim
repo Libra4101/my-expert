@@ -23,10 +23,10 @@ header.sticky-top
               = link_to destroy_client_session_path, method: :delete, class: "nav-link" do
                 = icon 'fas', 'sign-out-alt'
                 span ログアウト
-            li.nav-item
-              = link_to root_path, class: "nav-link" do
-                = icon 'fas', 'info-circle'
-                span サイト情報
+            / li.nav-item
+            /   = link_to about_path, class: "nav-link" do
+            /     = icon 'fas', 'info-circle'
+            /     span サイト情報
           - else
             li.nav-item
               = link_to new_client_session_path, class: "nav-link" do
@@ -40,7 +40,7 @@ header.sticky-top
               = link_to experts_path, class: "nav-link" do
                 = icon 'fas', 'search'
                 span 専門家を探す
-            li.nav-item
-              = link_to root_path, class: "nav-link" do
-                = icon 'fas', 'info-circle'
-                span サイト情報
+            / li.nav-item
+            /   = link_to root_path, class: "nav-link" do
+            /     = icon 'fas', 'info-circle'
+            /     span サイト情報

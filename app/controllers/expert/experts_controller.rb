@@ -1,8 +1,8 @@
 class Expert::ExpertsController < Expert::Base
-  before_action :set_expert, only: %i[edit update]
+  before_action :set_expert, only: %i[show edit update]
 
   def show
-    @problem = @expert.bookmark_problems
+    gon.expert_office = @expert.office
   end
 
   def edit

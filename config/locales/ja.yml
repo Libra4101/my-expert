@@ -43,6 +43,7 @@ ja:
       consultation:
         content: 相談内容
         trouble_tag_id: 相談カテゴリ
+        reservation_status: 相談予約ステータス
       career:
         occurrence_date: 日付
         content: 内容
@@ -77,6 +78,7 @@ ja:
         high: 高
         emergency: 緊急
   success:
+    update_consultation_status: 相談予約ステータスを更新しました
     create_consultation: 相談予約が完了しました。詳細は、確認メールをご覧ください。
     create_problem: お悩みを投稿しました。専門家からコメントが来るまでしばらくお待ち下さい。
     update_problem: 投稿内容を更新しました

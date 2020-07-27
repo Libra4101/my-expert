@@ -7,7 +7,7 @@ class Expert::ProblemsController < Expert::Base
 
   def show
     @problem = Problem.find(params[:id])
-    @comments = @problem.comments.includes(:client).includes(:expert)
+    @comments = @problem.comments.includes(:expert).includes(:client)
     @comment = Comment.new
   end
 

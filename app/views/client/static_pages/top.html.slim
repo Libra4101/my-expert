@@ -43,6 +43,6 @@
           p.card-text
             | 会員限定にて当サイトから直接専門家の方へ相談予約をしていただくことができます。
         .card-footer
-          = link_to root_path, class: 'btn btn-danger col-md-6 offset-md-3' do
-            span 相談予約
+          = link_to clients_path(nav_type: 'consultations'), class: 'btn btn-danger col-md-6 offset-md-3' do
+            span 相談予約一覧
             = icon 'fas', 'clipboard-check'
