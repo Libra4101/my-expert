@@ -1,16 +1,22 @@
 ja:
+  date:
+    formats:
+      occurrence: '%Y/%m/%d'
   time:
     formats:
       reception_time: '%H:%M'
   activerecord:
     models:
       client: 会員
+      expert: 専門家
       problem: 投稿内容
       comment: コメント
       job: 職業
       consultation: 予約
+      career: 経歴
+      office: 事務所
     attributes:
-      client:
+      client: &client
         email: Email
         password: パスワード
         name: 名前
@@ -20,8 +26,11 @@ ja:
         address: 住所
         postcode: 郵便番号
         phone_number: 電話番号
-        avater_image_id: プロフィール画像
+        avater_image: プロフィール画像
         withdraw_status: 退会ステータス
+      expert:
+        <<: *client
+        introduction: 自己紹介
       problem:
         trouble_tag_id: お悩みカテゴリ
         content: お悩み内容
@@ -34,6 +43,18 @@ ja:
       consultation:
         content: 相談内容
         trouble_tag_id: 相談カテゴリ
+        reservation_status: 相談予約ステータス
+      career:
+        occurrence_date: 日付
+        content: 内容
+      office:
+        email: メールアドレス
+        name: 事務所名称
+        tel: 電話番号
+        postcode: 郵便番号
+        address: 住所
+        reception_start_time: 受付開始時間
+        reception_end_time: 受付終了時間
   enums:
     client:
       gender:
@@ -57,6 +78,7 @@ ja:
         high: 高
         emergency: 緊急
   success:
+    update_consultation_status: 相談予約ステータスを更新しました
     create_consultation: 相談予約が完了しました。詳細は、確認メールをご覧ください。
     create_problem: お悩みを投稿しました。専門家からコメントが来るまでしばらくお待ち下さい。
     update_problem: 投稿内容を更新しました

@@ -16,13 +16,13 @@
                   table.table
                     tr
                       th scope="row" 名前
-                      td = "#{expert.job_name}  #{expert.name}"
+                      td = "#{expert.job.title}  #{expert.name}"
                     tr
                       th scope="row" 取扱分野
                       td = expert.trouble_tags.map(&:name).join(',')
                     tr
                       th scope="row" 所在地
-                      td = expert.address
+                      td = expert.office.address
                     tr
                       th scope="row" 相談実績
                       td = "#{expert.consultations.count} 件"

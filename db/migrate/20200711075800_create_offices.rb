@@ -8,8 +8,8 @@ class CreateOffices < ActiveRecord::Migration[5.2]
       t.string :address
       t.float :latitude
       t.float :longitude
-      t.datetime :reception_start_time
-      t.datetime :reception_end_time
+      t.time :reception_start_time
+      t.time :reception_end_time
 
       t.timestamps
     end

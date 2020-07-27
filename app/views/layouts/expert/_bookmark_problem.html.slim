@@ -1,0 +1,22 @@
+  - if problems.present?
+    - problems.each do |problem|
+      .card.border-success.my-3.shadow.mx-auto
+        .row.no-gutters
+          .col-md-4.d-flex.align-items-center.border-right
+            = attachment_image_tag problem.client, :avater_image, :fill, 40, 40, fallback: 'no_image_profile.jpg', class: 'card-img-top', alt: 'プロフィール画像'
+          .col-md-8
+            .card-body
+              table.table
+                tr
+                  th scope="row" カテゴリ
+                  td = problem.trouble_tag.name
+                tr
+                  th scope="row" ステータス
+                  td = problem.priority_status_i18n
+                tr
+                  th scope="row" 投稿内容
+                  td = problem.content
+            .card-footer.text-center
+              = link_to '詳細', expert_path(expert), class: 'btn btn-info mx-2'
+              / div id="bookmark_buttons_#{expert.id}" class="favorite_button"
+              /   = render 'client/favorites/favorite', expert: expert

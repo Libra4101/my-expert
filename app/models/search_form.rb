@@ -7,13 +7,11 @@ class SearchForm
     #--- 条件に合致する専門家を取得 ---#
     @experts = Expert
               .where(public_status: true)
-              .left_joins(:office)
-              .left_joins(:job)
-              .left_joins(:careers)
-              .left_joins(:expertise_tags)
+              .includes(:office)
+              .includes(:job)
+              .includes(:expertise_tags)
               .includes(:trouble_tags)
               .left_joins(:favorites)
-              .select("experts.*, jobs.title as job_name, offices.address as address")
 
     # 検索ワードに該当
     if self.keyword.present?

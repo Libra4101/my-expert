@@ -1,0 +1,11 @@
+- if careers.exists?
+  - careers.each do |career|
+    div class="ex-expert_career_list_#{career.id}"
+      - if career.id
+        .card.border-light.my-3.shadow.col-10.col-md-6.offset-md-3
+          .card-body
+            h5.card-title = career.occurrence_date
+            p.card-text = career.content
+            .clearfix
+              = link_to expert_experts_careers_path(career_id: career.id), method: :delete, class: "float-right", remote: true do
+                = icon 'fas', 'trash-alt fa-2x'

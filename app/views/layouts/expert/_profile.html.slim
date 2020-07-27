@@ -1,0 +1,24 @@
+.card.h-100
+  .card-header
+    h4 プロフィール
+  = attachment_image_tag @expert, :avater_image, fallback: 'no_image_profile.jpg', class: 'card-img-top'
+  .card-body
+    table.table
+      tr
+        th scope="row" 名前
+        td.text-truncate
+          = @expert.name
+      tr
+        th scope="row" Email
+        td.text-truncate
+          = @expert.email
+      tr
+        th scope="row" 職業
+        td.text-truncate
+          = @expert.job.title
+      tr
+        th scope="row" 相談件数
+        td.text-truncate
+          = "#{@expert.consultations.count} 件"
+  .card-footer.text-center
+    = link_to '編集', edit_expert_experts_path, class: 'btn btn-success'

@@ -1,0 +1,81 @@
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
+body {
+  background-color: #F0F1F7;
+}
+
+.ex-btn_primary {
+  background-color: #2B84D3;
+  box-shadow: 0 4px 0 #0078BD;
+  
+  display: inline;
+  position: relative;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  border-radius: 25px;
+  padding: 10px 80px;
+  margin: 0.5em 0;
+}
+
+.tag{
+  display: inline-block;
+	margin: 0 .1em .6em 0;
+	padding: .6em;
+	line-height: 1;
+	text-decoration: none;
+	color:black;
+	background-color:rgb(214, 232, 243);
+	border: 1px solid rgb(121, 127, 133);
+  border-radius: 2em;
+}
+
+.markup_balloon {
+  color: orange;
+}
+
+.button-wrapper {
+  display: inline-block;
+
+  .btn:disabled {
+    pointer-events: none;
+  }
+}
+
+.card {
+  -webkit-transition: all .3s;
+  transition: all .3s;
+  position: relative;
+ 
+  .favorite-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: inline;
+    font-size: 1rem;
+    padding: 0.2rem;
+    border-radius: 20px;
+    background: #fff;
+    border-color: initial;
+    border: initial;
+  
+    .favorite_heart {
+      color: red;
+    }
+  }
+
+  table {
+    th,td {
+      border-top: initial;
+      border-bottom: 1px solid #dee2e6;
+    }
+  }
+  &:hover {
+    -webkit-box-shadow: 0 6px 6px -6px #777;
+    -moz-box-shadow: 0 6px 6px -6px #777;
+    box-shadow: 0 6px 6px -6px #777;
+  }
+}

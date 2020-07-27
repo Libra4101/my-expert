@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_19_102519) do
+ActiveRecord::Schema.define(version: 2020_07_23_025428) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,16 @@ ActiveRecord::Schema.define(version: 2020_07_19_102519) do
     t.datetime "updated_at", null: false
     t.index ["rateable_type", "rateable_id"], name: "index_average_caches_on_rateable_type_and_rateable_id"
     t.index ["rater_id"], name: "index_average_caches_on_rater_id"
+  end
+
+  create_table "bookmarks", force: :cascade do |t|
+    t.bigint "expert_id", null: false
+    t.bigint "problem_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["expert_id", "problem_id"], name: "index_bookmarks_on_expert_id_and_problem_id", unique: true
+    t.index ["expert_id"], name: "index_bookmarks_on_expert_id"
+    t.index ["problem_id"], name: "index_bookmarks_on_problem_id"
   end
 
   create_table "careers", force: :cascade do |t|
@@ -223,4 +233,6 @@ ActiveRecord::Schema.define(version: 2020_07_19_102519) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "bookmarks", "experts"
+  add_foreign_key "bookmarks", "problems"
 end

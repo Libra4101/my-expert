@@ -1,0 +1,2 @@
+module Expert::CareersHelper
+end

@@ -1,0 +1,49 @@
+.jumbotron.jumbotron-fluid
+  .container.text-right
+    .ex-top_title_contents
+      h1.display-5 〜　専門家と依頼者とのマッチング　〜
+      p
+        | お悩みを抱えた依頼人を検索・コメントすることができます。
+        br
+        | あなたの専門範囲に沿った依頼人を探してみましょう！
+
+.container.ex-top_body
+  .row
+    .col-md-4.col-10.my-3
+      .card.h-100
+        = image_tag 'top_search_expert.jpg', class: 'card-img-top'
+        .card-body
+          h4.card-title 公開プロフィール編集
+          p.card-text
+            | プロフィールや事務所情報を編集することが可能です。
+            br
+            | 依頼人から検索されやすいようにプロフィール情報を充実させましょう。
+        .card-footer.text-center
+          = link_to edit_expert_experts_path, class: 'btn btn-success' do
+            span プロフィール編集
+            = icon 'fas', 'edit'
+    .col-md-4.col-10.my-3
+      .card.h-100
+        = image_tag 'top_contribution_post.jpg', class: 'card-img-top'
+        .card-body
+          h4.card-title 投稿されたお悩みを検索
+          p.card-text
+            | 会員の方が投稿されたお悩みを閲覧することが可能です。
+            br
+            | あなたの専門範囲内であればコメント登録してみましょう！
+        .card-footer.text-center
+          = link_to new_problem_path, class: 'btn btn-warning' do
+            span お悩みを探す
+            = icon 'fas', 'paper-plane'
+    .col-md-4.col-10.my-3
+      .card.h-100
+        = image_tag 'top_reservation.jpg', class: 'card-img-top'
+        .card-body
+          h4.card-title 相談予約状況を確認
+          p.card-text
+            | 会員様から相談予約された情報を確認できます。
+              相談状況をご確認してください。
+        .card-footer.text-center
+          = link_to root_path, class: 'btn btn-danger' do
+            span 相談状況を確認
+            = icon 'fas', 'clipboard-check'

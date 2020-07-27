@@ -33,6 +33,7 @@ Rails.application.routes.draw do
   scope module: :client do
     # ルート
     root to: 'static_pages#top'
+    get 'about', to: 'static_pages#about'
     # 会員情報
     resource :clients, only: %i[edit update show] do
       # 相談予約機能
@@ -51,5 +52,26 @@ Rails.application.routes.draw do
     end
     # 専門家検索機能
     resources :experts, only: %i[index show]
+  end
+
+  #-- 専門家 --#
+  namespace :expert do
+    # ルート
+    root to: 'static_pages#top'
+    # 専門家情報
+    resource :experts, only: %i[show edit update], shallow: true do
+      resource :bookmarks, only: %i[create destroy]
+      resource :careers, only: %i[create destroy], param: :career_id
+      resource :expertise_tags, only: %i[create destroy], param: :tag_id
+      resource :offices, only: %i[create update], param: :office_id
+      # 相談情報
+      resources :consultations, only: %i[index show update]
+    end
+
+    # 投稿内容
+    resources :problems, only: %i[index show] do
+      # 投稿内容のコメント機能
+      resources :comments, only: %i[create update destroy]
+    end
   end
 end

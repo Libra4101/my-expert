@@ -1,0 +1,2 @@
+module Expert::StaticPagesHelper
+end

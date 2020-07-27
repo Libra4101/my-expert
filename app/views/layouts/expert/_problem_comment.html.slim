@@ -1,0 +1,30 @@
+- if comments.present?
+  .ex-problem_comment_list
+    - comments.order(:id).each do |comment|
+      - if comment.posted_expert?
+        .row
+          .ex-problem_balloon_expert.text-center
+            .ex-problem_expert_image_area
+              = attachment_image_tag comment.expert , :avater_image, :fill, 120, 120, fallback: 'no_image_profile.jpg', class: 'cl-problem_expert_image', size: '120x120'
+              div #{comment.expert.job.title}  #{comment.expert.name}
+            .ex-problem_expert_comment
+              p = comment.content
+        .row.border-bottom
+          .col-11
+            p.text-right 投稿日時： #{l(comment.created_at, format: :long)}
+          - if current_expert.id == comment.expert_id
+            .col-1.text-right
+              = link_to expert_problem_comment_path(comment.problem, comment), method: :delete, remote: true do
+                = icon 'fas', 'trash-alt fa-2x'
+      - if comment.posted_client?
+        div id="ex-problem_client_comment_#{comment.id}"
+          .row
+            .ex-problem_balloon_client
+              .ex-problem_client_image_area.text-center
+                = attachment_image_tag comment.client , :avater_image, :fill, 120, 120, fallback: 'no_image_profile.jpg', class: 'cl-problem_client_image', size: '120x120'
+                div #{current_client.name}
+              .ex-problem_client_comment
+                p = comment.content
+          .row.border-bottom.my-3
+            .col-6
+              p.text-left 投稿日時： #{l(comment.created_at, format: :long)}

@@ -1,0 +1,2 @@
+module Expert::ExpertiseTagsHelper
+end
