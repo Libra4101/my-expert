@@ -20,7 +20,7 @@ header.sticky-top
                 = icon 'fas', 'search'
                 span 投稿内容を探す
             li.nav-item
-              = link_to destroy_client_session_path, method: :delete, class: "nav-link" do
+              = link_to destroy_expert_session_path, method: :delete, class: "nav-link" do
                 = icon 'fas', 'sign-out-alt'
                 span ログアウト
           - else
