@@ -1,0 +1,5 @@
+- if @career.errors.any?
+  | $('#career_form').html("#{j(render partial: 'layouts/expert/career_form', locals: {career: @career})}");
+- else
+  | $('#career_form').html("#{j(render partial: 'layouts/expert/career_form', locals: {career: @career})}");
+  | $('#ex-expert_career_list_area').html("#{j(render partial: 'layouts/expert/career_list', locals: {careers: @careers})}");

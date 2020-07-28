@@ -1,0 +1,2 @@
+module Client::ConsultationsHelper
+end

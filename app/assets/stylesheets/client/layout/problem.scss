@@ -1,0 +1,139 @@
+//--- 投稿内容登録画面 ---//
+.cl-problem_title {
+  margin-top: 0;
+  margin-bottom: 1em;
+  border-left: solid 0.5rem #707070;
+  border-bottom: solid 2px #707070;
+  padding-left: 0.5rem;
+}
+
+.cl-problem_actions {
+  text-align: center;
+}
+
+//--- 投稿内容詳細画面 ---//
+.cl-problem_show_body{
+
+  .cl-problem_show_client_category {
+    margin: 0 1rem 0 2rem;
+    border-bottom: solid 1px #707070;
+  }
+  .cl-problem_show_status {
+    margin-right: 1rem;
+    border-bottom: solid 1px #707070;
+  }
+  .cl-problem_show_date {
+    border-bottom: solid 1px #707070;
+  }
+  .cl-problem_show_area {
+    display: block;
+  }
+  .cl-problem_show_actions {
+    text-align: right;
+  }
+  .cl-problem_edit_area {
+    margin: 2rem 0 1rem 0;
+    display: none;
+  }
+  .cl-problem_edit_actions {
+    text-align: right;
+  }
+}
+
+// 投稿コメント領域
+.cl-problem_comment_area {
+  width: 100%;
+  max-width: 85%;
+  max-height: 100%;
+  margin: 2em auto 2em;
+  padding: 40px 40px 30px;
+  border-radius: 15px;
+  border: solid 1px #707070;
+  background-color: #fff;
+
+  .cl-problem_comment_sub_title{
+    padding-bottom: 0.3em;
+    border-bottom: solid 2px #707070;
+  }
+
+  // 専門家コメント欄
+  .cl-problem_balloon_expert {
+    position: relative;
+    padding: 20px;
+    border-radius: 10px;
+    color: black;
+    border: 3px solid #9ce191;
+    background-color: #ebffe7;
+    margin: 1.5rem 0 2.5rem 12rem;
+    width: 70%;
+
+    &::before {
+      content: '';
+      position: absolute;
+      display: block;
+      width: 0;
+      height: 0;
+      left: -1rem;
+      top: 1.2rem;
+      border-right: 15px solid #9ce191;
+      border-top: 15px solid transparent;
+      border-bottom: 15px solid transparent;
+    }
+
+    .cl-problem_expert_image_area {
+      position: absolute;
+      left: -11rem;
+      top: 0;
+
+      .cl-problem_expert_image {
+        display: inline-block;
+        text-align: center;
+        max-height: 7rem;
+      }
+    }
+  }
+  // 会員コメント欄
+  .cl-problem_balloon_client {
+    position: relative;
+    padding: 20px;
+    border-radius: 10px;
+    color: black;
+    border: 3px solid #9ce191;
+    background-color: #ebffe7;
+    margin: 1.5rem 9rem 2.5rem 3rem;
+    width: 70%;
+
+    &::before {
+      content: '';
+      position: absolute;
+      display: block;
+      width: 0;
+      height: 0;
+      right: -1rem;
+      top: 20px;
+      border-left: 15px solid #9ce191;
+      border-top: 15px solid transparent;
+      border-bottom: 15px solid transparent;
+    }
+
+    .cl-problem_client_image_area {
+      position: absolute;
+      right: -10rem;
+      top: 0;
+
+      .cl-problem_client_image {
+        display: inline-block;
+        text-align: center;
+        max-height: 7rem;
+      }
+    }
+  }
+
+  // コメント投稿欄
+  .cl-problem_btn_comment_post_field {
+    display: block;
+  }
+  .cl-problem_comment_post_field {
+    display: none;
+  }
+}

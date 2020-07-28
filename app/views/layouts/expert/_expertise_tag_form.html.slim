@@ -1,0 +1,5 @@
+= form_with model: expertise_tag, url: expert_experts_expertise_tags_path, id: "expertise_tag_form", builder: CustomFormBuilder do |f|
+  .form-group.col-10.col-md-6.offset-md-3
+    = f.collection_select :trouble_tag_id, TroubleTag.all, :id, :name, {prompt: "-- 選択してください --"}, class: "form-control"
+  .ex-edit_actions
+    = f.submit "追加", class: "btn btn-info col-2 mx-2"

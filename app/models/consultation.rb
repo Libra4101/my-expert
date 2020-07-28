@@ -3,5 +3,22 @@ class Consultation < ApplicationRecord
   belongs_to :client
   belongs_to :expert
   belongs_to :trouble_tag
-  has_many :events, dependent: :destroy
+  belongs_to :event
+
+  # rate
+  ratyrate_rateable "evaluate"
+
+  # enum
+  enum reservation_status: { applying: 0, reservations: 1, completed: 2 }
+
+  # validate
+  validates :trouble_tag_id, presence: true
+  validates :event, presence: true
+  validates :content, presence: true
+
+  # 相談内容検索
+  def self.search(keyword)
+    return Consultation.all unless keyword
+    Consultation.where('content LIKE ?', "%#{sanitize_sql_like(keyword)}%")
+  end
 end

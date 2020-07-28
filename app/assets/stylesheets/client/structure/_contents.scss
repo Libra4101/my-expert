@@ -5,13 +5,18 @@
 
   .center-box {
     width: 100%;
-    max-width: 950px;
+    max-width: 85%;
     min-height: 450px;
     margin: 2em auto 2em;
     padding: 40px 40px 30px;
     border-radius: 15px;
     border: solid 1px #707070;
     background-color: #fff;
+    position: relative;
   }
 
+  table{
+    width: 100%;
+    table-layout: fixed;
+  }
 }

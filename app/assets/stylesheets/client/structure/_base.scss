@@ -20,3 +20,51 @@ body {
   padding: 10px 80px;
   margin: 0.5em 0;
 }
+
+
+.markup_balloon {
+  color: orange;
+}
+
+.button-wrapper {
+  display: inline-block;
+
+  .btn:disabled {
+    pointer-events: none;
+  }
+}
+
+.card {
+  -webkit-transition: all .3s;
+  transition: all .3s;
+  position: relative;
+ 
+  .favorite-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: inline;
+    font-size: 1rem;
+    padding: 0.2rem;
+    border-radius: 20px;
+    background: #fff;
+    border-color: initial;
+    border: initial;
+  
+    .favorite_heart {
+      color: red;
+    }
+  }
+
+  table {
+    th,td {
+      border-top: initial;
+      border-bottom: 1px solid #dee2e6;
+    }
+  }
+  &:hover {
+    -webkit-box-shadow: 0 6px 6px -6px #777;
+    -moz-box-shadow: 0 6px 6px -6px #777;
+    box-shadow: 0 6px 6px -6px #777;
+  }
+}

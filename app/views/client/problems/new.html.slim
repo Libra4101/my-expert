@@ -1,0 +1,16 @@
+.container
+  .center-box
+    h2.cl-problem_title お悩み投稿
+    .mx-auto
+      = form_with model: @problem, url: problems_path, builder: CustomFormBuilder, local: true do |f|
+        .form-group.col-10.col-md-4.offset-md-1
+          = f.label :trouble_tag_id, "お悩みカテゴリ"
+          = f.collection_select :trouble_tag_id, TroubleTag.all, :id, :name, {prompt: "-- 選択してください --"}, class: "form-control"
+        .form-group.col-10.col-md-4.offset-md-1
+          = f.label :priority_status
+          = f.select :priority_status, Problem.priority_statuses_i18n.invert, {prompt: "-- 選択してください --"}, class: "form-control"
+        .form-group.col-10.col-md-10.offset-md-1
+          = f.label :content, "お悩み内容"
+          = f.text_area :content, class: "form-control", size: "40x5"
+        .cl-problem_actions
+          = f.submit "投稿する", class: "btn btn-success col-2 mx-2"

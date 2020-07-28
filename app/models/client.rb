@@ -1,18 +1,22 @@
 class Client < ApplicationRecord
   # devise setting
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :confirmable, :omniauthable,
+         :recoverable, :rememberable, :validatable, :omniauthable,
          omniauth_providers: %i[facebook google_oauth2]
 
   # image
   attachment :avater_image
 
+  # raty
+  ratyrate_rater
+
   # association
   has_many :favorites, dependent: :destroy
-  has_many :favorite_experts, through: :favorites
+  has_many :favorite_experts, through: :favorites, source: 'expert'
   has_many :problems
   has_many :consultations
-  has_many :consultations_event, through: :consultations
+  has_many :events, through: :consultations
+  has_many :comments, class_name: 'Comment', foreign_key: 'client_id'
 
   # validate
   validates :name,          presence: true, length: { maximum: 60 }
@@ -31,16 +35,28 @@ class Client < ApplicationRecord
         name:     auth.info.name,
         uid:      auth.uid,
         provider: auth.provider,
-        email:    Client.dummy_email(auth),
+        email:    (auth.info.email || Client.dummy_email(auth)),
         password: Devise.friendly_token[0, 20]
       )
-      client.skip_confirmation!
+      # client.skip_confirmation!
       client.save!
     end
     return client
   end
+
+  # 退会確認
+  def active_for_authentication?
+    super && self.withdraw_status
+  end
+
+  # 退会済みエラーメッセージを表示
+  def inactive_message
+    self.withdraw_status ? super : :deleted_account
+  end
+
   private
 
+  # ダミーメールアドレス
   def self.dummy_email(auth)
     "#{auth.uid}-#{auth.provider}@example.com"
   end

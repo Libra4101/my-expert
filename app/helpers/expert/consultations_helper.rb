@@ -1,0 +1,2 @@
+module Expert::ConsultationsHelper
+end

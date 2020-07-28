@@ -13,6 +13,7 @@ module Myapp
 
     # タイムゾーン設定
     config.time_zone = "Tokyo"
+    config.active_record.default_timezone = :local
     # 多言語対応ファイルのルート設定
     config.i18n.load_path += Dir[Rails.root.join("config", "locales", "**", "*.{rb,yml}").to_s]
     # 日本語化

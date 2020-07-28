@@ -1,3 +1,12 @@
 .notifications
   - flash.each do |key, value|
-    = content_tag(:p, value, class: "alert alert-#{change_bootstrap_key(key)}")
+    = content_tag :p, class: "alert alert-#{change_bootstrap_key(key)} alert-dismissible fade show" do
+      - if change_bootstrap_key(key) == 'success'
+        = icon 'fas', 'check-circle', class: 'mx-3'
+      - elsif change_bootstrap_key(key) == 'danger'
+        = icon 'fas', 'exclamation-triangle', class: 'mx-3'
+      - elsif change_bootstrap_key(key) == 'info'
+        = icon 'fas', 'info-circle', class: 'mx-3'
+      = value
+      button type='button' class='close' data-dismiss='alert' aria-label='閉じる'
+        span aria-hidden='true' &times;

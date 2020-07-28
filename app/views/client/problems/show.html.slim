@@ -1,0 +1,84 @@
+.container
+  .center-box
+    h2.cl-problem_title 投稿内容詳細
+    .cl-problem_show_body
+      .row
+        .cl-problem_show_client_category.col-10.col-md-4.d-flex
+          h5 お悩みカテゴリ
+          span.mx-3 = @problem.trouble_tag.name
+        .cl-problem_show_status.col-10.col-md-3.d-flex
+          h5 優先度
+          span.mx-3 = @problem.priority_status_i18n
+        .cl-problem_show_date.col-10.col-md-4.d-flex
+          h5 投稿日時
+          span.mx-3 = l @problem.created_at, format: :long
+
+      / 詳細モード
+      .cl-problem_show_area.w-100
+        .row.mt-4
+          .col-10.col-md-10.mx-3
+            .cl-problem_show_text_area
+              h5 投稿内容
+              p = @problem.content
+        .cl-problem_show_actions
+          button type='button' class='btn btn-secondar' id="problem_edit_mode"
+            = icon 'fas', 'edit', class: "mr-2"
+            span 編集
+            button type="button" class="btn btn-danger col-2 mx-2" data-target="#confirm-delete" data-toggle="modal" id="deletebtn_problem" name="deletebtn_problem"削除
+
+      / 編集モード
+      .cl-problem_edit_area
+        = form_with model: @problem, url: problem_path(@problem), builder: CustomFormBuilder, local: true do |f|
+          .form-group.col-10.col-md-4
+            = f.label :trouble_tag_id, "お悩みカテゴリ", class: "h5"
+            = f.collection_select :trouble_tag_id, TroubleTag.all, :id, :name, {selected: @problem.trouble_tag_id}, class: "form-control"
+          .form-group.col-10.col-md-4
+            = f.label :priority_status, class: "h5"
+            = f.select :priority_status, Problem.priority_statuses_i18n.invert, {selected: @problem.priority_status}, class: "form-control"
+          .form-group.col-md-10
+            = f.label :content, "投稿内容", class: "h5"
+            = f.text_area :content, class: "form-control", size: "40x5"
+          .cl-problem_edit_actions
+            button type='button' class='btn btn-secondar' id="problem_show_mode"
+              = icon 'far', 'eye', class: "mr-2"
+              span 閲覧
+            = f.submit "更新", class: "btn btn-success col-2 mx-2"
+            button type="button" class="btn btn-danger col-2 mx-2" data-target="#confirm-delete" data-toggle="modal" id="deletebtn_problem" name="deletebtn_problem"削除
+
+/-- 投稿コメント一覧 --/
+.container
+  .cl-problem_comment_area
+    h3.cl-problem_comment_sub_title
+      = "コメント一覧　全 #{@problem.expert_comments.count}件"
+    - if @problem.comments.present?
+      .cl-problem_comment_list
+        - @problem.comments.order(:id).each do |comment|
+          - if comment.posted_expert?
+            .row
+              .cl-problem_balloon_expert.text-center
+                .cl-problem_expert_image_area
+                  = attachment_image_tag comment.expert , :avater_image, fallback: 'no_image_profile.jpg', class: 'cl-problem_expert_image'
+                  div #{comment.expert.job.title}  #{comment.expert.name}
+                .cl-problem_expert_comment
+                  p = comment.content
+            .row.border-bottom
+              .col-12
+                p.text-right 投稿日時： #{l(comment.created_at, format: :long)}
+          - if comment.posted_client?
+            = render 'client/comments/comment', { problem: @problem, comment: comment }
+
+      / コメント返信エリア
+      .cl-problem_btn_comment_post_field.text-right.my-3
+        button type="button" class="btn btn-info" id="btn_client_comment" name="btn_client_comment"
+          = icon 'fas', 'reply', class: 'mr-2'
+          span コメント返信
+      .cl-problem_comment_post_field.my-3
+        = form_with model: [@problem, @comment], builder: CustomFormBuilder do |f|
+          .form-group
+            = f.label :content, "コメント内容"
+            = f.text_area :content, class: "form-control", size: "30x5"
+          .cl-problem_actions
+            = f.submit "投稿する", class: "btn btn-success mx-2"
+
+/-- 削除確認ダイアログ --/
+= render 'layouts/confirm_delete', path_delete: problem_path(@problem)

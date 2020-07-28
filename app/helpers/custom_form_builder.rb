@@ -4,8 +4,8 @@ class CustomFormBuilder < ActionView::Helpers::FormBuilder
     # 入力フォームと同じ属性のエラーメッセージを取得する                
     error_messages = @object.errors.full_messages_for(attribute) 
     # エラーがある場合のみ、エラー用のHTMLにする             
-    if error_messages.any?                                                    
-      options[:class] << " is-invalid"                                        
+    if error_messages.any?
+      options[:class] << " is-invalid"
       error_contents = create_error_div(attribute, error_messages)            
     end
     # 従来の入力フォーム と 生成されたエラーメッセージ を連結して返す                                                                                                                                                 
@@ -37,5 +37,30 @@ class CustomFormBuilder < ActionView::Helpers::FormBuilder
     input_field_with_error(attribute, options) do                             
       super                                                                   
     end                                                                       
-  end                                                                                                                                                                           
+  end
+  def text_area(attribute, options={})                                   
+    input_field_with_error(attribute, options) do                             
+      super                                                                   
+    end                                                                       
+  end  
+  def datetime_field(attribute, options={})                                   
+    input_field_with_error(attribute, options) do                             
+      super                                                                   
+    end                                                                       
+  end  
+  def telephone_field(attribute, options={})                                   
+    input_field_with_error(attribute, options) do                             
+      super                                                                   
+    end                                                                       
+  end  
+  def collection_select(attribute, collection, value_method, text_method, options = {}, html_options = {})                                   
+    input_field_with_error(attribute, html_options) do                             
+      super                                                                   
+    end                                                                       
+  end  
+  def select(attribute, choices = nil, options = {}, html_options = {}, &block)                                   
+    input_field_with_error(attribute, html_options) do                             
+      super                                                                   
+    end                                                                       
+  end  
 end 

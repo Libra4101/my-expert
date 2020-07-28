@@ -1,15 +1,35 @@
 .container
   .row
-    .col-md-4.cl-show_side
-      .card.h-100
-        = image_tag 'top_search_expert.jpg', class: 'card-img-top'
-        .card-body
-          h4.card-title 専門家をお探しですか？
-          p.card-text
-            | お悩みに沿った専門家を検索することが可能です。
-            br
-            | 専門分野や過去の依頼実績などで専門家をお探しいただけます。
-        .card-footer
-          = link_to root_path, class: 'btn btn-success col-md-6 offset-md-3' do
-            span 専門家を探す
-            = icon 'fas', 'search'
+    / プロフィール領域
+    .col-md-3.cl-show_side.h-100
+      = render 'layouts/client/profile'
+    / ユーザー情報欄
+    .col-md-9.cl-show_content
+      / タブナビ
+      nav.cl-show_nav_bar
+        #nav-tab.nav.nav-tabs role="tablist"
+          a#nav-expert-tab class="nav-item nav-link #{active?(@search_params[:nav_type],'expert')}" data-toggle="tab" href="#nav-expert" role="tab" aria-controls="nav-expert" aria-selected="true"
+            span お気に入り専門家
+          a#nav-problems-tab class="nav-item nav-link #{active?(@search_params[:nav_type],'problems')}" data-toggle="tab" href="#nav-problems" role="tab" aria-controls="nav-problems" aria-selected="false"
+            span 投稿内容
+          a#nav-consultations-tab class="nav-item nav-link #{active?(@search_params[:nav_type],'consultations')}" data-toggle="tab" href="#nav-consultations" role="tab" aria-controls="nav-consultations" aria-selected="false"
+            span 相談内容
+      / ナビ内容
+      #nav-tabContent.tab-content.mt-3
+        #nav-expert class="tab-pane #{active?(@search_params[:nav_type],'expert')}" role="tabpanel" aria-labelledby="nav-expert-tab"
+          .cl-show_sub_title
+            h4 お気に入り専門家
+          .container.cl-show_content_body
+            = render 'layouts/client/favorite_experts', experts: @experts
+        #nav-problems class="tab-pane #{active?(@search_params[:nav_type],'problems')}" role="tabpanel" aria-labelledby="nav-problems-tab"
+          .cl-show_sub_title
+            h4 投稿内容一覧
+          .container.cl-show_content_body
+            = render 'layouts/client/problems', problems: @problems
+        #nav-consultations class="tab-pane #{active?(@search_params[:nav_type],'consultations')}" role="tabpanel" aria-labelledby="nav-consultations-tab"
+          .cl-show_sub_title
+            h4 相談内容一覧
+          .container.cl-show_content_body
+            = render 'layouts/client/consultation', consultations: @consultations
+/ 退会確認ダイアログ
+= render 'layouts/client/withdraw_modal' 

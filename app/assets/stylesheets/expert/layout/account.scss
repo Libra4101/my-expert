@@ -1,0 +1,50 @@
+//--- 会員詳細画面 ---//
+
+// プロフィールエリア
+.ex-show_side {
+  margin: 2rem 0;
+
+  .card-img-top {
+    height: 12rem;
+    padding: 1rem;
+  }
+}
+
+// 専門家一覧
+.ex-show_content {
+  padding: 0.5rem;
+  margin: 2em auto 2em;
+  border-radius: 15px;
+  background-color: #fff;
+
+  .ex-show_sub_title {
+    border-left: solid 0.5rem #707070;
+    border-bottom: solid 2px #707070;
+    padding-left: 0.5rem;
+  }
+
+  .ex-show_content_body {
+
+    .card {
+      position: relative;
+      .card-img-top {
+        height: 100%;
+        padding: 0.5rem 0.2rem;
+      }
+    }
+  }
+}
+
+//--- 会員編集画面 ---//
+
+.ex-edit_title {
+  margin-top: 0;
+  margin-bottom: 1em;
+  border-left: solid 0.5rem #707070;
+  border-bottom: solid 2px #707070;
+  padding-left: 0.5rem;
+}
+
+.ex-edit_actions {
+  text-align: right;
+}

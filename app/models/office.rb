@@ -1,4 +1,8 @@
 class Office < ApplicationRecord
   # association
-  belongs_to :expert
+  has_one :expert
+
+  # geocode
+  geocoded_by :address
+  after_validation :geocode, if: :address_changed?
 end

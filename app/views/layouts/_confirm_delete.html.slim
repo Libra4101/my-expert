@@ -1,0 +1,11 @@
+/ -- Confirm Delete Modal --/
+div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
+  .modal-dialog
+    .modal-content
+      .modal-header
+        h5#deleteModalLabel.modal-title. 本当に削除してもよろしいですか？
+        button type="button" class="close" data-dismiss="modal" aria-label="Close"
+          span aria-hidden="true" &times;
+      .modal-footer
+        button type="button" class="btn btn-secondary" data-dismiss="modal" いいえ
+        = link_to "はい", path_delete, method: :delete, class: "btn btn-info"

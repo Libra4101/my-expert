@@ -56,10 +56,11 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
   # Defult URL
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_mailer.default_url_options = { host: 'localhost:80', }
   # Mail setting
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.delivery_method = :smtp
+  config.action_mailer.delivery_method = :letter_opener_web
   config.action_mailer.smtp_settings = {
     :address => ENV['GOOGLE_ADDRESS'],
     :port => ENV['GOOGLE_PORT'],
@@ -69,4 +70,13 @@ Rails.application.configure do
     :authentication => :plain,
     :enable_starttls_auto => true
   }
+  # debug
+  config.after_initialize do
+    Bullet.enable = true
+    Bullet.alert = true
+    Bullet.bullet_logger = true
+    Bullet.console = true
+    Bullet.rails_logger = true
+  end
+
 end

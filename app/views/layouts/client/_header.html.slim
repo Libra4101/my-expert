@@ -8,21 +8,39 @@ header.sticky-top
         ul.navbar-nav.ml-auto
           - if client_signed_in?
             li.nav-item
-              = link_to "マイページ", root_path, class: "nav-link"
+              = link_to clients_path, class: "nav-link" do
+                = icon 'fas', 'user'
+                span マイページ
             li.nav-item
-              = link_to "お悩み登録", root_path, class: "nav-link"
+              = link_to experts_path, class: "nav-link" do
+                = icon 'fas', 'search'
+                span 専門家を探す
             li.nav-item
-              a.nav-link href='#' 専門家を探す
+              = link_to new_problem_path, class: "nav-link" do
+                = icon 'fas', 'edit'
+                span お悩み投稿
             li.nav-item
-              = link_to "ログアウト", destroy_client_session_path, method: :delete, class: "nav-link"
-            li.nav-item
-              a.nav-link href='#' サイト情報
+              = link_to destroy_client_session_path, method: :delete, class: "nav-link" do
+                = icon 'fas', 'sign-out-alt'
+                span ログアウト
+            / li.nav-item
+            /   = link_to about_path, class: "nav-link" do
+            /     = icon 'fas', 'info-circle'
+            /     span サイト情報
           - else
             li.nav-item
-              = link_to "ログイン", new_client_session_path, class: "nav-link"
+              = link_to new_client_session_path, class: "nav-link" do
+                = icon 'fas', 'sign-in-alt'
+                span ログイン
             li.nav-item
-              = link_to "新規登録", new_client_registration_path, class: "nav-link"
+              = link_to new_client_registration_path, class: "nav-link" do
+                = icon 'fas', 'user-plus'
+                span 新規登録
             li.nav-item
-              a.nav-link href='#' 専門家を探す
-            li.nav-item
-              a.nav-link href='#' サイト情報
+              = link_to experts_path, class: "nav-link" do
+                = icon 'fas', 'search'
+                span 専門家を探す
+            / li.nav-item
+            /   = link_to root_path, class: "nav-link" do
+            /     = icon 'fas', 'info-circle'
+            /     span サイト情報

@@ -1,0 +1,18 @@
+このたびは、MyExpertにて相談予約いただき誠にありがとうございます。
+ご予約いただいた内容をお知らせします。
+
+--- 専門家情報 ---
+  名前：<%= @consultation.expert.name %>
+  Email：<%= @consultation.expert.office.email %>
+  電話番号：<%= @consultation.expert.office.tel %>
+  住所：<%= @consultation.expert.office.address %>
+
+--- ご予約情報 ---
+  ご予約日時：<%= l @consultation.event.start_event_time, format: :long %>
+  ご相談内容：<%= @consultation.content %>
+
+-----------------------------------------------------------------------
+  本メールは、自動的に配信しています。
+  こちらのメールは送信専用のため、直接ご返信いただいてもお問い合わせには
+  お答えできませんので、あらかじめご了承ください。
+-----------------------------------------------------------------------

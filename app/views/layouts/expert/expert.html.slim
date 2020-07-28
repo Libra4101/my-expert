@@ -5,11 +5,14 @@ html
       | MyExpert
     = csrf_meta_tags
     = csp_meta_tag
+    = include_gon
     = stylesheet_link_tag    'expert', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'expert', 'data-turbolinks-track': 'reload'
   body
     - content_for :content do
       = render "layouts/expert/header"
-      = yield
+      = render  "layouts/flash" 
+      main.ex-app-container
+        = yield
       = render "layouts/expert/footer"
     = render template: "layouts/application"

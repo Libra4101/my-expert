@@ -4,7 +4,7 @@ module ApplicationHelper
   def change_bootstrap_key(key)
     case key
     when 'notice' then 'info'
-    when 'alert' then 'danger'
+    when 'alert','error' then 'danger'
     else key
     end
   end

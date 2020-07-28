@@ -1,0 +1,55 @@
+// 相談内容一覧
+.ex-consultation_title {
+  margin-top: 0;
+  margin-bottom: 1em;
+  border-left: solid 0.5rem #707070;
+  border-bottom: solid 2px #707070;
+  padding-left: 0.5rem;
+}
+.ex-show_consultation_head {
+  margin: 1rem 0;
+
+  .ex-show_consultation_search_count_area {
+    padding: 0.5rem;
+    font-size: 1.2rem;
+  }
+  .ex-show_consultation_sort_area {
+    padding: 0.3rem;
+    font-size: 1.2rem;
+  }
+}
+
+//--- 投稿内容詳細画面 ---//
+.ex-consul_show_body{
+
+  .ex-consul_show_client_category {
+    margin: 0 1rem 0 2rem;
+    border-bottom: solid 1px #707070;
+  }
+  .ex-consul_show_status {
+    margin-right: 1rem;
+    border-bottom: solid 1px #707070;
+  }
+  .ex-consul_show_date {
+    border-bottom: solid 1px #707070;
+  }
+  .ex-consul_show_area {
+    display: block;
+  }
+  .ex-consul_show_actions {
+    text-align: right;
+  }
+  .ex-consul_edit_area {
+    margin: 2rem 0 1rem 0;
+    display: none;
+  }
+  .ex-consul_edit_actions {
+    text-align: right;
+  }
+}
+
+.ex-consul_show_btn {
+  position: absolute;
+  bottom: 1rem;
+  right: 3rem;
+}

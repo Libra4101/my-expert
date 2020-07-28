@@ -5,7 +5,7 @@ module DeviseHandlers
   class Client::ParameterSanitizer < Devise::ParameterSanitizer
     def initialize(*)
       super
-      permit(:sign_up, keys: [
+      params = [
         :name,
         :name_kana,
         :email,
@@ -14,8 +14,32 @@ module DeviseHandlers
         :address,
         :postcode,
         :phone_number,
-        :avater_image_id
-      ])
+        :avater_image,
+        :withdraw_status
+      ]
+      permit(:sign_up)
+      permit(:account_update)
+    end
+  end
+
+  class Expert::ParameterSanitizer < Devise::ParameterSanitizer
+    def initialize(*)
+      super
+      params = [
+        :name,
+        :name_kana,
+        :gender,
+        :age,
+        :phone_number,
+        :avater_image,        
+        :introduction,
+        :public_status,
+        :withdraw_status,
+        :office,
+        :job
+      ]
+      permit(:sign_up)
+      permit(:account_update)
     end
   end
 
@@ -43,6 +67,8 @@ module DeviseHandlers
   def devise_parameter_sanitizer
     if resource_class == Client
       Client::ParameterSanitizer.new(Client, :client, params)
+    elsif resource_class == Expert
+      Expert::ParameterSanitizer.new(Expert, :expert, params)
     else
       super
     end
@@ -55,6 +81,20 @@ module DeviseHandlers
       admin_root_path
     when Client
       root_path
+    when Expert
+      expert_root_path
+    end
+  end
+
+  # ログアウト後のパス設定（devise）
+  def after_sign_out_path_for(resource)
+    case resource
+    when :admin
+      new_admin_session_path
+    when :client
+      root_path
+    when :expert
+      expert_root_path
     end
   end
 end

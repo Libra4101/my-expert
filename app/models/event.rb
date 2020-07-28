@@ -1,4 +1,10 @@
 class Event < ApplicationRecord
   # association
-  belongs_to :consultation
+  has_one :consultation
+
+  # validate
+  validates :title, presence: true
+  validates :start_event_time, presence: true
+  validates :end_event_time, presence: true
+
 end

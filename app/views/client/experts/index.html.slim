@@ -1,0 +1,33 @@
+.container
+  .row
+    .col-md-3.cl-expert_search_area
+      = render 'layouts/client/search_expert_form', searchForm: @searchForm
+    .col-md-9.cl-expert_result_area
+      .cl-expert_result_sub_title
+         h4 あなたに悩みに沿った専門家を検索しよう！
+      - if @experts.present?
+        - @experts.each do |expert|
+          .card.border-success.my-3.shadow.w-75.mx-auto
+            .row.no-gutters
+              .col-md-4.d-flex.align-items-center.border-right
+                = attachment_image_tag expert, :avater_image, :fill, 40, 40, fallback: 'no_image_profile.jpg', class: 'card-img-top', alt: 'プロフィール画像'
+              .col-md-8
+                .card-body
+                  table.table
+                    tr
+                      th scope="row" 名前
+                      td = "#{expert.job.title}  #{expert.name}"
+                    tr
+                      th scope="row" 取扱分野
+                      td = expert.trouble_tags.map(&:name).join(',')
+                    tr
+                      th scope="row" 所在地
+                      td = expert.office.address
+                    tr
+                      th scope="row" 相談実績
+                      td = "#{expert.consultations.count} 件"
+                .card-footer.text-center
+                  = link_to '詳細', expert_path(expert), class: 'btn btn-info mx-2'
+                  = link_to '相談予約', new_clients_consultation_path(expert_id: expert.id), class: 'btn btn-danger mx-2'
+                  div id="favorite_buttons_#{expert.id}" class="favorite_button"
+                    = render 'client/favorites/favorite', expert: expert

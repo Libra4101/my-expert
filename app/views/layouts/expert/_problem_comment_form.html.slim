@@ -1,0 +1,6 @@
+= form_with model: comment, url: expert_problem_comments_path(problem), builder: CustomFormBuilder do |f|
+  .form-group
+    = f.label :content, "コメント内容"
+    = f.text_area :content, class: "form-control", size: "30x5"
+  .ex-problem_actions
+    = f.submit "投稿する", class: "btn btn-success mx-2"

@@ -1,14 +1,17 @@
 ja:
   activerecord:
+    models:
+      client: "会員"
+      expert: "専門家"
     attributes:
-      client:
+      client: &client
         current_password: "現在のパスワード"
         email: "メールアドレス"
         password: "パスワード"
         password_confirmation: "確認用パスワード"
         remember_me: "ログインを記憶"
-    models:
-      client: "会員"
+      expert:
+        <<: *client
   devise:
     confirmations:
       new:
@@ -65,3 +68,6 @@ ja:
     unlocks:
       new:
         resend_unlock_instructions: "アカウントの凍結解除方法を再送する"
+    failure:
+      client:
+        deleted_account: こちらのアカウントは退会済みです。新規にアカウントを登録されるか、管理者へお問合せください

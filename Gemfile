@@ -53,6 +53,7 @@ group :development do
   gem 'hirb'
   gem 'hirb-unicode'
   gem 'rubocop', require: false
+  gem 'letter_opener_web'
 end
 
 group :test do
@@ -83,3 +84,9 @@ gem 'kaminari'
 gem 'enum_help'
 gem 'dotenv-rails'
 gem 'font-awesome-sass', '~> 5.4.1'
+gem 'jp_prefecture'
+gem 'ratyrate'
+gem 'gon'
+gem 'geocoder'
+gem 'fullcalendar-rails'
+gem 'momentjs-rails'

@@ -1,0 +1,21 @@
+.container
+  .center-box
+    h2.cl-consul_title 相談内容詳細
+    .cl-consul_show_body
+      .row
+        .cl-consul_show_client_category.col-10.col-md-4.d-flex
+          h5 相談カテゴリ
+          span.mx-3 = @consultation.trouble_tag.name
+        .cl-consul_show_status.col-10.col-md-3.d-flex
+          h5 相談状況
+          span.mx-3 = @consultation.reservation_status_i18n
+        .cl-consul_show_date.col-10.col-md-4.d-flex
+          h5 予約日時
+          span.mx-3 = l @consultation.created_at, format: :long
+      .row.mt-4
+        .col-10.col-md-10.mx-3
+          .cl-consul_show_text_area
+            h5 相談内容
+            p = @consultation.content
+    .cl-consul_show_btn
+      = link_to '一覧へ戻る', :back, class: 'btn btn-info'
