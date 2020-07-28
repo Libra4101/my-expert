@@ -85,4 +85,16 @@ module DeviseHandlers
       expert_root_path
     end
   end
+
+  # ログアウト後のパス設定（devise）
+  def after_sign_out_path_for(resource)
+    case resource
+    when :admin
+      new_admin_session_path
+    when :client
+      root_path
+    when :expert
+      expert_root_path
+    end
+  end
 end

@@ -2,7 +2,7 @@ class Expert::ProblemsController < Expert::Base
   before_action :set_search_params, only: :index
 
   def index
-    @problems = problem_list.includes(:client).page(params[:page]).per(10)
+    @problems = problem_list.page(params[:page]).per(10)
   end
 
   def show
@@ -25,7 +25,7 @@ class Expert::ProblemsController < Expert::Base
   # 検索条件に合致する投稿リスト
   def problem_list
     # キーワード検索結果
-    problems = Problem.search(@search_params[:keyword_problem]).where(client_id: current_client.id)
+    problems = Problem.search(@search_params[:keyword_problem])
     # ソート条件設定
     case @search_params[:sort_problem]
       when 'new_sort'

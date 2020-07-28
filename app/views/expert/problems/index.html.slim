@@ -31,7 +31,7 @@
             - if @problems.present?
               - @problems.each do |problem|
                 tr
-                  td
+                  td.text-truncate
                     = problem.client.name
                   td
                     = problem.priority_status_i18n

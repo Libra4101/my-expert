@@ -103,7 +103,7 @@ ActiveRecord::Schema.define(version: 2020_07_23_025428) do
     t.bigint "trouble_tag_id"
     t.bigint "event_id"
     t.text "content"
-    t.integer "reservation_status"
+    t.integer "reservation_status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["client_id"], name: "index_consultations_on_client_id"
@@ -178,8 +178,8 @@ ActiveRecord::Schema.define(version: 2020_07_23_025428) do
     t.string "address"
     t.float "latitude"
     t.float "longitude"
-    t.datetime "reception_start_time"
-    t.datetime "reception_end_time"
+    t.time "reception_start_time"
+    t.time "reception_end_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

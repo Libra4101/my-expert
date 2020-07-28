@@ -22,7 +22,7 @@
             .ex-problem_balloon_client
               .ex-problem_client_image_area.text-center
                 = attachment_image_tag comment.client , :avater_image, :fill, 120, 120, fallback: 'no_image_profile.jpg', class: 'cl-problem_client_image', size: '120x120'
-                div #{current_client.name}
+                div #{comment.client.name}
               .ex-problem_client_comment
                 p = comment.content
           .row.border-bottom.my-3
