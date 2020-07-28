@@ -3,7 +3,7 @@ header.sticky-top
     .container
       a.navbar-brand href='#'
         h3
-          = link_to "My Expert", root_path
+          = link_to "My Expert", expert_root_path
       #navbar.collapse.navbar-collapse
         ul.navbar-nav.ml-auto
           - if expert_signed_in?
@@ -25,6 +25,6 @@ header.sticky-top
                 span ログアウト
           - else
             li.nav-item
-              = link_to new_client_session_path, class: "nav-link" do
+              = link_to new_expert_session_path, class: "nav-link" do
                 = icon 'fas', 'sign-in-alt'
                 span ログイン
