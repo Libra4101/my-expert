@@ -32,7 +32,7 @@
             br
             | あなたの専門範囲内であればコメント登録してみましょう！
         .card-footer.text-center
-          = link_to new_problem_path, class: 'btn btn-warning' do
+          = link_to expert_problems_path, class: 'btn btn-warning' do
             span お悩みを探す
             = icon 'fas', 'paper-plane'
     .col-md-4.col-10.my-3
@@ -44,6 +44,6 @@
             | 会員様から相談予約された情報を確認できます。
               相談状況をご確認してください。
         .card-footer.text-center
-          = link_to root_path, class: 'btn btn-danger' do
+          = link_to expert_experts_consultations_path, class: 'btn btn-danger' do
             span 相談状況を確認
             = icon 'fas', 'clipboard-check'
