@@ -11,8 +11,8 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery.raty
-//= require ratyrate
+// require jquery.raty
+// require ratyrate
 //= require rails-ujs
 //= require moment
 //= require fullcalendar
