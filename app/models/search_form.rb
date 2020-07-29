@@ -7,7 +7,7 @@ class SearchForm
     #--- 条件に合致する専門家を取得 ---#
     @experts = Expert
               .where(public_status: true)
-              .includes(:office)
+              .left_joins(:office)
               .includes(:job)
               .includes(:expertise_tags)
               .includes(:trouble_tags)
