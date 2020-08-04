@@ -5,9 +5,6 @@ class Consultation < ApplicationRecord
   belongs_to :trouble_tag
   belongs_to :event
 
-  # rate
-  ratyrate_rateable "evaluate"
-
   # enum
   enum reservation_status: { applying: 0, reservations: 1, completed: 2 }
 

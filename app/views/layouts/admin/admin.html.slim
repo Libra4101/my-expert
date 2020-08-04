@@ -9,5 +9,9 @@ html
     = javascript_include_tag 'admin', 'data-turbolinks-track': 'reload'
   body
     - content_for :content do
-      = yield
+      = render "layouts/admin/header"
+      = render  "layouts/flash"
+      main.ad-app-container
+        = yield
+      = render "layouts/admin/footer"
     = render template: "layouts/application"

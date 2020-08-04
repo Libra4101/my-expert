@@ -2,13 +2,10 @@ class Client < ApplicationRecord
   # devise setting
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable,
-         omniauth_providers: %i[facebook google_oauth2]
+         omniauth_providers: %i[google_oauth2]
 
   # image
   attachment :avater_image
-
-  # raty
-  ratyrate_rater
 
   # association
   has_many :favorites, dependent: :destroy
@@ -21,8 +18,11 @@ class Client < ApplicationRecord
   # validate
   validates :name,          presence: true, length: { maximum: 60 }
   validates :name_kana,     length: { maximum: 75 }
-  validates :phone_number,  length: { maximum: 25 }
+  validates :email,         uniqueness: true, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i}
+  validates :postcode,      format: { with:/\A\d{3}-?\d{4}\z/}
+  validates :phone_number,  format: { with:/\A\d{3,4}-?\d{2,4}-?\d{4}\z/}
   validates :address,       length: { maximum: 160 }
+  validates :age,           numericality: { only_integer: true }, allow_blank: true
 
   # enum
   enum gender: { sex_not_known: 0, male: 1, female: 2 }
