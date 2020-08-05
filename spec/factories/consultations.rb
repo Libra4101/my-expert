@@ -1,6 +1,10 @@
 FactoryBot.define do
   factory :consultation do
-    content { "MyText" }
-    reservation_status { 1 }
+    content { "相談内容" }
+    reservation_status { 0 }
+    association :client, strategy: :create
+    association :expert, strategy: :create
+    association :event, strategy: :create
+    association :trouble_tag, strategy: :create
   end
 end

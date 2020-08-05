@@ -10,8 +10,10 @@ class Consultation < ApplicationRecord
 
   # validate
   validates :trouble_tag_id, presence: true
-  validates :event, presence: true
-  validates :content, presence: true
+  validates :client_id, presence: true
+  validates :expert_id, presence: true
+  validates :event_id, presence: true
+  validates :content, presence: true, length: { maximum: 2500 }
 
   # 相談内容検索
   def self.search(keyword)
