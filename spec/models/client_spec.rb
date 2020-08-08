@@ -2,14 +2,14 @@ require 'rails_helper'
 
 RSpec.describe Client, type: :model do 
 
-  describe "正常系 valid" do
+  describe "正常系処理" do
     let(:client) { build(:client) }
     it "名前、メール、パスワードがある場合は有効" do
       expect(client).to be_valid
     end
   end
 
-  describe "異常系 valid" do
+  describe "異常系処理" do
 
     # 必須項目チェック
     shared_examples "blank_check" do
