@@ -1,9 +1,22 @@
-nav.navbar.fixed-top.navbar-expand-lg.navbar-primary.bg-primary
-  .container-fluid
-    = link_to "MyExpert", admin_root_path, class: "navbar-brand"
-    button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
-      span.navbar-toggler-icon
-    .collapse.navbar-collapse.justify-content-end#navbarSupportedContent
-      ul.navbar-nav
-        / スマホ用のメニュー部分
-        = sidebar_list_items()
+header.sticky-top
+  nav.navbar.fixed-top.navbar-expand-lg.navbar-primary.bg-primary
+    .container-fluid
+      = link_to "MyExpert", admin_root_path, class: "navbar-brand"
+      #navbar.collapse.navbar-collapse
+        ul.navbar-nav.ml-auto
+          - if admin_signed_in?
+            li.nav-item
+              = link_to destroy_admin_session_path, method: :delete, class: "nav-link" do
+                = icon 'fas', 'sign-out-alt'
+                span ログアウト
+          - else
+            li.nav-item
+              = link_to new_admin_session_path, class: "nav-link" do
+                = icon 'fas', 'sign-in-alt'
+                span ログイン
+      / button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+      /   span.navbar-toggler-icon
+      / .collapse.navbar-collapse.justify-content-end#navbarSupportedContent
+      /   ul.navbar-nav
+      /     / スマホ用のメニュー部分
+      /     = sidebar_list_items()

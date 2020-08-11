@@ -1,0 +1,33 @@
+.container
+  .row
+    .col-8.offset-2
+      .h3 専門家情報
+      table.table
+        tr
+          th scope="row" 専門家名
+          td = @expert.name
+        tr
+          th scope="row" フリガナ
+          td = @expert.name_kana
+        tr
+          th scope="row" Email
+          td = @expert.email
+        tr
+          th scope="row" 年齢
+          td = @expert.age
+        tr
+          th scope="row" 性別
+          td = @expert.gender
+        tr
+          th scope="row" 電話番号
+          td = @expert.phone_number
+        tr
+          th scope="row" 退会ステータス
+          td = @expert.withdraw_status_name
+  .row
+    .mx-auto
+      = link_to "一覧へ戻る", admin_experts_path, class: "btn btn-info mr-3"
+      - if @expert.withdraw_status
+        td = link_to "退会する", withdraw_admin_experts_path(@expert.id), method: :patch, data: { confirm: "本当に退会してもよろしいですか？", cancel: 'やめる', commit: '退会する'}, title: '退会確認', class: "btn btn-danger"
+      - else
+        td = link_to "復元する", withdraw_admin_experts_path(@expert.id), method: :patch, class: "btn btn-success"

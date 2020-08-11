@@ -44,6 +44,11 @@ class Client < ApplicationRecord
     return client
   end
 
+  # 退会ステータス名称を表示
+  def withdraw_status_name
+    self.withdraw_status ? "登録中" : "退会済"
+  end
+
   # 退会確認
   def active_for_authentication?
     super && self.withdraw_status

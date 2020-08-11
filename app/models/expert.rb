@@ -28,11 +28,15 @@ class Expert < ApplicationRecord
   validates :name_kana,     presence: true, length: { maximum: 75 }
   validates :phone_number,  presence: true, format: { with:/\A\d{3,4}-?\d{2,4}-?\d{4}\z/}
   validates :introduction, length: { maximum: 2500 }
-  validates :withdraw_status, presence: true
   validates :age,           numericality: { only_integer: true }, allow_blank: true
 
   # お気に入り確認
   def favorited_by?(client)
     self.favorites.where(client_id: client.id).exists?
+  end
+
+  # 退会ステータス名称を表示
+  def withdraw_status_name
+    self.withdraw_status ? "登録中" : "退会済"
   end
 end

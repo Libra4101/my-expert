@@ -79,8 +79,16 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: 'static_pages#top'
     # 専門家情報
-    resources :experts, only: %i[index show edit create update destroy]
+    resources :experts, only: %i[index show edit create update destroy] do
+      collection do
+        patch 'withdraw/:id', to: 'experts#withdraw', as: 'withdraw'
+      end
+    end
     # 会員情報
-    resources :clients, only: %i[index update show] 
+    resources :clients, only: %i[index show] do
+      collection do
+        patch 'withdraw/:id', to: 'clients#withdraw', as: 'withdraw'
+      end
+    end
   end
 end
