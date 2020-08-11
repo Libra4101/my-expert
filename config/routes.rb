@@ -74,4 +74,13 @@ Rails.application.routes.draw do
       resources :comments, only: %i[create update destroy]
     end
   end
+
+  # 管理者
+  namespace :admin do
+    root to: 'static_pages#top'
+    # 専門家情報
+    resources :experts, only: %i[index show edit create update destroy]
+    # 会員情報
+    resources :clients, only: %i[index update show] 
+  end
 end

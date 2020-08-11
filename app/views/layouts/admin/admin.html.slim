@@ -10,8 +10,13 @@ html
   body
     - content_for :content do
       = render "layouts/admin/header"
-      = render  "layouts/flash"
-      main.ad-app-container
-        = yield
+      .container-fluid
+        .row
+          .col-sm-3.col-md-2.sidebar
+            ul.nav.nav-sidebar.flex-column
+              = sidebar_list_items()
+          main.col-sm-9.offset-sm-3.col-md-10.offset-md-2
+            = render  "layouts/flash"
+            = yield
       = render "layouts/admin/footer"
     = render template: "layouts/application"

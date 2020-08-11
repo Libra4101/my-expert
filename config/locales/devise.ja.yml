@@ -2,7 +2,7 @@ ja:
   activerecord:
     errors:
       models:
-        client:
+        client: &client
           attributes:
             email:
               taken: "は既に登録されています。"
@@ -17,8 +17,12 @@ ja:
               too_long: "は%{count}文字以下に設定して下さい。"
               invalid: "は不正な値です。"
               confirmation: "が内容とあっていません。"
+        expert:
+          <<: *client
+        admin:
+          <<: *client
     attributes:
-      client:
+      client: &client
         current_password: "現在のパスワード"
         avater_image: "プロフィール画像"
         name: "名前"
@@ -32,8 +36,14 @@ ja:
         password: "パスワード"
         password_confirmation: "確認用パスワード"
         remember_me: "次回から自動的にログイン"
+      expert:
+        <<: *client
+      admin:
+        <<: *client
     models:
       client: "会員"
+      expert: "専門家"
+      admin: "管理者"
   devise:
     confirmations:
       new:

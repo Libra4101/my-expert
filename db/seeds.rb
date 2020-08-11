@@ -9,6 +9,11 @@
 # Development
 if Rails.env.development?
 
+  Admin.create!(
+    email: 'admin@example.com',
+    password: 'password',
+  )
+
   # Master Tabl
   [
       ['弁護士', '依頼を受けて法律事務を処理することを職務とする専門職'],
