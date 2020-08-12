@@ -1,8 +1,8 @@
 class Admin::JobsController < Admin::Base
   before_action :set_job, only: %i[update destroy]
+  before_action :set_job_list, only: %i[index create update]
 
   def index
-    @jobs = Job.page(params[:page]).per(10)
     @job = Job.new
   end
 
@@ -12,7 +12,6 @@ class Admin::JobsController < Admin::Base
       flash[:success] = t('success.create', data: @job.title)
       redirect_to admin_jobs_url
     else
-      @jobs = Job.page(params[:page]).per(10)
       flash.now[:error] = t('error.validate_error')
       render :index
     end
@@ -23,7 +22,6 @@ class Admin::JobsController < Admin::Base
       flash[:success] = t("success.update", data: @job.title)
       redirect_to admin_jobs_url
     else
-      @jobs = Job.page(params[:page]).per(10)
       flash.now[:error] = t("error.validate_error")
       render :index
     end
@@ -43,6 +41,10 @@ class Admin::JobsController < Admin::Base
 
   def set_job
     @job = Job.find(params[:id])
+  end
+
+  def set_job_list
+    @jobs = Job.page(params[:page]).per(5)
   end
 
   # ストラングパラメーター

@@ -1,0 +1,31 @@
+.container
+  .row
+    h3 カテゴリ一覧
+    span.ml-3
+      = "#{@trouble_tags.total_count}件中 #{@trouble_tags.offset_value} - #{@trouble_tags.offset_value + @trouble_tags.length}を表示"
+  .row
+    table.table.table-hover.table-sm style="table-layout: fixed;"
+      thead.thead-light
+        tr
+          th style="width: 5%" scope="col" ID
+          th.w-25 scope="col" カテゴリ名
+          th.w-25 scope="col" 登録日付
+          th.w-25 scope="col" colspan="2"
+      tbody
+        - if @trouble_tags.present?
+          - @trouble_tags.each do |trouble_tag|
+            tr
+              td = trouble_tag.id
+              td = trouble_tag.name
+              td = l trouble_tag.created_at, format: :long
+              td
+                button type='button' class="btn btn-info btn-modal-trouble"　data-toggle='modal' data-target='#trouble_tagModal' 編集
+                = render 'layouts/admin/trouble_tag_modal', trouble_tag: trouble_tag
+              td = link_to "削除", admin_trouble_tag_path(trouble_tag), method: :delete, data: { confirm: "本当に削除してもよろしいですか？", cancel: 'やめる', commit: '削除する'}, title: '削除確認', class: "btn btn-danger"
+  .row
+    .pagenation.mx-auto
+      = paginate @trouble_tags
+    button type='button' class="btn btn-success btn-modal-trouble"　data-toggle='modal' data-target='#trouble_tagModal' 新規登録
+    / カテゴリマスタ新規登録モーダルウィンドウ
+    #new_trouble_tag_form
+      = render 'layouts/admin/trouble_tag_modal', trouble_tag: @trouble_tag

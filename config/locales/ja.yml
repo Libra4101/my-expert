@@ -15,6 +15,7 @@ ja:
       consultation: 予約
       career: 経歴
       office: 事務所
+      trouble_tag: カテゴリ
     attributes:
       client: &client
         email: Email
@@ -55,6 +56,8 @@ ja:
         address: 住所
         reception_start_time: 受付開始時間
         reception_end_time: 受付終了時間
+      trouble_tag:
+        name: カテゴリ名
   enums:
     client:
       gender:

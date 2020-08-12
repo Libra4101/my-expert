@@ -92,5 +92,6 @@ Rails.application.routes.draw do
     end
     # マスタデータ
     resources :jobs, only:  %i[index create update destroy]
+    resources :trouble_tags, only:  %i[index create update destroy]
   end
 end

@@ -22,13 +22,13 @@
                 = job.content
               td = l job.created_at, format: :long
               td
-                button type='button' class="btn btn-info btn-modal"　data-toggle='modal' data-target='#jobModal' 編集
+                button type='button' class="btn btn-info btn-modal-job"　data-toggle='modal' data-target='#jobModal' 編集
                 = render 'layouts/admin/job_modal', job: job
               td = link_to "削除", admin_job_path(job), method: :delete, data: { confirm: "本当に削除してもよろしいですか？", cancel: 'やめる', commit: '削除する'}, title: '削除確認', class: "btn btn-danger"
   .row
     .pagenation.mx-auto
       = paginate @jobs
-    button type='button' class="btn btn-success btn-modal"　data-toggle='modal' data-target='#jobModal' 新規登録
+    button type='button' class="btn btn-success btn-modal-job"　data-toggle='modal' data-target='#jobModal' 新規登録
     / 職業マスタ新規登録モーダルウィンドウ
     #new_job_form
       = render 'layouts/admin/job_modal', job: @job

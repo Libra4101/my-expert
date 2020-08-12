@@ -15,7 +15,8 @@ module Admin::AdminHelper
     items = [
       {:text => '会員情報',      :path => admin_clients_path},
       {:text => '専門家情報',   :path => admin_experts_path},
-      {:text => '職業マスタ情報',   :path => admin_jobs_path}
+      {:text => '職業マスタ情報',   :path => admin_jobs_path},
+      {:text => 'カテゴリマスタ情報',   :path => admin_trouble_tags_path}
     ]
 
     html = ''
