@@ -14,7 +14,8 @@ module Admin::AdminHelper
   def sidebar_list_items
     items = [
       {:text => '会員情報',      :path => admin_clients_path},
-      {:text => '専門家情報',   :path => admin_experts_path}
+      {:text => '専門家情報',   :path => admin_experts_path},
+      {:text => '職業マスタ情報',   :path => admin_jobs_path}
     ]
 
     html = ''

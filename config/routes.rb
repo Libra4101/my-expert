@@ -90,5 +90,7 @@ Rails.application.routes.draw do
         patch 'withdraw/:id', to: 'clients#withdraw', as: 'withdraw'
       end
     end
+    # マスタデータ
+    resources :jobs, only:  %i[index create update destroy]
   end
 end

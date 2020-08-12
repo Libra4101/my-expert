@@ -6,12 +6,13 @@
   .row
     table.table.table-hover
       thead.thead-light
-        th scope="col" ID
-        th scope="col" 専門家名
-        th scope="col" 専門家名（フリガナ）
-        th scope="col" 登録日付
-        th scope="col" 退会状態
-        th colspan="2"
+        tr
+          th scope="col" ID
+          th scope="col" 専門家名
+          th scope="col" 専門家名（フリガナ）
+          th scope="col" 登録日付
+          th scope="col" 退会状態
+          th colspan="2"
       tbody
         - if @experts.present?
           - @experts.each do |expert|
