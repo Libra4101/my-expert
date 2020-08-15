@@ -5,6 +5,7 @@ html
       | MyExpert
     = csrf_meta_tags
     = csp_meta_tag
+    = include_gon
     = stylesheet_link_tag    'admin', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'admin', 'data-turbolinks-track': 'reload'
   body

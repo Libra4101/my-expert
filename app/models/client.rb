@@ -19,8 +19,8 @@ class Client < ApplicationRecord
   validates :name,          presence: true, length: { maximum: 60 }
   validates :name_kana,     length: { maximum: 75 }
   validates :email,         uniqueness: true, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i}
-  validates :postcode,      format: { with:/\A\d{3}-?\d{4}\z/}
-  validates :phone_number,  format: { with:/\A\d{3,4}-?\d{2,4}-?\d{4}\z/}
+  validates :postcode,      format: { with:/\A\d{3}-?\d{4}\z/}, allow_blank: true
+  validates :phone_number,  format: { with:/\A\d{3,4}-?\d{2,4}-?\d{4}\z/}, allow_blank: true
   validates :address,       length: { maximum: 160 }
   validates :age,           numericality: { only_integer: true }, allow_blank: true
 

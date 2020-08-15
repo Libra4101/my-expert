@@ -7,8 +7,7 @@
     table.table.table-hover
       thead.thead-light
         tr
-          th scope="col" ID
-          th scope="col" 会員名
+          th.text-center colspan="2" scope="col" 会員名
           th scope="col" 会員名（フリガナ）
           th scope="col" 登録日付
           th scope="col" 退会状態
@@ -17,7 +16,7 @@
         - if @clients.present?
           - @clients.each do |client|
             tr
-              td = client.id
+              td = attachment_image_tag client, :avater_image, fallback: 'no_image_profile.jpg', class: 'client_img_list'
               td = client.name
               td = client.name_kana
               td = l client.created_at, format: :long

@@ -17,7 +17,7 @@
             tr
               td = trouble_tag.id
               td = trouble_tag.name
-              td = l trouble_tag.created_at, format: :long
+              td = l trouble_tag.updated_at, format: :long
               td
                 button type='button' class="btn btn-info btn-modal-trouble"　data-toggle='modal' data-target='#trouble_tagModal' 編集
                 = render 'layouts/admin/trouble_tag_modal', trouble_tag: trouble_tag

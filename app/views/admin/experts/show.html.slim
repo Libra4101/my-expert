@@ -1,33 +1,84 @@
+= Gon::Base.render_data
 .container
   .row
     .col-8.offset-2
-      .h3 専門家情報
-      table.table
-        tr
-          th scope="row" 専門家名
-          td = @expert.name
-        tr
-          th scope="row" フリガナ
-          td = @expert.name_kana
-        tr
-          th scope="row" Email
-          td = @expert.email
-        tr
-          th scope="row" 年齢
-          td = @expert.age
-        tr
-          th scope="row" 性別
-          td = @expert.gender
-        tr
-          th scope="row" 電話番号
-          td = @expert.phone_number
-        tr
-          th scope="row" 退会ステータス
-          td = @expert.withdraw_status_name
-  .row
-    .mx-auto
-      = link_to "一覧へ戻る", admin_experts_path, class: "btn btn-info mr-3"
-      - if @expert.withdraw_status
-        td = link_to "退会する", withdraw_admin_experts_path(@expert.id), method: :patch, data: { confirm: "本当に退会してもよろしいですか？", cancel: 'やめる', commit: '退会する'}, title: '退会確認', class: "btn btn-danger"
-      - else
-        td = link_to "復元する", withdraw_admin_experts_path(@expert.id), method: :patch, class: "btn btn-success"
+      .card.my-3
+        .card-header
+          ul.nav.nav-tabs.card-header-tabs role="tablist"
+            li.nav-item
+              a.nav-link.active data-toggle="tab" href="#expert" 基本情報
+            li.nav-item
+              a.nav-link data-toggle="tab" href="#office" 事務所情報
+            li.nav-item
+              a.nav-link data-toggle="tab" href="#career" 経歴情報
+        .card-body.text-center
+          .tab-content
+            .tab-pane.fade.show.active#expert role="tabpanel" 
+              .card-img.border.my-2.py-2
+                = attachment_image_tag @expert, :avater_image, fallback: 'no_image_profile.jpg', class: 'expert_img card-img-top'
+              table.table.table-bordered
+                tr
+                  th.table-active scope="row" 専門家名
+                  td = @expert.name
+                tr
+                  th.table-active scope="row" フリガナ
+                  td = @expert.name_kana
+                tr
+                  th.table-active scope="row" Email
+                  td = @expert.email
+                tr
+                  th.table-active scope="row" 年齢
+                  td = @expert.age
+                tr
+                  th.table-active scope="row" 性別
+                  td = @expert.gender_i18n
+                tr
+                  th.table-active scope="row" 電話番号
+                  td = @expert.phone_number
+                tr
+                  th.table-active scope="row" 職業
+                  td = @expert.job.title
+                tr
+                  th.table-active scope="row" 退会ステータス
+                  td = @expert.withdraw_status_name
+            .tab-pane#office role="tabpanel" 
+              / Google Map Setting
+              script{ async src="https://maps.googleapis.com/maps/api/js?key=#{ ENV['GOOGLE_API_KEY'] }&callback=initMap"}
+              .card-map.border.my-2
+                #map style="height: 300px; width: 100%;"
+              table.table.table-bordered
+                tr
+                  th.table-active scope="row" 事務所名
+                  td = @expert.office.name
+                tr
+                  th.table-active scope="row" Email
+                  td = @expert.office.email
+                tr
+                  th.table-active scope="row" 郵便番号
+                  td = @expert.office.postcode
+                tr
+                  th.table-active scope="row" 住所
+                  td = @expert.office.address
+                tr
+                  th.table-active scope="row" 電話番号
+                  td = @expert.office.tel
+                tr
+                  th.table-active scope="row" 業務時間
+                  td = "#{l(@expert.office.reception_start_time, format: :reception_time)} ~ #{l(@expert.office.reception_end_time, format: :reception_time)}"
+            .tab-pane#career role="tabpanel"
+              table.table.table-bordered
+                thead
+                  tr
+                    th.table-active scope="col" 年月日
+                    th.table-active scope="col" 経歴内容
+                tbody
+                  - @expert.careers.each do |career|
+                    tr
+                      td = career.occurrence_date
+                      td = career.content
+        .card-footer.text-center
+          = link_to "一覧へ戻る", admin_experts_path, class: "btn btn-info mr-3"
+          - if @expert.withdraw_status
+            td = link_to "退会する", withdraw_admin_experts_path(@expert.id), method: :patch, data: { confirm: "本当に退会してもよろしいですか？", cancel: 'やめる', commit: '退会する'}, title: '退会確認', class: "btn btn-danger"
+          - else
+            td = link_to "復元する", withdraw_admin_experts_path(@expert.id), method: :patch, class: "btn btn-success"

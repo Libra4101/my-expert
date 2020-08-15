@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
+  # メール確認（開発環境用）
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
+
   #-- 会員認証 --#
   devise_for :clients,
     path: '',

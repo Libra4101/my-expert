@@ -44,7 +44,7 @@ class Admin::JobsController < Admin::Base
   end
 
   def set_job_list
-    @jobs = Job.page(params[:page]).per(5)
+    @jobs = Job.page(params[:page]).per(8).order('id ASC')
   end
 
   # ストラングパラメーター

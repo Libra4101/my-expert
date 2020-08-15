@@ -44,7 +44,7 @@ class Admin::TroubleTagsController < Admin::Base
   end
 
   def set_trouble_tag_list
-    @trouble_tags = TroubleTag.page(params[:page]).per(5)
+    @trouble_tags = TroubleTag.page(params[:page]).per(8).order('id ASC')
   end
 
   # ストラングパラメーター

@@ -20,7 +20,7 @@
               td = job.title
               td.text-truncate
                 = job.content
-              td = l job.created_at, format: :long
+              td = l job.updated_at, format: :long
               td
                 button type='button' class="btn btn-info btn-modal-job"　data-toggle='modal' data-target='#jobModal' 編集
                 = render 'layouts/admin/job_modal', job: job

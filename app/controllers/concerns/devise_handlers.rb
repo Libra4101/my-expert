@@ -17,8 +17,8 @@ module DeviseHandlers
         :avater_image,
         :withdraw_status
       ]
-      permit(:sign_up)
-      permit(:account_update)
+      permit(:sign_up, keys: params)
+      permit(:account_update, keys: params)
     end
   end
 
@@ -31,15 +31,15 @@ module DeviseHandlers
         :gender,
         :age,
         :phone_number,
-        :avater_image,        
+        :avater_image,
         :introduction,
         :public_status,
         :withdraw_status,
         :office,
         :job
       ]
-      permit(:sign_up)
-      permit(:account_update)
+      permit(:sign_up, keys: params)
+      permit(:account_update, keys: params)
     end
   end
 
