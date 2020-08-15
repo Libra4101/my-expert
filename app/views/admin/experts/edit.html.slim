@@ -1,0 +1,72 @@
+.container
+  .row
+    .col-8.offset-2
+      .card.my-3
+        = form_with model: @expert, url: admin_expert_path, builder: CustomFormBuilder, local: true do |f|
+          .card-header
+            h3 会員情報（編集）
+          .card-body.text-left
+            .card-img.border.text-center.my-2.py-2
+              = attachment_image_tag @expert, :avater_image, fallback: 'no_image_profile.jpg', class: 'expert_img card-img-top'
+            table.table.table-bordered
+              tr.form-group
+                th.table-active
+                  = f.label :avater_image
+                td
+                  = f.attachment_field :avater_image, autocomplete: "avater_image", class: "expert_image"
+              tr.form-group
+                th.table-active scope="row"
+                  span.must 必須
+                  = f.label :name
+                td
+                  = f.text_field :name, autocomplete: "name", class: "form-control"
+              tr.form-group
+                th.table-active scope="row"
+                  span.must 必須
+                  = f.label :name_kana
+                td
+                  = f.text_field :name_kana, autocomplete: "name_kana", class: "form-control"
+              tr.form-group
+                th.table-active scope="row"
+                  span.must 必須
+                  = f.label :email
+                td
+                  = f.email_field :email, autocomplete: "email", class: "form-control"
+              tr.form-group
+                th.table-active scope="row"
+                  = f.label :age
+                td
+                  = f.number_field :age, autocomplete: "age", class: "form-control"
+              tr.form-group
+                th.table-active scope="row"
+                  = f.label :gender
+                td
+                  = f.select :gender, Expert.genders_i18n.invert, {prompt: "選択してください"}, class: "form-control"
+              tr.form-group
+                th.table-active scope="row"
+                  = f.label :phone_number
+                td
+                  = f.telephone_field :phone_number, autocomplete: "phone_number", class: "form-control"
+              tr.form-group
+                th.table-active scope="row"
+                  = f.label :job_id
+                td
+                  = f.collection_select :job_id, Job.all, :id, :title, {prompt: "-- 選択してください --"}, class: "form-control"
+              tr.form-group
+                th.table-active scope="row"
+                  = f.label :introduction
+                td
+                  = f.text_area :introduction, class: "form-control", size: "40x5"
+              tr.form-group
+                th.table-active scope="row"
+                  = f.label :public_status, "会員評価"
+                td
+                  .form-check-inline 
+                    = f.radio_button :public_status, true, class: "form-check-input"
+                    = f.label :public_status_true, "公開", class: "form-check-label"
+                  .form-check-inline.ml-3
+                    = f.radio_button :public_status, false, class: "form-check-input"
+                    = f.label :public_status_false, "非公開", class: "form-check-label"
+          .card-footer.text-center
+            = link_to "詳細へ戻る", admin_expert_path(@expert), class: "btn btn-info mr-3"
+            = f.submit "登録する", class: "btn btn-success mx-2"

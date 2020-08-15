@@ -39,6 +39,9 @@
                   th.table-active scope="row" 職業
                   td = @expert.job.title
                 tr
+                  th.table-active scope="row" 自己紹介
+                  td = @expert.introduction
+                tr
                   th.table-active scope="row" 退会ステータス
                   td = @expert.withdraw_status_name
             .tab-pane#office role="tabpanel" 
@@ -78,7 +81,4 @@
                       td = career.content
         .card-footer.text-center
           = link_to "一覧へ戻る", admin_experts_path, class: "btn btn-info mr-3"
-          - if @expert.withdraw_status
-            td = link_to "退会する", withdraw_admin_experts_path(@expert.id), method: :patch, data: { confirm: "本当に退会してもよろしいですか？", cancel: 'やめる', commit: '退会する'}, title: '退会確認', class: "btn btn-danger"
-          - else
-            td = link_to "復元する", withdraw_admin_experts_path(@expert.id), method: :patch, class: "btn btn-success"
+          = link_to "編集する", edit_admin_expert_path(@expert), class: "btn btn-success"

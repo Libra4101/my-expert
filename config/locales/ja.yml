@@ -31,6 +31,7 @@ ja:
         withdraw_status: 退会ステータス
       expert:
         <<: *client
+        job_id: 職業
         introduction: 自己紹介
       problem:
         trouble_tag_id: お悩みカテゴリ
