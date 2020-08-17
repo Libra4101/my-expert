@@ -2,7 +2,7 @@ class Admin::ClientsController < Admin::Base
   before_action :set_client, only: %i[show withdraw]
 
   def index
-    @clients = Client.page(params[:page]).per(10)
+    @clients = Client.page(params[:page]).per(4)
   end
 
   def show

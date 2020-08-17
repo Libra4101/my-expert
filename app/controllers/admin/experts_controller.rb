@@ -2,7 +2,26 @@ class Admin::ExpertsController < Admin::Base
   before_action :set_expert, only: %i[show edit update withdraw]
 
   def index
-    @experts = Expert.page(params[:page]).per(10)
+    @experts = Expert.page(params[:page]).per(4)
+  end
+
+  def new
+    if session[:expert].present?
+      @expert = Expert.new(session[:expert])
+    else
+      @expert = Expert.new
+    end
+  end
+
+  def create
+    @expert = Expert.new(expert_param)
+    if @expert.valid?(:new_save)
+      session[:expert] = expert_param
+      redirect_to offices_new_admin_experts_path
+    else
+      flash.now[:error] = t('error.validate_error')
+      render :new
+    end
   end
 
   def show
@@ -45,6 +64,8 @@ class Admin::ExpertsController < Admin::Base
     .permit(
       :avater_image,
       :email,
+      :password,
+      :password_confirmation,
       :name,
       :name_kana,
       :gender,

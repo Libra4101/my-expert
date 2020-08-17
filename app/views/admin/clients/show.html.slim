@@ -4,8 +4,8 @@
       .card.my-3
         .card-header
           h3 会員情報
-        .card-body.text-center
-          .card-img.border.my-2.py-2
+        .card-body.text-left
+          .card-img.border.text-center.my-2.py-2
             = attachment_image_tag @client, :avater_image, fallback: 'no_image_profile.jpg', class: 'client_img card-img-top'
           table.table.table-bordered
             tr
@@ -31,7 +31,7 @@
               td = @client.postcode
             tr
               th.table-active scope="row" 住所
-              td = @client.address
+              td.text-wrap = @client.address
             tr
               th.table-active scope="row" 退会ステータス
               td = @client.withdraw_status_name

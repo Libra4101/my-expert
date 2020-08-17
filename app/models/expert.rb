@@ -3,12 +3,14 @@ class Expert < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  attr_accessor :password, :password_confirmation
+
   # image
   attachment :avater_image
 
   # association
-  belongs_to :job
-  belongs_to :office
+  belongs_to :job, optional: true
+  belongs_to :office, optional: true
   has_many :careers, dependent: :destroy
   has_many :expertise_tags, dependent: :destroy
   has_many :trouble_tags, through: :expertise_tags
@@ -29,10 +31,17 @@ class Expert < ApplicationRecord
   validates :phone_number,  presence: true, format: { with:/\A\d{3,4}-?\d{2,4}-?\d{4}\z/}
   validates :introduction, length: { maximum: 2500 }
   validates :age,           numericality: { only_integer: true }, allow_blank: true
+  validates :job_id, presence: true
+  validates :office_id, presence: true, unless: -> { validation_context == :new_save }
 
   # お気に入り確認
   def favorited_by?(client)
     self.favorites.where(client_id: client.id).exists?
+  end
+
+  # 公開ステータス名称を表示
+  def public_status_name
+    self.public_status ? "公開" : "非公開"
   end
 
   # 退会ステータス名称を表示

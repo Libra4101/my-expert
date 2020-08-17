@@ -1,4 +1,3 @@
-= Gon::Base.render_data
 .container
   .row
     .col-8.offset-2
@@ -6,44 +5,48 @@
         .card-header
           ul.nav.nav-tabs.card-header-tabs role="tablist"
             li.nav-item
-              a.nav-link.active data-toggle="tab" href="#expert" 基本情報
+              a#expert-tab.nav-link.active data-toggle="tab" href="#expert" 基本情報
             li.nav-item
-              a.nav-link data-toggle="tab" href="#office" 事務所情報
+              a#office-tab.nav-link data-toggle="tab" href="#office" 事務所情報
             li.nav-item
-              a.nav-link data-toggle="tab" href="#career" 経歴情報
-        .card-body.text-center
+              a#career-tab.nav-link data-toggle="tab" href="#career" 経歴情報
+        .card-body.text-left
           .tab-content
             .tab-pane.fade.show.active#expert role="tabpanel" 
-              .card-img.border.my-2.py-2
+              .card-img.border.text-center.my-2.py-2
                 = attachment_image_tag @expert, :avater_image, fallback: 'no_image_profile.jpg', class: 'expert_img card-img-top'
-              table.table.table-bordered
+              table.table.table-bordered style="table-layout: fixed;"
                 tr
-                  th.table-active scope="row" 専門家名
+                  th.w-25.table-active scope="row" 専門家名
                   td = @expert.name
                 tr
-                  th.table-active scope="row" フリガナ
+                  th.w-25.table-active scope="row" フリガナ
                   td = @expert.name_kana
                 tr
-                  th.table-active scope="row" Email
+                  th.w-25.table-active scope="row" Email
                   td = @expert.email
                 tr
-                  th.table-active scope="row" 年齢
+                  th.w-25.table-active scope="row" 年齢
                   td = @expert.age
                 tr
-                  th.table-active scope="row" 性別
+                  th.w-25.table-active scope="row" 性別
                   td = @expert.gender_i18n
                 tr
-                  th.table-active scope="row" 電話番号
+                  th.w-25.table-active scope="row" 電話番号
                   td = @expert.phone_number
                 tr
-                  th.table-active scope="row" 職業
+                  th.w-25.table-active scope="row" 職業
                   td = @expert.job.title
                 tr
-                  th.table-active scope="row" 自己紹介
-                  td = @expert.introduction
+                  th.w-25.table-active scope="row" 会員評価
+                  td = @expert.public_status_name
                 tr
-                  th.table-active scope="row" 退会ステータス
+                  th.w-25.table-active scope="row" 自己紹介
+                  td.text-wrap = @expert.introduction
+                tr
+                  th.w-25.table-active scope="row" 退会ステータス
                   td = @expert.withdraw_status_name
+              = hidden_field_tag :edit_path_expert, edit_admin_expert_path(@expert)
             .tab-pane#office role="tabpanel" 
               / Google Map Setting
               script{ async src="https://maps.googleapis.com/maps/api/js?key=#{ ENV['GOOGLE_API_KEY'] }&callback=initMap"}
@@ -68,6 +71,7 @@
                 tr
                   th.table-active scope="row" 業務時間
                   td = "#{l(@expert.office.reception_start_time, format: :reception_time)} ~ #{l(@expert.office.reception_end_time, format: :reception_time)}"
+              = hidden_field_tag :edit_path_office, edit_admin_expert_office_path(@expert, @expert.office)
             .tab-pane#career role="tabpanel"
               table.table.table-bordered
                 thead
@@ -81,4 +85,4 @@
                       td = career.content
         .card-footer.text-center
           = link_to "一覧へ戻る", admin_experts_path, class: "btn btn-info mr-3"
-          = link_to "編集する", edit_admin_expert_path(@expert), class: "btn btn-success"
+          = link_to "編集する", edit_admin_expert_path(@expert), class: "btn btn-success", id: "btn-edit"
