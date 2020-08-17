@@ -3,4 +3,7 @@ class TroubleTag < ApplicationRecord
   has_many :expertise_tags
   has_many :experts, through: :expertise_tags
   has_one :problem
+
+  # validate
+  validates :name, presence: true
 end

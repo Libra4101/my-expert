@@ -2,7 +2,7 @@
   .center-box
     h2.cl-login_title 会員情報入力
     .mx-auto
-      = form_for resource, as: resource_name, url: client_registration_path(resource_name), builder: CustomFormBuilder do |f|
+      = form_for resource, as: resource_name, url: client_registration_path, builder: CustomFormBuilder do |f|
         .form-group.col-10.col-md-6.offset-md-3
           = f.label :avater_image
           = f.attachment_field :avater_image, autocomplete: "avater_image"

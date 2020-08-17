@@ -5,9 +5,22 @@ html
       | MyExpert
     = csrf_meta_tags
     = csp_meta_tag
+    = include_gon
     = stylesheet_link_tag    'admin', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'admin', 'data-turbolinks-track': 'reload'
+    script src="https://yubinbango.github.io/yubinbango/yubinbango.js" charset="UTF-8"
   body
+    = Gon::Base.render_data
     - content_for :content do
-      = yield
+      = render "layouts/admin/header"
+      .container-fluid
+        .row
+          .col-sm-3.col-md-2.sidebar
+            h4 管理メニュー
+            ul.nav.nav-sidebar.flex-column
+              = sidebar_list_items()
+          main.col-sm-9.offset-sm-3.col-md-10.offset-md-2
+            = render  "layouts/flash"
+            = yield
+      = render "layouts/admin/footer"
     = render template: "layouts/application"

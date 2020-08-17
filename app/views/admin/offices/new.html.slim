@@ -1,0 +1,55 @@
+.container
+  .row
+    .col-8.offset-2
+      .card.my-3
+        = form_with model: @office, url: offices_admin_experts_path, builder: CustomFormBuilder, class: "h-adr", local: true do |f|
+          span.p-country-name style="display:none" Japan
+          .card-header
+            h3 事務所情報（新規登録）
+          .card-body.text-left
+            .card-map.border.my-2
+              / Google Map Setting
+              script{ async src="https://maps.googleapis.com/maps/api/js?key=#{ ENV['GOOGLE_API_KEY'] }&callback=initMap"}
+              #map style="height: 300px; width: 100%;"
+            table.table.table-bordered
+              tr.form-group
+                th.table-active
+                  span.must 必須
+                  = f.label :name
+                td
+                  = f.text_field :name, autocomplete: "name", class: "form-control"
+              tr.form-group
+                th.table-active scope="row"
+                  span.must 必須
+                  = f.label :email
+                td
+                  = f.email_field :email, autocomplete: "email", class: "form-control"
+              tr.form-group
+                th.table-active scope="row"
+                  span.free 任意
+                  = f.label :postcode
+                td
+                  = f.text_field :postcode, autocomplete: "postcode", class: "form-control p-postal-code"
+              tr.form-group
+                th.table-active scope="row"
+                  span.free 任意
+                  = f.label :address
+                td
+                  = f.text_field :address, autocomplete: "address", class: "form-control p-region p-locality p-street-address p-extended-address"
+              tr.form-group
+                th.table-active scope="row"
+                  span.free 任意
+                  = f.label :tel
+                td
+                  = f.telephone_field :tel, autocomplete: "tel", class: "form-control"
+              tr.form-group
+                th.table-active scope="row"
+                  span.must 必須
+                  = f.label :reception_start_time, "受付時間"
+                td.form-inline
+                  = f.time_select :reception_start_time, {prompt:true, ignore_data:true}, class: "form-control"
+                  span ~
+                  = f.time_select :reception_end_time, {prompt:true, ignore_data:true}, class: "form-control"
+          .card-footer.text-center
+            = link_to "前ページへ戻る", new_admin_expert_path, class: "btn btn-info mr-3"
+            = f.submit "登録する", class: "btn btn-success mx-2"

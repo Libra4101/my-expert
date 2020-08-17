@@ -1,0 +1,34 @@
+.container
+  .row
+    h3 職業一覧
+    span.ml-3
+      = "#{@jobs.total_count}件中 #{@jobs.offset_value} - #{@jobs.offset_value + @jobs.length}を表示"
+  .row
+    table.table.table-hover.table-sm style="table-layout: fixed;"
+      thead.thead-light
+        tr
+          th style="width: 5%" scope="col" ID
+          th style="width: 10%" scope="col" 職業名
+          th style="width: 50%" scope="col" 職業説明
+          th style="width: 15%" scope="col" 登録日付
+          th style="width: 20%" scope="col" colspan="2"
+      tbody
+        - if @jobs.present?
+          - @jobs.each do |job|
+            tr
+              td = job.id
+              td = job.title
+              td.text-truncate
+                = job.content
+              td = l job.updated_at, format: :long
+              td
+                button type='button' class="btn btn-info btn-modal-job"　data-toggle='modal' data-target='#jobModal' 編集
+                = render 'layouts/admin/job_modal', job: job
+              td = link_to "削除", admin_job_path(job), method: :delete, data: { confirm: "本当に削除してもよろしいですか？", cancel: 'やめる', commit: '削除する'}, title: '削除確認', class: "btn btn-danger"
+  .row
+    .pagenation.mx-auto
+      = paginate @jobs
+    button type='button' class="btn btn-success btn-modal-job"　data-toggle='modal' data-target='#jobModal' 新規登録
+    / 職業マスタ新規登録モーダルウィンドウ
+    #new_job_form
+      = render 'layouts/admin/job_modal', job: @job

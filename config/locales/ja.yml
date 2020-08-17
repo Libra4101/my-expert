@@ -15,6 +15,7 @@ ja:
       consultation: 予約
       career: 経歴
       office: 事務所
+      trouble_tag: カテゴリ
     attributes:
       client: &client
         email: Email
@@ -30,6 +31,7 @@ ja:
         withdraw_status: 退会ステータス
       expert:
         <<: *client
+        job_id: 職業
         introduction: 自己紹介
       problem:
         trouble_tag_id: お悩みカテゴリ
@@ -55,6 +57,8 @@ ja:
         address: 住所
         reception_start_time: 受付開始時間
         reception_end_time: 受付終了時間
+      trouble_tag:
+        name: カテゴリ名
   enums:
     client:
       gender:
@@ -81,10 +85,13 @@ ja:
     update_consultation_status: 相談予約ステータスを更新しました
     create_consultation: 相談予約が完了しました。詳細は、確認メールをご覧ください。
     create_problem: お悩みを投稿しました。専門家からコメントが来るまでしばらくお待ち下さい。
-    update_problem: 投稿内容を更新しました
+    update_problem: 投稿内容を更新しました。
     destroy_problem: 投稿内容を削除しました。
     update_profile: プロフィールの更新に成功しました
     withdraw: 退会手続きが完了いたしました。MyExpertをご利用いただき、ありがとうございました。
+    delete: "%{data}を削除しました。"
+    update: "%{data}を更新しました。"
+    create: "%{data}を登録しました。"
   error:
     delete_error: 削除に失敗しました。しばらく時間を空けてから、再度お試しください
     validate_error: 正しく入力されていない項目があります。メッセージをご確認の上、もう一度ご入力ください

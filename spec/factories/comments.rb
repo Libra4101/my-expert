@@ -1,5 +1,8 @@
 FactoryBot.define do
   factory :comment do
-    content { "MyText" }
+    content { "コメント内容" }
+    association :problem, strategy: :create
+    association :expert
+    association :client
   end
 end

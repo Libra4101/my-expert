@@ -1,0 +1,13 @@
+.client_img_list {
+  border-radius: 50%;  /* 角丸半径を50%にする(=円形にする) */
+  width: 4rem;  /* 縦横を同じ値にする */
+  height: 4rem;  /* 縦横を同じ値にする */
+  object-fit: cover; /* 縦横比固定したまま上2つの縦横の範囲内に収まるように配置する */
+}
+
+.client_img {
+  border-radius: 50%;  /* 角丸半径を50%にする(=円形にする) */
+  width: 8rem;  /* 縦横を同じ値にする */
+  height: 8rem;  /* 縦横を同じ値にする */
+  object-fit: cover; /* 縦横比固定したまま上2つの縦横の範囲内に収まるように配置する */ 
+}
