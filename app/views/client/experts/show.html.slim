@@ -30,8 +30,8 @@ javascript:
     .cl-expert_show_intro
       h2.cl-expert_title プロフィール
       .row
-        .col-md-5
-          = attachment_image_tag @expert, :avater_image, :fill, 40, 40, fallback: 'no_image_profile.jpg', class: 'card-img-top', alt: 'プロフィール画像'
+        .col-md-5.text-center
+          = attachment_image_tag @expert, :avater_image, fallback: 'no_image_profile.jpg', class: 'card-img-top expert_img', alt: 'プロフィール画像'
         .col-md-7
           table.table
             tr

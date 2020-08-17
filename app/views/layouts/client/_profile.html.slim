@@ -1,7 +1,8 @@
 .card.h-100
   .card-header
     h4 プロフィール
-  = attachment_image_tag @client, :avater_image, fallback: 'no_image_profile.jpg', class: 'card-img-top'
+  .card-img.text-center.my-2
+    = attachment_image_tag @client, :avater_image, fallback: 'no_image_profile.jpg', class: 'card-img-top'
   .card-body
     table.table
       tr
