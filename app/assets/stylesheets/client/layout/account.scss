@@ -5,8 +5,10 @@
   margin: 2rem 0;
 
   .card-img-top {
-    height: 12rem;
-    padding: 1rem;
+    border-radius: 50%;  /* 角丸半径を50%にする(=円形にする) */
+    width: 10rem;  /* 縦横を同じ値にする */
+    height: 10rem;  /* 縦横を同じ値にする */
+    object-fit: cover; /* 縦横比固定したまま上2つの縦横の範囲内に収まるように配置する */ 
   }
 }
 
@@ -27,9 +29,11 @@
 
     .card {
       position: relative;
-      .card-img-top {
-        height: 100%;
-        padding: 0.5rem 0.2rem;
+      .expert_img {
+        border-radius: 50%;  /* 角丸半径を50%にする(=円形にする) */
+        width: 10rem;  /* 縦横を同じ値にする */
+        height: 10rem;  /* 縦横を同じ値にする */
+        object-fit: cover; /* 縦横比固定したまま上2つの縦横の範囲内に収まるように配置する */ 
       }
     }
   }

@@ -3,7 +3,7 @@
       .card.border-success.my-3.shadow.mx-auto
         .row.no-gutters
           .col-md-4.d-flex.align-items-center.border-right
-            = attachment_image_tag expert, :avater_image, :fill, 40, 40, fallback: 'no_image_profile.jpg', class: 'card-img-top', alt: 'プロフィール画像'
+            = attachment_image_tag expert, :avater_image, fallback: 'no_image_profile.jpg', class: 'card-img-top expert_img mx-auto', alt: 'プロフィール画像'
           .col-md-8
             .card-body
               table.table

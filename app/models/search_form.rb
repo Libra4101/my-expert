@@ -12,6 +12,7 @@ class SearchForm
               .includes(:expertise_tags)
               .includes(:trouble_tags)
               .left_joins(:favorites)
+              .select("distinct experts.*")
 
     # 検索ワードに該当
     if self.keyword.present?
