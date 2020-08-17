@@ -12,7 +12,7 @@ class Problem < ApplicationRecord
   # validate
   validates :trouble_tag_id, presence: true
   validates :priority_status, presence: true
-  validates :content, presence: true
+  validates :content, presence: true, length: { maximum: 2500 }
 
   # 投稿者別コメント
   def expert_comments(expert_id: nil)

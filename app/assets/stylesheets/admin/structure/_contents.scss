@@ -1,0 +1,19 @@
+/* 必須マーク */
+.must {
+	background: #FF1A00;
+}
+
+/* 任意マーク */
+.free {
+	background: #999;
+}
+
+.must,
+.free {
+	color: #FFF;
+	border-radius: 3px;
+	font-size: 0.2rem;
+	margin-right: 0.3rem;
+	padding: 0.2rem 0.5rem;
+	letter-spacing: 0.2em;
+}

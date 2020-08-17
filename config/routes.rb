@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
+  # メール確認（開発環境用）
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
+
   #-- 会員認証 --#
   devise_for :clients,
     path: '',
@@ -73,5 +75,28 @@ Rails.application.routes.draw do
       # 投稿内容のコメント機能
       resources :comments, only: %i[create update destroy]
     end
+  end
+
+  # 管理者
+  namespace :admin do
+    root to: 'static_pages#top'
+    # 専門家情報
+    resources :experts do
+      resources :offices, only: %i[edit update]
+      collection do
+        patch 'withdraw/:id', to: 'experts#withdraw', as: 'withdraw'
+        get 'offices/new', to: 'offices#new'
+        post 'offices', to: 'offices#create'
+      end
+    end
+    # 会員情報
+    resources :clients, only: %i[index show] do
+      collection do
+        patch 'withdraw/:id', to: 'clients#withdraw', as: 'withdraw'
+      end
+    end
+    # マスタデータ
+    resources :jobs, only:  %i[index create update destroy]
+    resources :trouble_tags, only:  %i[index create update destroy]
   end
 end

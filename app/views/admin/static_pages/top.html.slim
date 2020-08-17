@@ -1,0 +1,16 @@
+.container
+  .row
+    h3 管理トップ
+  .row
+    .col-6
+      .card
+        .card-header
+          h4 会員登録推移（月単位）
+        .card-body
+          = line_chart @clients_data.map {|data| [data.month, data.cnt]}, width: "100%", height: "100%"
+    .col-6
+      .card
+        .card-header
+          h4 専門家登録推移（月単位）
+        .card-body
+          = line_chart @experts_data.map {|data| [data.month, data.cnt]}, width: "100%", height: "100%"

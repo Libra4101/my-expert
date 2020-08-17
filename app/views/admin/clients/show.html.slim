@@ -1,0 +1,43 @@
+.container
+  .row
+    .col-8.offset-2
+      .card.my-3
+        .card-header
+          h3 会員情報
+        .card-body.text-left
+          .card-img.border.text-center.my-2.py-2
+            = attachment_image_tag @client, :avater_image, fallback: 'no_image_profile.jpg', class: 'client_img card-img-top'
+          table.table.table-bordered
+            tr
+              th.table-active scope="row" 会員名
+              td = @client.name
+            tr
+              th.table-active scope="row" フリガナ
+              td = @client.name_kana
+            tr
+              th.table-active scope="row" Email
+              td = @client.email
+            tr
+              th.table-active scope="row" 年齢
+              td = @client.age
+            tr
+              th.table-active scope="row" 性別
+              td = @client.gender
+            tr
+              th.table-active scope="row" 電話番号
+              td = @client.phone_number
+            tr
+              th.table-active scope="row" 郵便番号
+              td = @client.postcode
+            tr
+              th.table-active scope="row" 住所
+              td.text-wrap = @client.address
+            tr
+              th.table-active scope="row" 退会ステータス
+              td = @client.withdraw_status_name
+        .card-footer.text-center
+          = link_to "一覧へ戻る", admin_clients_path, class: "btn btn-info mr-3"
+          - if @client.withdraw_status
+            td = link_to "退会する", withdraw_admin_clients_path(@client.id), method: :patch, data: { confirm: "本当に退会してもよろしいですか？", cancel: 'やめる', commit: '退会する'}, title: '退会確認', class: "btn btn-danger"
+          - else
+            td = link_to "復元する", withdraw_admin_clients_path(@client.id), method: :patch, class: "btn btn-success"
