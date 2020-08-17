@@ -91,3 +91,4 @@ gem 'fullcalendar-rails'
 gem 'momentjs-rails'
 gem 'data-confirm-modal'
 gem 'chartkick'
+gem "refile-s3"

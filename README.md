@@ -37,11 +37,20 @@ My Expert は、あなたがお世話になった専門家をお気に入り登�
 - システム管理者
   - 専門家の新規登録は、原則システム管理者のみが可能とする仕様　※編集と更新は専門家側でも可能
   - 規約に反した依頼人や、専門家をサイトから退会させることができる。
-  - 機能追加や修正などのお知らせ
 
 ※専門家：弁護士、税理士、司法書士、行政書士など
 
 ## 設計書
+
+### アプリケーション詳細設計
+<https://docs.google.com/spreadsheets/d/1Vf3BS3vv2MBB_BwBpHW2Ag_azCqLYji9mHxwejZ8hpc/edit#gid=0>
+
+### データベース設計
+- データベース定義書
+<https://docs.google.com/spreadsheets/d/1Jp0xhH4G17rV9ocWemN26MXYsimmTOQHpr8NaZTx6P0/edit#gid=0>
+
+- ER図
+<https://drive.google.com/file/d/1Xh78e6ZCNsuYBVt8j3Qsnlsu8eTCLRw3/view?usp=sharing>
 
 ### 機能一覧
 <https://docs.google.com/spreadsheets/d/1117Q87pf0SmLDOtC6q7hmw2zZ-pOD2FXlPwI6lk-3MI/edit#gid=24929281>
