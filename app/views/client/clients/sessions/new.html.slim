@@ -5,7 +5,9 @@
       .cl-login_left.col-md-5
         h4.cl-login_sub_title SNSアカウントでログイン
         .cl-login_sosyal
-          = link_to  "Googleでログイン", client_google_oauth2_omniauth_authorize_path, class: "google"
+          = link_to client_google_oauth2_omniauth_authorize_path, class: "btn btn-social btn-google text-center" do
+            = icon 'fab', 'google'
+            span Googleアカウントでログイン
         = link_to "新規登録の方はコチラから", new_client_registration_path
 
       .cl-login_center.col-md-1
@@ -23,4 +25,4 @@
             = f.password_field :password, autocomplete: "current-password", class: "form-control"
           = link_to "パスワードを忘れた場合", new_password_path(resource_name)
           .cl-login_actions
-            = f.submit "ログイン", class: "btn btn-info"
+            = f.submit "ログイン", class: "btn btn-info w-75"

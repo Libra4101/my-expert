@@ -40,6 +40,7 @@ class Client::ClientsController < Client::Base
   # ストロングパラメータ
   def client_params
     params.require(:client).permit(
+      :email,
       :name,
       :name_kana,
       :gender,

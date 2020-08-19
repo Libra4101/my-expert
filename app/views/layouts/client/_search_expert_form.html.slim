@@ -13,7 +13,7 @@
       .form-group
         = f.collection_select :prefectures, JpPrefecture::Prefecture.all, :name, :name, {include_blank: "-- 都道府県 --"}, class: "form-control"
       .form-check
-        = f.check_box :favorite, {class: 'form-check-input'}, true, false
+        = f.check_box :favorite, {class: 'form-check-input', checked: favorite_status(searchForm.favorite)}, true, false
         = f.label :favorite, "お気に入りの専門家"
     .card-footer.text-center
       = f.submit "検索", class: "btn btn-success col-6"
