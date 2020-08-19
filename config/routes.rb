@@ -14,6 +14,9 @@ Rails.application.routes.draw do
       confirmations: 'client/clients/confirmations',
       omniauth_callbacks: 'client/clients/omniauth_callbacks'
     }
+  devise_scope :client do
+    post 'guest_login', to: 'client/clients/sessions#new_guest'
+  end
 
   #-- 専門家認証 --#
   devise_for :experts, skip: :all

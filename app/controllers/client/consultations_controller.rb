@@ -1,5 +1,6 @@
 class Client::ConsultationsController < Client::Base
-  before_action :set_expert_info, only: %i[new]
+  before_action :set_expert_info, only: new
+  before_action :check_guest_client, only: :create
 
   def new
     if @expert.present?

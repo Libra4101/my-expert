@@ -46,6 +46,7 @@ module DeviseHandlers
   included do
     layout :layout_for_devise
     before_action :devise_parameter_sanitizer, if: :devise_controller?
+    before_action :check_guest, if: :devise_controller?, only: [:update, :destory]
   end
 
   protected
@@ -95,6 +96,15 @@ module DeviseHandlers
       root_path
     when :expert
       expert_root_path
+    end
+  end
+
+  # ゲストユーザーチェック
+  def check_guest
+    email = resource&.email || params[:client][:email].downcase
+    if email == 'guest@example.com'
+      flash[:danger] = t('guest.check')
+      redirect_to root_path
     end
   end
 end
