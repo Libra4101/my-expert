@@ -15,9 +15,12 @@
 // require ratyrate
 //= require rails-ujs
 //= require moment
+//= require moment/ja.js
+//= require moment-timezone-with-data
 //= require fullcalendar
 //= require activestorage
 //= require popper
 //= require bootstrap-sprockets
 //= require data-confirm-modal
+//= require tempusdominus-bootstrap-4
 //= require turbolinks

@@ -11,7 +11,7 @@
           span.mx-3 = @consultation.reservation_status_i18n
         .cl-consul_show_date.col-10.col-md-4.d-flex
           h5 予約日時
-          span.mx-3 = l @consultation.created_at, format: :long
+          span.mx-3 = l @consultation.event.start_event_time, format: :long
       .row.mt-4
         .col-10.col-md-10.mx-3
           .cl-consul_show_text_area

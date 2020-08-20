@@ -46,6 +46,7 @@ ja:
         content: 相談内容
         trouble_tag_id: 相談カテゴリ
         reservation_status: 相談予約ステータス
+        event_time: 希望時間
       career:
         occurrence_date: 日付
         content: 内容

@@ -8,6 +8,7 @@ class SearchForm
     @experts = Expert
               .where(public_status: true)
               .left_joins(:office)
+              .includes(:office)
               .includes(:job)
               .includes(:expertise_tags)
               .includes(:trouble_tags)

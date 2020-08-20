@@ -10,6 +10,7 @@ html
     = javascript_include_tag 'client', 'data-turbolinks-track': 'reload'
     script src="https://yubinbango.github.io/yubinbango/yubinbango.js" charset="UTF-8"
   body
+    = Gon::Base.render_data
     - content_for :content do
       = render "layouts/client/header"
       = render  "layouts/flash" 

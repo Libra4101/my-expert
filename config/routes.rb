@@ -43,7 +43,7 @@ Rails.application.routes.draw do
     resource :clients, only: %i[edit update show] do
       # 相談予約機能
       resources :consultations, only: %i[new create show], shallow: true
-      get 'new.json'   => 'consultations#new', defaults: { format: :json }
+      get 'consultations/events.json'   => 'consultations#events', defaults: { format: :json }
       collection do
         patch 'withdraw', to: 'clients#withdraw'
       end
