@@ -1,6 +1,7 @@
 class Client::ClientsController < Client::Base
   before_action :set_client
   before_action :set_search_params, only: :show
+  before_action :check_guest_client, only: %i[update withdraw]
 
   def show
     @experts = current_client.favorite_experts.includes(:job).includes(:office).includes(:expertise_tags).includes(:trouble_tags)
@@ -40,6 +41,7 @@ class Client::ClientsController < Client::Base
   # ストロングパラメータ
   def client_params
     params.require(:client).permit(
+      :email,
       :name,
       :name_kana,
       :gender,

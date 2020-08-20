@@ -46,6 +46,7 @@ ja:
         content: 相談内容
         trouble_tag_id: 相談カテゴリ
         reservation_status: 相談予約ステータス
+        event_time: 希望時間
       career:
         occurrence_date: 日付
         content: 内容
@@ -97,3 +98,6 @@ ja:
     validate_error: 正しく入力されていない項目があります。メッセージをご確認の上、もう一度ご入力ください
     withdraw: 退会処理に失敗しました。しばらく時間を空けてから、再度お試しください
     unexpected: 予期せぬエラーが発生しました。しばらく時間を空けてから、再度お試しください
+  guest:
+    login: ゲストユーザーでログインしました。一部機能が制限されます。
+    check: ゲストユーザーのため変更・退会・相談予約はできません。

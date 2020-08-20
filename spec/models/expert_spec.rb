@@ -51,7 +51,7 @@ RSpec.describe Expert, type: :model do
       let!(:expert_unique) { build(:expert, column => test_data) }
       it {
         expert_unique.valid?
-        expect(expert_unique.errors[column].join(',')).to include("すでに存在します")
+        expect(expert_unique.errors[column].join(',')).to include("既に登録されています")
       }
     end
 

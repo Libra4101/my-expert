@@ -1,5 +1,5 @@
 class Client::ReservationConfirmationMailer < ApplicationMailer
-  default from: "my-expert@example.com"
+  default from: "my-expert.work"
 
   # 相談予約完了メール
   def send_confirm_reservation(consultation)

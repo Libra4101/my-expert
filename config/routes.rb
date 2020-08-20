@@ -14,6 +14,9 @@ Rails.application.routes.draw do
       confirmations: 'client/clients/confirmations',
       omniauth_callbacks: 'client/clients/omniauth_callbacks'
     }
+  devise_scope :client do
+    post 'guest_login', to: 'client/clients/sessions#new_guest'
+  end
 
   #-- 専門家認証 --#
   devise_for :experts, skip: :all
@@ -40,7 +43,7 @@ Rails.application.routes.draw do
     resource :clients, only: %i[edit update show] do
       # 相談予約機能
       resources :consultations, only: %i[new create show], shallow: true
-      get 'new.json'   => 'consultations#new', defaults: { format: :json }
+      get 'consultations/events.json'   => 'consultations#events', defaults: { format: :json }
       collection do
         patch 'withdraw', to: 'clients#withdraw'
       end

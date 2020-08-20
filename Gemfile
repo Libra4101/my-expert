@@ -92,3 +92,5 @@ gem 'momentjs-rails'
 gem 'data-confirm-modal'
 gem 'chartkick'
 gem "refile-s3"
+gem 'bootstrap-social-rails'
+gem 'bootstrap4-datetime-picker-rails'

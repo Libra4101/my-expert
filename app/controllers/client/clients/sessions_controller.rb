@@ -18,6 +18,15 @@ class Client::Clients::SessionsController < Devise::SessionsController
   #   super
   # end
 
+  # ゲストログイン
+  def new_guest
+    client = Client.guest
+    sign_in client
+    flash[:success] = t('guest.login')
+    redirect_to root_url
+  end
+  
+
   # protected
 
   # If you have extra params to permit, append them to the sanitizer.
