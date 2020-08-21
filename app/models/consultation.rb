@@ -15,7 +15,7 @@ class Consultation < ApplicationRecord
   validates :client_id, presence: true
   validates :expert_id, presence: true
   validates :event_id, presence: true, unless: -> { validation_context == :new_save }
-  validates :event_time, presence: true
+  validates :event_time, presence: true, on: :create
   validate :datetime_format_valid, if: -> {self.event_time.present?}
   validate :datetime_correlation_valid, if: -> {self.event_time.present?}
   validates :content, presence: true, length: { maximum: 2500 }
@@ -36,8 +36,7 @@ class Consultation < ApplicationRecord
   # 予約日時相関チェック
   def datetime_correlation_valid
     user_datetime = Date.parse(self.event_time)
-    return if user_datetime.blank?
-    if user_datetime < Date.today
+    if user_datetime <= Date.today
       errors.add(:event_time, "は#{Date.tomorrow.strftime("%Y年%m月%d日")}以降で入力してください。")
     end
   end

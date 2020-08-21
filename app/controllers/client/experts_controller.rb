@@ -6,7 +6,8 @@ class Client::ExpertsController < Client::Base
 
   def show
     @expert = Expert.find(params[:id])
-    gon.expert_office = @expert.office
+    gon.latitude = @expert.office.latitude
+    gon.longitude =  @expert.office.longitude
   end
 
   private

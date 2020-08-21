@@ -46,7 +46,7 @@ if Rails.env.development?
   # Truncate Tabl
   Office.create!(
     name: '山本法律事務所',
-    email: 'test@example.com',
+    email: 'guest-office@example.com',
     tel: '999-999-9999',
     postcode: '999-9999',
     address: '大阪府泉大津市池浦町',
