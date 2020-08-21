@@ -48,4 +48,38 @@ class Expert < ApplicationRecord
   def withdraw_status_name
     self.withdraw_status ? "登録中" : "退会済"
   end
+
+  # ゲスト専門家
+  def self.guest
+    guest_job = Job.find_or_create_by!(title: "弁護士") do |job|
+      job.content = "依頼を受けて法律事務を処理することを職務とする専門職"
+    end
+
+    guest_office = Office.find_or_create_by!(email: "guest-office@example.com") do |office|
+      office.name = '法律事務所'
+      office.email = 'guest-office@example.com'
+      office.tel = '090-999-9999'
+      office.postcode = '595-0022'
+      office.address = '大阪府泉大津市池浦町'
+      office.latitude = 34.498046
+      office.longitude = 135.413332
+      office.reception_start_time = Time.now
+      office.reception_end_time = Time.now + 2
+    end
+
+    guest_expert = find_or_create_by!(email: 'guest-expert@example.com') do |expert|
+      expert.password = SecureRandom.urlsafe_base64
+      expert.name = '山下太郎'
+      expert.name_kana = 'ヤマシタタロウ'
+      expert.gender = 1
+      expert.age = '56'
+      expert.phone_number = '090-999-9999'
+      expert.introduction = '自己紹介文'
+      expert.public_status = false
+      expert.job_id = guest_job.id
+      expert.office_id = guest_office.id
+    end
+
+    return guest_expert
+  end
 end

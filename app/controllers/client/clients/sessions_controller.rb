@@ -26,7 +26,6 @@ class Client::Clients::SessionsController < Devise::SessionsController
     redirect_to root_url
   end
   
-
   # protected
 
   # If you have extra params to permit, append them to the sanitizer.

@@ -86,9 +86,10 @@
       top: 0;
 
       .cl-problem_expert_image {
-        display: inline-block;
-        text-align: center;
-        max-height: 7rem;
+        border-radius: 50%;
+        width: 7rem;
+        height: 7rem;
+        object-fit: cover;
       }
     }
   }
@@ -122,9 +123,10 @@
       top: 0;
 
       .cl-problem_client_image {
-        display: inline-block;
-        text-align: center;
-        max-height: 7rem;
+        border-radius: 50%;
+        width: 7rem;
+        height: 7rem;
+        object-fit: cover;
       }
     }
   }

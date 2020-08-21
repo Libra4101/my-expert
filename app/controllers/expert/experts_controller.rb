@@ -2,7 +2,8 @@ class Expert::ExpertsController < Expert::Base
   before_action :set_expert, only: %i[show edit update]
 
   def show
-    gon.expert_office = @expert.office
+    gon.latitude = @expert.office.latitude
+    gon.longitude =  @expert.office.longitude
   end
 
   def edit
@@ -43,7 +44,8 @@ class Expert::ExpertsController < Expert::Base
       :age,
       :phone_number,
       :public_status,
-      :introduction
+      :introduction,
+      :job_id
     )
   end
 end

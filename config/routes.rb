@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   devise_scope :expert do
     get 'expert/login' => 'expert/experts/sessions#new', as: :new_expert_session
     post 'expert/login' => 'expert/experts/sessions#create', as: :expert_session
+    post 'expert/guest_login', to: 'expert/experts/sessions#new_guest'
     delete 'expert/logout' => 'expert/experts/sessions#destroy', as: :destroy_expert_session
   end
 

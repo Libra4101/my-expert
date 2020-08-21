@@ -18,6 +18,14 @@ class Expert::Experts::SessionsController < Devise::SessionsController
   #   super
   # end
 
+  # ゲストログイン
+  def new_guest
+    expert = Expert.guest
+    sign_in expert
+    flash[:success] = t('guest.login')
+    redirect_to expert_root_url
+  end
+
   # protected
 
   # If you have extra params to permit, append them to the sanitizer.

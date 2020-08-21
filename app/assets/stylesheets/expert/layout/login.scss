@@ -1,0 +1,73 @@
+.ex-login_title {
+  margin-top: 0;
+  margin-bottom: 1em;
+  padding-left: 1em;
+}
+
+.ex-login_left {
+  display: inline-block;
+  padding: 0 1em;
+  vertical-align: top;
+}
+
+.ex-login_center {
+  display: inline-block;
+  margin: 0 2em;
+  vertical-align: middle;
+  height: 17em;
+
+  .vl-label {
+    position: relative;
+    height: 100%;
+    padding: 0;
+    margin: 0 5px;
+    text-align: center;
+    transform: translateZ(0);
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      border-left: 1px solid #d8d8d8;
+    }
+
+    .vl-label-text {
+      position: relative;
+      top: calc(50% - 17px);
+      display: inline-block;
+      border-radius: 100%;
+      background-color: #d8d8d8;
+      font-size: 16px;
+      line-height: 16px;
+      padding: 9.5px;
+      color: #fff;
+    }
+  }
+}
+
+.ex-login_right {
+  display: inline-block;
+  padding: 0 1em;
+  vertical-align: top;
+}
+
+.ex-login_sub_title {
+  margin-bottom: 1em;
+}
+
+.ex-login_actions {
+  text-align: center;
+}
+
+.ex-login_sosyal {
+  margin: 1em auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  a {
+    margin: 1em 0;
+  }
+}

@@ -2,67 +2,45 @@
 - google_api = "https://maps.googleapis.com/maps/api/js?key=#{ ENV['GOOGLE_API_KEY'] }&callback=initMap".html_safe
 script{ async src=google_api }
 
-javascript:
-  let map;
-
-  function initMap() {
-    geocoder = new google.maps.Geocoder()
-
-    map = new google.maps.Map(document.getElementById('map'), {
-      center: {
-        lat: gon.expert_office.latitude,
-        lng: gon.expert_office.longitude
-      },
-      zoom: 12,
-    });
-
-    marker = new google.maps.Marker({
-      position: {
-        lat: gon.expert_office.latitude,
-        lng: gon.expert_office.longitude
-      },
-      map: map
-    });
-  }
-
 .container
   .center-box
     .ex-expert_show_intro
       h2.ex-expert_title プロフィール
       .row
-        .col-md-5
-          = attachment_image_tag @expert, :avater_image, :fill, 40, 40, fallback: 'no_image_profile.jpg', class: 'card-img-top', alt: 'プロフィール画像'
+        .col-md-5.d-flex.align-items-center
+          = attachment_image_tag @expert, :avater_image, fallback: 'no_image_profile.jpg', class: 'card-img-top expert_img mx-auto', alt: 'プロフィール画像'
         .col-md-7
-          table.table
+          table.table.table-bordered
             tr
-               th scope="row" 名前
+               th.table-active scope="row" 名前
                td = @expert.name
             tr
-               th scope="row" 職業
+               th.table-active scope="row" 職業
                td = @expert.job.title
             tr
-              th scope="row" 年齢
+              th.table-active scope="row" 年齢
               td = @expert.age
             tr
-              th scope="row" 取扱分野
+              th.table-active scope="row" 取扱分野
               td = @expert.trouble_tags.map(&:name).join(',')
             tr
-              th scope="row" 相談実績
+              th.table-active scope="row" 相談実績
               td = "#{@expert.consultations.count} 件"
       .row.my-3
         .col-10.offset-1
           - if @expert.careers
             h5.my-3 経歴
-            table.table-bordered
+            table.table.table-bordered
               thead.thead-lignt
-                th 年月
-                th 内容
+                th.table-active 年月
+                th.table-active 内容
               - @expert.careers.each do |career|
                 tr
                   td = l career.occurrence_date
                   td = career.content
           h5.my-3 自己紹介
-          = @expert.introduction
+          .ex-intro_field.border
+            = @expert.introduction
     .ex-expert_show_office.my-3
       h2.ex-expert_title 事務所情報
       .row
@@ -71,21 +49,21 @@ javascript:
         .col-md-6
           #map
         .col-md-6
-          table.table
+          table.table.table-bordered
             tr
-               th scope="row" Email
+               th.table-active scope="row" Email
                td = @expert.office.email
             tr
-               th scope="row" 住所
+               th.table-active scope="row" 住所
                td = @expert.office.address
             tr
-               th scope="row" 郵便番号
+               th.table-active scope="row" 郵便番号
                td = @expert.office.postcode
             tr
-              th scope="row" 電話番号
+              th.table-active scope="row" 電話番号
               td = @expert.office.tel
             tr
-              th scope="row" 受付時間
+              th.table-active scope="row" 受付時間
               td = "#{l(@expert.office.reception_start_time, format: :reception_time)} ~ #{l(@expert.office.reception_end_time, format: :reception_time)}"
       .row
         .col-10.offset-1.my-3.text-center
