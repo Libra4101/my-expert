@@ -15,7 +15,7 @@ class Consultation < ApplicationRecord
   validates :client_id, presence: true
   validates :expert_id, presence: true
   validates :event_id, presence: true, unless: -> { validation_context == :new_save }
-  validates :event_time, presence: true, on: :create
+  validates :event_time, presence: true, on: :new_save
   validate :datetime_format_valid, if: -> {self.event_time.present?}
   validate :datetime_correlation_valid, if: -> {self.event_time.present?}
   validates :content, presence: true, length: { maximum: 2500 }
