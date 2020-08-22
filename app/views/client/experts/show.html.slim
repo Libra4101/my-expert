@@ -1,7 +1,3 @@
-/ Google Map Setting
-- google_api = "https://maps.googleapis.com/maps/api/js?key=#{ ENV['GOOGLE_API_KEY'] }&callback=initMap".html_safe
-script{ async src=google_api }
-
 .container
   .center-box
     .cl-expert_show_intro
@@ -39,7 +35,7 @@ script{ async src=google_api }
                   td = l career.occurrence_date
                   td = career.content
           h5.my-3 自己紹介
-          .border
+          p.border.text-wrap
             = @expert.introduction
     .cl-expert_show_office.my-3
       h2.cl-expert_title 事務所情報

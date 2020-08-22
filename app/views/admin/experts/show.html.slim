@@ -48,8 +48,6 @@
                   td = @expert.withdraw_status_name
               = hidden_field_tag :edit_path_expert, edit_admin_expert_path(@expert)
             .tab-pane#office role="tabpanel" 
-              / Google Map Setting
-              script{ async src="https://maps.googleapis.com/maps/api/js?key=#{ ENV['GOOGLE_API_KEY'] }&callback=initMap"}
               .card-map.border.my-2
                 #map style="height: 300px; width: 100%;"
               table.table.table-bordered

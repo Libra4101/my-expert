@@ -6,7 +6,7 @@ class Client::ClientsController < Client::Base
   def show
     @experts = current_client.favorite_experts.includes(:job).includes(:office).includes(:expertise_tags).includes(:trouble_tags)
     @problems = problem_list.page(params[:problems_page]).per(10)
-    @consultations = consultations_list.includes(:expert).page(params[:consultations_page]).per(10)
+    @consultations = consultations_list.includes(:event).includes(:expert).page(params[:consultations_page]).per(10)
   end
   
   def update

@@ -28,7 +28,7 @@
           - consultations.each do |consultation|
             tr
               td
-                = l consultation.created_at, format: :long
+                = l consultation.event.start_event_time, format: :long
               td
                 = consultation.reservation_status_i18n
               td
