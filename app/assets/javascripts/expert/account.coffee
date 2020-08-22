@@ -1,4 +1,12 @@
+$(document).ready ->
+  $(document).on 'turbolinks:render', ->
+    if $('.h-adr').length
+      new YubinBango.MicroformatDom();
+
 $(document).on 'turbolinks:load', -> 
+  if $('#map').length
+    initMap();
+
   $('#btn-modal').on 'click', ->
     $('#withdrawModal').modal()
   
@@ -6,7 +14,7 @@ $(document).on 'turbolinks:load', ->
     if $('.h-adr').length
       new YubinBango.MicroformatDom();
 
-  $('.client_image').on 'change',(e)->
+  $('.expert_image').on 'change',(e)->
     reader = new FileReader();
     reader.onload = (e)->
       $(".avater_image").attr('src', e.target.result);

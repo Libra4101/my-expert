@@ -3,7 +3,7 @@ class Expert::ConsultationsController < Expert::Base
   before_action :set_search_params, only: :index
 
   def index
-    @consultations = consultations_list.includes(:client).page(params[:page]).per(10)
+    @consultations = consultations_list.includes(:event).includes(:client).page(params[:page]).per(10)
   end
 
   def show

@@ -2,31 +2,48 @@
   .center-box
     h2.cl-edit_title 会員情報編集
     .mx-auto
-      = form_with model: @client, url: clients_path, builder: CustomFormBuilder, local: true do |f|
+      = form_with model: @client, url: clients_path, builder: CustomFormBuilder, class: "h-adr", local: true do |f|
+        span.p-country-name style="display:none" Japan
         .form-group.col-10.col-md-6.offset-md-3
+          .cl-avater_image.text-center.my-3
+            = attachment_image_tag @client, :avater_image, fallback: 'no_image_profile.jpg', class: 'client_img'
           = f.label :avater_image
-          = f.attachment_field :avater_image, autocomplete: "avater_image"
+          = f.attachment_field :avater_image, autocomplete: "avater_image", class: "client_image"
         .form-group.col-10.col-md-6.offset-md-3
+          span.must 必須
+          = f.label :email
+          = f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control"
+        .form-group.col-10.col-md-6.offset-md-3
+          span.must 必須
           = f.label :name
-          = f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control"
+          = f.text_field :name, autocomplete: "name", class: "form-control"
         .form-group.col-10.col-md-6.offset-md-3
+          span.free 任意
           = f.label :name_kana
           = f.text_field :name_kana, autocomplete: "name_kana", class: "form-control"
+          span.form-text.text-muted 全角カタカナで入力ください
         .form-group.col-10.col-md-6.offset-md-3
+          span.free 任意
           = f.label :gender
           = f.select :gender, Client.genders_i18n.invert, {prompt: "選択してください"}, class: "form-control"
         .form-group.col-10.col-md-6.offset-md-3
+          span.free 任意
           = f.label :age
           = f.number_field :age, autocomplete: "age", class: "form-control"
         .form-group.col-10.col-md-6.offset-md-3
+          span.free 任意
           = f.label :postcode
-          = f.text_field :postcode, autocomplete: "postcode", class: "form-control"
+          = f.text_field :postcode, autocomplete: "postcode", class: "form-control p-postal-code"
+          span.form-text.text-muted 半角数字＋半角ハイフンで入力してください
         .form-group.col-10.col-md-6.offset-md-3
+          span.free 任意
           = f.label :address
-          = f.text_field :address, autocomplete: "address", class: "form-control"
+          = f.text_field :address, autocomplete: "address", class: "form-control p-region p-locality p-street-address p-extended-address"
         .form-group.col-10.col-md-6.offset-md-3
+          span.free 任意
           = f.label :phone_number
           = f.text_field :phone_number, autocomplete: "phone_number", class: "form-control"
+          span.form-text.text-muted 半角数字＋半角ハイフンで入力してください
         .cl-edit_actions
           = f.submit "更新する", class: "btn btn-success col-2 mx-2"
           = link_to "戻る", clients_path ,class: "btn btn-info col-2 mx-2"

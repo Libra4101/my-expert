@@ -5,7 +5,7 @@
         .row
           .ex-problem_balloon_expert.text-center
             .ex-problem_expert_image_area
-              = attachment_image_tag comment.expert , :avater_image, :fill, 120, 120, fallback: 'no_image_profile.jpg', class: 'cl-problem_expert_image', size: '120x120'
+              = attachment_image_tag comment.expert , :avater_image, fallback: 'no_image_profile.jpg', class: 'ex-problem_expert_image'
               div #{comment.expert.job.title}  #{comment.expert.name}
             .ex-problem_expert_comment
               p = comment.content
@@ -21,7 +21,7 @@
           .row
             .ex-problem_balloon_client
               .ex-problem_client_image_area.text-center
-                = attachment_image_tag comment.client , :avater_image, :fill, 120, 120, fallback: 'no_image_profile.jpg', class: 'cl-problem_client_image', size: '120x120'
+                = attachment_image_tag comment.client , :avater_image, fallback: 'no_image_profile.jpg', class: 'ex-problem_client_image'
                 div #{comment.client.name}
               .ex-problem_client_comment
                 p = comment.content

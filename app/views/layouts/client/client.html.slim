@@ -8,7 +8,10 @@ html
     = include_gon
     = stylesheet_link_tag    'client', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'client', 'data-turbolinks-track': 'reload'
+    script src="https://maps.googleapis.com/maps/api/js?key=#{ ENV['GOOGLE_API_KEY'] }"
+    script src="https://yubinbango.github.io/yubinbango/yubinbango.js" charset="UTF-8"
   body
+    = Gon::Base.render_data
     - content_for :content do
       = render "layouts/client/header"
       = render  "layouts/flash" 

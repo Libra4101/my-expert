@@ -4,6 +4,9 @@ $(document).ready ->
       new YubinBango.MicroformatDom();
 
 $(document).on 'turbolinks:load', -> 
+  if $('#map').length
+    initMap();
+
   $('.btn-modal-job').on 'click', ->
     btnIndex = $('.btn-modal-job').index(this);
     $('.jobModal').eq(btnIndex).modal();

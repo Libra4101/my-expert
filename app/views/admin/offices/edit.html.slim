@@ -8,8 +8,6 @@
             h3 事務所情報（編集）
           .card-body.text-left
             .card-map.border.my-2
-              / Google Map Setting
-              script{ async src="https://maps.googleapis.com/maps/api/js?key=#{ ENV['GOOGLE_API_KEY'] }&callback=initMap"}
               #map style="height: 300px; width: 100%;"
             table.table.table-bordered
               tr.form-group

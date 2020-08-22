@@ -10,4 +10,12 @@ class Client::Base < ApplicationController
       redirect_back(fallback_location: root_path)
     end
   end
+
+  # ゲストユーザーチェック
+  def check_guest_client
+    if current_client.email == 'guest@example.com'
+      flash[:danger] = t('guest.check')
+      redirect_to root_path
+    end
+  end
 end
