@@ -1,8 +1,11 @@
 class Admin::ClientsController < Admin::Base
   before_action :set_client, only: %i[show withdraw]
 
+  # 定数
+  CLIENT_LIMIT = 4
+
   def index
-    @clients = Client.page(params[:page]).per(4)
+    @clients = Client.page(params[:page]).per(CLIENT_LIMIT)
   end
 
   def show

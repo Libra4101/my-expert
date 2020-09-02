@@ -1,4 +1,4 @@
 #postgresqlのイメージ取得
-FROM postgres
+FROM postgres:12
 #初期化で追加したい処理を書いたファイルを追加
 COPY Docker/db/initdb.sql /docker-entrypoint-initdb.d/.
