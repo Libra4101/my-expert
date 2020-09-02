@@ -1,4 +1,4 @@
-FROM nginx
+FROM nginx:1.19
 
 # インクルード用のディレクトリ内を削除
 RUN rm -f /etc/nginx/conf.d/*

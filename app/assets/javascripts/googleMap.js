@@ -1,8 +1,10 @@
-let map;
-let geocoder;
-let centerp;
-
 function initMap() {
+  // 宣言
+  let map;
+  let geocoder;
+  let centerp;
+  let marker;
+
   geocoder = new google.maps.Geocoder()
 
   if (gon.latitude && gon.longitude) {

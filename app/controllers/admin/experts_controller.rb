@@ -1,8 +1,11 @@
 class Admin::ExpertsController < Admin::Base
   before_action :set_expert, only: %i[show edit update withdraw]
 
+  # 定数
+  EXPERT_LIMIT = 4
+
   def index
-    @experts = Expert.page(params[:page]).per(4)
+    @experts = Expert.page(params[:page]).per(EXPERT_LIMIT)
   end
 
   def new
