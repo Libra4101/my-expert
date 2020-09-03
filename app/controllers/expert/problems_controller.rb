@@ -25,19 +25,19 @@ class Expert::ProblemsController < Expert::Base
   # 検索条件に合致する投稿リスト
   def problem_list
     # キーワード検索結果
-    problems = Problem.search(@search_params[:keyword_problem])
+    problems = Problem.search(@search_params[:keyword_problem]).includes(:client)
     # ソート条件設定
-    case @search_params[:sort_problem]
-      when 'new_sort'
-        problems.order('created_at DESC')
-      when 'update_sort'
-        problems.order('updated_at DESC')
-      when 'many_coment_sort'
-        problems.joins(:comments).group(:id).order('count(comments.id) DESC')
-      when 'new_coment_sort' 
-        problems.joins(:comments).group(:id).order('max(comments.updated_at) DESC')
-      else
-        problems
+    sort_hash = {
+      new_sort: "created_at DESC",
+      update_sort: "updated_at DESC",
+      many_coment_sort: "count(comments.id) DESC",
+      new_coment_sort: "max(comments.updated_at) DESC"
+    }
+    # ソート条件に合致するテーブルを結合
+    if @search_params[:sort_problem] == 'many_coment_sort' or @search_params[:sort_problem] == 'new_coment_sort'
+      problems.joins(:comments).group(:id).order(sort_hash[@search_params[:sort_problem]&.to_sym])
+    else
+      problems.order(sort_hash[@search_params[:sort_problem]&.to_sym])
     end
   end
 end
