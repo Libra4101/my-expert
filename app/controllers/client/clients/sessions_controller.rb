@@ -20,12 +20,12 @@ class Client::Clients::SessionsController < Devise::SessionsController
 
   # ゲストログイン
   def new_guest
-    client = Client.guest
+    client = Client.guest_client
     sign_in client
     flash[:success] = t('guest.login')
     redirect_to root_url
   end
-  
+
   # protected
 
   # If you have extra params to permit, append them to the sanitizer.

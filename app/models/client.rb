@@ -1,4 +1,7 @@
 class Client < ApplicationRecord
+  # ゲストモジュール機能
+  include GuestModule
+
   # devise setting
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable,
@@ -57,20 +60,6 @@ class Client < ApplicationRecord
   # 退会済みエラーメッセージを表示
   def inactive_message
     self.withdraw_status ? super : :deleted_account
-  end
-
-  # ゲスト会員
-  def self.guest
-    find_or_create_by!(email: 'guest@example.com') do |client|
-      client.password = SecureRandom.urlsafe_base64
-      client.name = '山田太郎'
-      client.name_kana = 'ヤマダタロウ'
-      client.gender = 1
-      client.age = '35'
-      client.address = '大阪府泉大津市池浦町'
-      client.postcode = '595-0022'
-      client.phone_number = '090-999-9999'
-    end
   end
 
   private

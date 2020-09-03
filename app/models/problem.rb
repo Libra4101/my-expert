@@ -28,8 +28,7 @@ class Problem < ApplicationRecord
 
   # 投稿内容検索
   def self.search(keyword)
-    return Problem.all unless keyword
-    Problem.where('problems.content LIKE ?', "%#{sanitize_sql_like(keyword)}%")
+    return keyword ? Problem.where('problems.content LIKE ?', "%#{sanitize_sql_like(keyword)}%") : Problem.all
   end
 
   # ブックマークチェック

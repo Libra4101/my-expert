@@ -20,7 +20,7 @@ class Expert::Experts::SessionsController < Devise::SessionsController
 
   # ゲストログイン
   def new_guest
-    expert = Expert.guest
+    expert = Expert.guest_expert
     sign_in expert
     flash[:success] = t('guest.login')
     redirect_to expert_root_url
