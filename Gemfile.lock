@@ -51,7 +51,7 @@ GEM
       i18n (>= 0.7, < 2)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
-    addressable (2.7.0)
+    addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
     arel (9.0.0)
     ast (2.4.1)
@@ -261,8 +261,8 @@ GEM
     pg (1.2.3)
     popper_js (1.16.0)
     powerpack (0.1.2)
-    public_suffix (4.0.5)
-    puma (3.12.6)
+    public_suffix (4.0.6)
+    puma (4.3.9)
     racc (1.6.0)
     rack (2.2.3)
     rack-protection (2.0.8.1)
@@ -454,7 +454,7 @@ DEPENDENCIES
   omniauth-google-oauth2
   omniauth-twitter
   pg (>= 0.18, < 2.0)
-  puma (~> 3.11)
+  puma (~> 4.3)
   rails (~> 5.2.4, >= 5.2.4.2)
   rails-i18n (~> 5.1)
   refile!
